@@ -1,4 +1,5 @@
 Thanks for downloading this template!
+Good day
 
 Template Name: Bethany
 Template URL: https://bootstrapmade.com/bethany-free-onepage-bootstrap-theme/
