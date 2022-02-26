@@ -1,0 +1,7 @@
+.tmp.driveupload/
+.tmp.drivedownload
+/.tmp.drivedownload/
+.dbconnection.php
+internal/common/dbconnection.php
+internal/common/dbconnection.php
+/nbproject/private/
