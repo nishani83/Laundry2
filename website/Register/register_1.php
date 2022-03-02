@@ -66,7 +66,8 @@ $con = $ob->connection();
                                             }
                                             ?>
                                         </div>
-                                        <form method="post"  enctype="multipart/form-data" id="addCustomer" name="addCustomer" action="../../apps/controller/customercontroller.php?status=addWeb">
+                                        <form method="post"  enctype="multipart/form-data" id="addName" name="addName" action="saveData.php">
+                                            <input type="hidden" name="token" id="token" value="frmAddName"/>
                                             <div class="form-group">
                                                 <input type="text" required="" name="first_name" id="first_name" placeholder="First Name" class="form-control" />
                                             </div>
@@ -79,7 +80,7 @@ $con = $ob->connection();
 
 
 
-                                            <button type="submit" class="btn btn-primary btn-block" >
+                                            <button type="submit" class="btn btn-primary btn-block" value="submit">
                                                 Next
                                             </button>
 

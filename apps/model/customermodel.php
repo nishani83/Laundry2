@@ -55,9 +55,13 @@ class customer {
     }
 
     function addWebCustomer($arr) {
-        $name = $arr['first_name'] . ' ' . $arr['last_name'];
-
-        $email = $arr['email'];
+        session_start();
+        $name = $_SESSION['fName'] . ' ' . $_SESSION['lName'];
+        $phone = $_SESSION['phone'];
+        $address = $arr['address1'] . ',' . $arr['address2'] . ',' . $arr['city'];
+        $email = $_SESSION['email'];
+        $longtitude = $arr['longitude'];
+        $latitude = $arr['latitude'];
         $RegisteredDate = date("Y-m-d");
 
         $con = $GLOBALS['con'];
@@ -68,10 +72,10 @@ class customer {
             $customerID = $rowID['customerID'];
         }
 
-        $sql = "INSERT INTO customer (customerID,name,RegisteredDate,status) VALUES('$customerID','$name','$RegisteredDate','Active')";
+        $sql = "INSERT INTO customer (customerID,name,address,RegisteredDate,contactNo,status) VALUES('$customerID','$name','$address','$RegisteredDate','$phone','Active')";
         $result = $con->query($sql) or die($con->error);
 
-        $sqlweb = "INSERT INTO webcustomer (customerID,email) VALUES('$customerID','$email')";
+        $sqlweb = "INSERT INTO webcustomer (customerID,email,longitude,latitude) VALUES('$customerID','$email','$longtitude','$latitude')";
         $resultweb = $con->query($sqlweb) or die($con->error);
         return $customerID;
     }
