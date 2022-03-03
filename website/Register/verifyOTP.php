@@ -10,7 +10,7 @@ $user_otp = $_POST['otp'];
 echo $session_otp;
 echo $user_otp;
 if ($session_otp == $user_otp) {
-    $_SESSION['email'] = $_POST['email'];
+
     header("Location:register_3.php");
 } else {
     $msg = base64_encode("Invalid OTP. Please try again");

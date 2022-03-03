@@ -105,6 +105,7 @@ session_start();
                                                 <div class="form-group">
                                                     <input type="text"  name="address1" id="addess1"   class="form-control" placeholder="Address Line 1"/>
                                                 </div>
+                                                <input type="hidden" name="ëmail" id="email" value="<?php echo ($_SESSION['email']) ?>"/>
                                                 <div class="form-group">
                                                     <input type="text"  name="address2" id="addess2"  class="form-control" placeholder="Address Line 2"/>
                                                 </div>

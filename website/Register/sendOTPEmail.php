@@ -13,7 +13,7 @@ require '../../vendor/autoload.php';
 try {
     $otp = rand(1000, 9999);
     $_SESSION['session_otp'] = $otp;
-
+    $_SESSION['email'] = $_POST['email'];
     $mail = new PHPMailer(true);
     $mail->isSMTP();
     $mail->SMTPAuth = true;
