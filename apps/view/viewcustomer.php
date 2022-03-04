@@ -72,13 +72,36 @@ $rowe = $rese->fetch_array();
                             <?php echo $rowe['address']; ?>
                         </div>
                     </div>
-
+                    <div class="row mb-3">
+                        <div class="col-md-2 col-sm-6 col-xs-12">
+                            <label>Longitude :</label>
+                        </div>
+                        <div class="col-md-8 col-sm-6 col-xs-12">
+                            <?php echo $rowe['longitude']; ?>
+                        </div><!-- comment -->
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-2 col-sm-6 col-xs-12">
+                            <label>Latitude :</label>
+                        </div>
+                        <div class="col-md-8 col-sm-6 col-xs-12">
+                            <?php echo $rowe['latitude']; ?>
+                        </div>
+                    </div>
                     <div class="row mb-3">
                         <div class="col-md-2 col-sm-6 col-xs-12">
                             <label>Contact No :</label>
                         </div>
                         <div class="col-md-8 col-sm-6 col-xs-12">
                             <?php echo $rowe['contactNo']; ?>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-2 col-sm-6 col-xs-12">
+                            <label>Email :</label>
+                        </div>
+                        <div class="col-md-8 col-sm-6 col-xs-12">
+                            <?php echo $rowe['email']; ?>
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -92,19 +115,20 @@ $rowe = $rese->fetch_array();
                     <hr>
 
 
-
-
-
-
                 </div>
-            </div>
 
+
+
+
+            </div>
         </div>
-        <!-- /.container-fluid -->
 
     </div>
+    <!-- /.container-fluid -->
 
-    <?php include '../common/include_footer.php'; ?>
+</div>
+
+<?php include '../common/include_footer.php'; ?>
 
 </div>
 </div>

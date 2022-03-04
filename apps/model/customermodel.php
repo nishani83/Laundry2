@@ -74,8 +74,9 @@ class customer {
 
         $sql = "INSERT INTO customer (customerID,name,address,RegisteredDate,contactNo,status) VALUES('$customerID','$name','$address','$RegisteredDate','$phone','Active')";
         $result = $con->query($sql) or die($con->error);
+        $refferal = "CAN" . substr($customerID, -3) . $name[0] . substr($name, -1);
 
-        $sqlweb = "INSERT INTO webcustomer (customerID,email,longitude,latitude) VALUES('$customerID','$email','$longtitude','$latitude')";
+        $sqlweb = "INSERT INTO webcustomer (customerID,email,longitude,latitude,refferalCode) VALUES('$customerID','$email','$longtitude','$latitude','$refferal')";
         $resultweb = $con->query($sqlweb) or die($con->error);
         return $customerID;
     }

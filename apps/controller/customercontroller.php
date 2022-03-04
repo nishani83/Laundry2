@@ -24,7 +24,7 @@ switch ($status) {
         $arr = $_POST;
         $customerID = $obj->addWebCustomer($arr);
 
-        //  header("Location:../../website/register/register_2.php");
+        header("Location:../../website/register/viewWebCustomer.php?customerID=$customerID");
 
         break;
 
@@ -32,26 +32,26 @@ switch ($status) {
         $customerID = $_GET['customerID'];
         $arr = $_POST;
         $obj->updateCustomer($customerID, $arr);
-        header("Location:../view/customer.php?status=success");
+        header("Location:../view/customer.php?status = success");
 
         break;
 
     case "deactive":
         $customerID = $_GET['customerID'];
         $obj->deactiveCustomer($customerID);
-        header("Location:../view/customer.php?status=success");
+        header("Location:../view/customer.php?status = success");
         break;
 
     case "active":
         $customerID = $_GET['customerID'];
         $obj->activeCustomer($customerID);
-        header("Location:../view/customer.php?status=success");
+        header("Location:../view/customer.php?status = success");
         break;
 
     case "view":
         $customerID = $_GET['customerID'];
 
         $obj->viewCustomer($customerID);
-        header("Location:../view/customer.php?status=success");
+        header("Location:../view/customer.php?status = success");
         break;
 }
