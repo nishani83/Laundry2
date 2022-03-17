@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <?php
-include '../../apps/common/dbconnection.php';
-$ob = new dbconnection();
-$con = $ob->connection();
-session_start();
+// include '../../apps/common/dbconnection.php';
+// $ob = new dbconnection();
+// $con = $ob->connection();
+// session_start();
 /* include '../common/session.php'; //To get session info
   include '../common/dbconnection.php'; //To get connection string
   include '../model/commonmodel.php'; //To call common vehicle model
@@ -43,6 +43,7 @@ session_start();
     </style>
     <script>
         // Initialize and add the map
+        var marker;
 
         function initMap() {
 
@@ -59,21 +60,30 @@ session_start();
             //  map: map,
             // });
 
-
             google.maps.event.addListener(map, 'click', function (event) {
+
+                latLng = event.latLng;
+
+                console.log(event.latLng.lat());
+                console.log(event.latLng.lng());
+                console.log("Marker");
 
                 var longt = document.getElementById("longitude");
                 var lat = document.getElementById("latitude");
 
-                marker = new google.maps.Marker({position: event.latLng, map: map});
+                if (marker && marker.setMap) {
+                    marker.setMap(null);
+
+                }
+
+                marker = new google.maps.Marker({position: latLng, map: map});
 
                 longt.value = event.latLng.lng();
                 lat.value = event.latLng.lat();
 
-
-
             });
         }
+
 
     </script>
 
@@ -136,14 +146,15 @@ session_start();
                                             }
                                             ?>
                                         </div>
+
                                         <div class="form-group">
                                             <input type="text"  name="longitude" id="longitude"  class="form-control" placeholder="longtitude"/>
-                                        </div
+                                        </div>
                                         <div class="form-group">
                                             <input type="text"  name="latitude" id="latitude"  class="form-control" placeholder="latitude"/>
                                         </div>
                                         <div class="form-group">
-                                            <button type="button" class="btn btn-primary btn-block"  >
+                                            <button type="button" class="btn btn-primary btn-block"  onclick="showMarker()">
                                                 Show on Map
                                             </button>
                                         </div>
@@ -159,7 +170,7 @@ session_start();
                                         <hr>
 
                                         <div class="text-center">
-                                            <p class="small" >Step 3 of 4</p>
+                                            <p class="small" >Step 3 of 3</p>
                                         </div>
                                     </div>
                                 </div>

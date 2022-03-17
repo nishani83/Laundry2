@@ -3,11 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/LaundryMgt/website/Register/sendOTPEmail.php</file>
-            <file>file:/C:/xampp/htdocs/LaundryMgt/website/Register/viewWebCustomer.php</file>
-            <file>file:/C:/xampp/htdocs/LaundryMgt/website/Register/saveData.php</file>
-            <file>file:/C:/xampp/htdocs/LaundryMgt/website/Register/verifyOTP.php</file>
-            <file>file:/C:/xampp/htdocs/LaundryMgt/website/Register/register_1.php</file>
+            <file>file:/C:/xampp/htdocs/LaundryMgt/website/category/items.php</file>
+            <file>file:/C:/xampp/htdocs/LaundryMgt/website/category/cart.php</file>
+            <file>file:/C:/xampp/htdocs/LaundryMgt/website/category/categoryList.php</file>
         </group>
     </open-files>
 </project-private>

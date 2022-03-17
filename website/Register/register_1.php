@@ -37,8 +37,10 @@ $con = $ob->connection();
     <link href="../assets/css/sb-admin-2.min.css" rel="stylesheet">
 
     <body class="bg-gradient-primary">
-
+        <?php include '../common/include_topbar.php'; ?>
         <div class="container">
+
+
 
             <!-- Outer Row -->
             <div class="row justify-content-center">
@@ -88,7 +90,7 @@ $con = $ob->connection();
                                         <hr>
 
                                         <div class="text-center">
-                                            <p class="small" >Step 1 of 4</p>
+                                            <p class="small" >Step 1 of 3</p>
                                         </div>
                                     </div>
                                 </div>

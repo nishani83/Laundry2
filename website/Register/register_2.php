@@ -92,7 +92,7 @@ session_start();
                                             <a class="small" href="otp.php">Problem? Resend OTP via SMS</a>
                                         </div>
                                         <div class="text-center">
-                                            <p class="small" >Step 2 of 4</p>
+                                            <p class="small" >Step 2 of 3</p>
                                         </div>
                                     </div>
                                 </div>
