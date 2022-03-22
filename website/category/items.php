@@ -3,6 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHP.php to edit this template
  */
+include '../../apps/common/dbconnection.php'; //To get connection string
+include '../../apps/model/itemmodel.php'; //To call employee model
+$ob = new dbconnection();
+$con = $ob->connection();
+$categoryID = $_REQUEST['categoryID'];
+$ob = new item();
+$res = $ob->viewItemsByCategory($categoryID);
+$row = $res->fetch_array();
 ?>
 <head>
     <link href="assets/css/products.css" rel = "stylesheet">

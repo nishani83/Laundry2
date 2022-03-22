@@ -36,7 +36,7 @@ $result = $obj->viewAllCategory();
                     $categoryID = $row['$categoryID'];
                     ?>
 
-                    <a href = "items.php?category=$categoryID" >
+                    <a href = "items.php?categoryID=$categoryID" >
                         <div class = "item">
                             <div class = "pad15">
                                 <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['categoryImage']); ?>"  class = "img-fluid mx-auto d-block"/>

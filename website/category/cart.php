@@ -22,7 +22,7 @@
 
         <section class="content">
             <div class="container-fluid">
-                <?php include 'dress.php'; ?>
+                <?php include 'items.php'; ?>
             </div>
     </div>
 </div>
