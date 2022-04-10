@@ -42,8 +42,53 @@
         }
     </style>
     <script>
-        // Initialize and add the map
         var marker;
+        function showMarker() {
+            const myLatLng = {lat: getLat(), lng: getLongt()};
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 15,
+                center: myLatLng,
+            });
+
+            marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map
+            });
+            google.maps.event.addListener(map, 'click', function (event) {
+
+                latLng = event.latLng;
+
+                console.log(event.latLng.lat());
+                console.log(event.latLng.lng());
+                console.log("Marker");
+
+                var longt = document.getElementById("longitude");
+                var lat = document.getElementById("latitude");
+
+                if (marker && marker.setMap) {
+                    marker.setMap(null);
+
+                }
+
+                marker = new google.maps.Marker({position: latLng, map: map});
+
+                longt.value = event.latLng.lng();
+                lat.value = event.latLng.lat();
+
+            });
+
+        }
+        function getLongt() {
+            var longt = document.getElementById("longitude").value;
+            return parseFloat(longt);
+
+        }
+        function getLat() {
+            var lat = document.getElementById("latitude").value;
+            return parseFloat(lat);
+        }
+        // Initialize and add the map
+
 
         function initMap() {
 
@@ -103,9 +148,9 @@
                                 <div id="map"></div>
 
                                 <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-                                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyByqPQH8ZaM1SYOMhHJ58ndIyJOGJHnNdo&callback=initMap"></script>
+<!--                                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyByqPQH8ZaM1SYOMhHJ58ndIyJOGJHnNdo&callback=initMap"></script>-->
                                 <!--<!-- comment -->
-
+                                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCA9WxUzanm0I39BNWrrMouIkURepq_Oxc&libraries=places &callback=initMap"></script>
                                 <div class="col-lg-6">
                                     <div class="p-5">
                                         <div class="text-center">
@@ -189,6 +234,7 @@
     </body>
     <script type="text/javascript">
         $(document).ready(function () {
+
             $('form').submit(function () {
                 var email = $('#email').val();
                 var pass = $('#pass').val();

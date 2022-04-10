@@ -33,9 +33,11 @@ $con = $ob->connection();
   $minDate = getDate1(60); */
 ?>
 <html lang="en">
-    <link rel="stylesheet" href='../assets/css/custom-styles.css'>
-    <link href="../assets/css/sb-admin-2.min.css" rel="stylesheet">
-
+    <head>
+        <?php include '../common/include_head.php'; ?>
+        <link rel="stylesheet" href='../assets/css/custom-styles.css'>
+        <link href="../assets/css/sb-admin-2.min.css" rel="stylesheet">
+    </head>
     <body class="bg-gradient-primary">
         <?php include '../common/include_topbar.php'; ?>
         <div class="container">

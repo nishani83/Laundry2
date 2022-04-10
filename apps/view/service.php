@@ -39,9 +39,9 @@ $result = $obj->viewAllEmployee();
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
 
-                                <li class="breadcrumb-item active"> <a href="../view/addemployee.php"
+                                <li class="breadcrumb-item active"> <a href="../view/addservice.php"
                                                                        class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
-                                        <i class="fas fa-address-card fa-sm text-white-50"></i> Add Employee
+                                        <i class="fas fa-address-card fa-sm text-white-50"></i> Add Service Prices
                                     </a></li>
                             </ol>
                         </div><!-- /.col -->

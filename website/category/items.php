@@ -13,9 +13,12 @@ $res = $ob->viewItemsByCategory($categoryID);
 $row = $res->fetch_array();
 ?>
 <head>
-    <link href="assets/css/products.css" rel = "stylesheet">
+    <link href="../assets/css/products.css" rel = "stylesheet">
     <link rel="stylesheet" href="../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <?php include '../../apps/common/include_head.php'; ?>
+    <link href="assets/css/carousel.css" rel = "stylesheet">
 </head>
 
 
@@ -26,97 +29,35 @@ $row = $res->fetch_array();
 <div class="card-deck">
     <!-- row 1 -->
     <div class="row">
-        <div class="col-md-3">
-            <div class="card-sl">
-                <div class="card-image">
-                    <img
-                        src="https://images.pexels.com/photos/1149831/pexels-photo-1149831.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" />
-                </div>
+        <?php
+        while ($row = $res->fetch_array()) {
+            ?>
 
-                <a class="card-action" href="#"><i class="fa fa-heart"></i></a>
-                <div class="card-heading">
-                    Audi Q8
+            <div class="col-md-2 mb-4">
+
+                <div class="card-sl">
+                    <div class="card-image">
+                        <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['itemImage']); ?>" />
+                    </div>
+
+
+                    <div class="card-heading">
+                        <?php echo $row['itemName']; ?>
+                    </div>
+
+                    <a href="serviceModal.php?itemID=<?php echo $row['itemID']; ?>" class="card-button" > Add</a>
+
                 </div>
-                <div class="card-text">
-                    Audi Q8 is a full-size luxury crossover SUV coupé made by Audi that was launched in 2018.
-                </div>
-                <div class="card-text">
-                    $67,400
-                </div>
-                <a href="#" class="card-button"> Purchase</a>
             </div>
-
-            <!-- card end -->
-        </div>
-        <div class="col-md-3">
-            <div class="card-sl">
-                <div class="card-image">
-                    <img
-                        src="https://images.pexels.com/photos/1149831/pexels-photo-1149831.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" />
-                </div>
-
-                <a class="card-action" href="#"><i class="fa fa-heart"></i></a>
-                <div class="card-heading">
-                    Audi Q8
-                </div>
-                <div class="card-text">
-                    Audi Q8 is a full-size luxury crossover SUV coupé made by Audi that was launched in 2018.
-                </div>
-                <div class="card-text">
-                    $67,400
-                </div>
-                <a href="#" class="card-button"> Purchase</a>
-            </div>
-
-            <!-- card end -->
-        </div>
-        <div class="col-md-3">
-            <div class="card-sl">
-                <div class="card-image">
-                    <img
-                        src="https://images.pexels.com/photos/1149831/pexels-photo-1149831.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" />
-                </div>
-
-                <a class="card-action" href="#"><i class="fa fa-heart"></i></a>
-                <div class="card-heading">
-                    Audi Q8
-                </div>
-                <div class="card-text">
-                    Audi Q8 is a full-size luxury crossover SUV coupé made by Audi that was launched in 2018.
-                </div>
-                <div class="card-text">
-                    $67,400
-                </div>
-                <a href="#" class="card-button"> Purchase</a>
-            </div>
-
-            <!-- card end -->
-        </div>
+        <?php } ?>
     </div>
-    <div class="row"></br></div>
-    <!-- card start -->
-    <div class="row">
-        <div class="col-md-3">
-            <div class="card-sl">
-                <div class="card-image">
-                    <img
-                        src="https://images.pexels.com/photos/1149831/pexels-photo-1149831.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" />
-                </div>
+</div>
 
-                <a class="card-action" href="#"><i class="fa fa-heart"></i></a>
-                <div class="card-heading">
-                    Audi Q8
-                </div>
-                <div class="card-text">
-                    Audi Q8 is a full-size luxury crossover SUV coupé made by Audi that was launched in 2018.
-                </div>
-                <div class="card-text">
-                    $67,400
-                </div>
-                <a href="#" class="card-button"> Purchase</a>
-            </div>
-        </div>
-        <!-- card end -->
+
+
+
+
+
 
 
 

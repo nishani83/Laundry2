@@ -3,10 +3,10 @@ $(document).ready(function () {
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['Plastic', 'Glass', 'Rubber', 'Paper', 'Metal', 'e-waste'],
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
             datasets: [{
-                    label: 'weight (kg)',
-                    data: [12, 19, 3, 5, 2, 3],
+                    label: 'Income(\'000)',
+                    data: [12, 19, 3],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
@@ -40,10 +40,10 @@ $(document).ready(function () {
     var myChart = new Chart(ctx, {
         type: 'pie',
         data: {
-            labels: ['Rubber', 'Paper', 'Rubber', 'Paper', 'Rubber', 'Paper'],
+            labels: ['Wash', 'Dry Clean', 'Press'],
             datasets: [{
-                    label: 'weight (kg)',
-                    data: [12, 4, 6, 5, 2, 3],
+                    label: 'order (%)',
+                    data: [12, 4, 6],
                     backgroundColor: [
                         '#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'
                     ],
@@ -54,8 +54,8 @@ $(document).ready(function () {
 
         options: {
             maintainAspectRatio: 1,
-
             tooltips: {
+
                 backgroundColor: "rgb(255,255,255)",
                 bodyFontColor: "#858796",
                 borderColor: '#dddfeb',
@@ -64,12 +64,32 @@ $(document).ready(function () {
                 yPadding: 15,
                 displayColors: false,
                 caretPadding: 10,
+                plugins: {
+                    datalabels: {
+                        formatter: (value, ctx) => {
+
+                            let datasets = ctx.chart.data.datasets;
+
+                            if (datasets.indexOf(ctx.dataset) === datasets.length - 1) {
+                                let sum = 0;
+                                datasets.map(dataset => {
+                                    sum += dataset.data[ctx.dataIndex];
+                                });
+                                let percentage = Math.round((value / sum) * 100) + '%';
+                                return percentage;
+                            } else {
+                                return percentage;
+                            }
+                        },
+                        color: '#fff',
+                    }
+                }
             },
             legend: {
                 display: true
             },
             cutoutPercentage: 30,
-            showpercentvalues: "1",
+
         }
 
 

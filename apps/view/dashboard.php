@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-//<?php
+<?php
 error_reporting(E_ERROR | E_WARNING | E_PARSE); //To hide errors
 include '../common/session.php';
 include '../common/dbconnection.php'; //To get connection string
@@ -10,6 +10,8 @@ $con = $ob->connection();
 <html>
 
     <?php include '../common/include_head.php'; ?>
+
+
     <body class="hold-transition sidebar-mini layout-fixed">
 
         <?php include '../common/include_topbar.php'; ?>
@@ -106,7 +108,7 @@ $con = $ob->connection();
                     <!-- Main row -->
                     <div class="row">
                         <!-- Left col -->
-                        <div  class = "col-sm-9">
+                        <div  class = "col-sm-8">
                             <!-- Custom tabs (Charts with tabs)-->
                             <div class="card">
                                 <div class="card-header">
@@ -123,43 +125,16 @@ $con = $ob->connection();
                                 </div>
                             </div>
                         </div><!-- /.card-header -->
-                        <div  class = "col-sm-3">
+                        <div  class = "col-sm-4">
                             <div class="card bg-gradient-success">
-                                <div class="card-header border-0">
 
-                                    <h3 class="card-title">
-                                        <i class="far fa-calendar-alt"></i>
-                                        Calendar
-                                    </h3>
-                                    <!-- tools card -->
-                                    <div class="card-tools">
-                                        <!-- button with a dropdown -->
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown">
-                                                <i class="fas fa-bars"></i></button>
-                                            <div class="dropdown-menu float-right" role="menu">
-                                                <a href="#" class="dropdown-item">Add new event</a>
-                                                <a href="#" class="dropdown-item">Clear events</a>
-                                                <div class="dropdown-divider"></div>
-                                                <a href="#" class="dropdown-item">View calendar</a>
-                                            </div>
-                                        </div>
-                                        <button type="button" class="btn btn-success btn-sm" data-card-widget="collapse">
-                                            <i class="fas fa-minus"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-success btn-sm" data-card-widget="remove">
-                                            <i class="fas fa-times"></i>
-                                        </button>
-                                    </div>
-                                    <!-- /. tools -->
+
+                                <div class="card-body" style="padding:1 !important; ">
+                                    <center><div id="datepicker" ></div></center>
                                 </div>
-                                <!-- /.card-header -->
-                                <div class="card-body pt-0">
-                                    <!--The calendar -->
-                                    <div id="calendar" style="width: 100%"></div>
-                                </div>
-                                <!-- /.card-body -->
+
                             </div>
+
                         </div>
                     </div>
                     <!-- /.card -->
@@ -178,7 +153,7 @@ $con = $ob->connection();
                                 <div class="card-header border-0">
                                     <h3 class="card-title">
                                         <i class="fas fa-th mr-1"></i>
-                                        Income
+                                        This Year Income
                                     </h3>
 
 
@@ -201,7 +176,7 @@ $con = $ob->connection();
                                 <div class="card-header border-0">
                                     <h3 class="card-title">
                                         <i class="fas fa-chart-pie"></i>
-                                        Report by Service
+                                        Report by Service (This Month)
                                     </h3>
 
 
@@ -254,6 +229,7 @@ $con = $ob->connection();
 <!-- jQuery UI 1.11.4 -->
 <script src="../plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+
 <script>
     $.widget.bridge('uibutton', $.ui.button)
 </script>
@@ -283,15 +259,34 @@ $con = $ob->connection();
 <script src="../assets/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../assets/js/demo.js"></script>
-</body>
-<script type="text/javascript">
-    $(function ()
-    {
-        $('#calendar').datepicker('setDate', new Date(2022, 3, 24));
-        $('#calendar').datepicker('update');
-        $('#calendar').val('');
+<script>
+    $(function () {
+        // An array of dates
+        var eventDates = {};
+        eventDates[ new Date('03/22/2022')] = new Date('03/22/2022');
+        eventDates[ new Date('03/10/2022')] = new Date('03/10/2022');
+
+        var deliveryDates = {};
+        deliveryDates[ new Date('03/20/2022')] = new Date('03/20/2022');
+        deliveryDates[ new Date('03/15/2022')] = new Date('03/15/2022');
+        // datepicker
+        $('#datepicker').datepicker({
+            beforeShowDay: function (date) {
+                var highlight = eventDates[date];
+                var h = deliveryDates[date];
+                if (highlight) {
+                    return [true, "event", 'selected'];
+                } else if (h) {
+                    return [true, "delivery", 'selected'];
+                } else {
+                    return [true, '', ''];
+                }
+            }
+        });
     });
 </script>
+</body>
+
 
 <?php include '../common/include_scripts.php'; ?>
 <script type="text/javascript" src="../assets/js/dashboard.js"></script>

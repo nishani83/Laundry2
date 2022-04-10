@@ -109,7 +109,7 @@
                 </ul>
             </li>
             <li class="nav-item">
-                <a href="customer.php" class="nav-link">
+                <a href="item.php" class="nav-link">
                     <i class="nav-icon fas fa-tshirt"></i>
                     <p>
                         Item
@@ -126,15 +126,15 @@
                     </p>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="customer.php" class="nav-link">
-                    <i class="nav-icon fas fa-tags"></i>
-                    <p>
-                        Service
+            <!--            <li class="nav-item">
+                            <a href="service.php" class="nav-link">
+                                <i class="nav-icon fas fa-tags"></i>
+                                <p>
+                                    Service
 
-                    </p>
-                </a>
-            </li>
+                                </p>
+                            </a>
+                        </li>-->
             <li class="nav-item">
                 <a href="customer.php" class="nav-link">
                     <i class="nav-icon fas fa-users"></i>

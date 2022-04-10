@@ -20,7 +20,7 @@ if ($_SESSION['s_id'] == "") {
     $_SESSION['s_id'] = time() . "_" . $ip; //create session id
 }
 
- $s_id = $_SESSION['s_id'];
+$s_id = $_SESSION['s_id'];
 
 //if ($_SESSION['cusID'] == "") {
 //    $status = 0;
@@ -28,8 +28,6 @@ if ($_SESSION['s_id'] == "") {
 //    $status = 1;
 //}
 //$status;
-
-
 //To get count from session array
 $count = count($_SESSION['user_info']);
 //If not login
@@ -41,21 +39,20 @@ if ($count == 0) {
 }
 
 
-  $user_info = $_SESSION['user_info'];
- // print_r($user_info);
-  $roleID = $user_info['roleID'];
- 
+$user_info = $_SESSION['user_info'];
+// print_r($user_info);
+$roleID = $user_info['roleID'];
 
-if ($roleID==1|| $roleID==2 || $roleID==3|| $roleID==4){
-   echo $userID = $user_info['empID'];
-   echo $userName = $user_info['empName'];
-   // $roleName = $user_info['roleName'];
-   echo $roleID = $user_info['roleID'];
-}else{
-  echo  $userName = $user_info['cusName'];
-  //  $roleName = $user_info['roleName'];
-   echo $userID = $user_info['cusID'];
-   echo $roleID = $user_info['roleID'];
+if ($roleID == 1 || $roleID == 2 || $roleID == 3 || $roleID == 4) {
+    $userID = $user_info['empID'];
+    $userName = $user_info['empName'];
+
+    $roleID = $user_info['roleID'];
+} else {
+    echo $userName = $user_info['cusName'];
+    //  $roleName = $user_info['roleName'];
+    echo $userID = $user_info['cusID'];
+    echo $roleID = $user_info['roleID'];
 
 //    if ($roleID==1|| $roleID==2 || $roleID==3){
 //        $empID = $user_info['empID'];
@@ -67,10 +64,6 @@ if ($roleID==1|| $roleID==2 || $roleID==3|| $roleID==4){
 //        //  $roleName = $user_info['roleName'];
 //        $cusID = $user_info['cusID'];
 //        $roleID = $user_info['roleID'];
-
-
-
-
 }
 
 

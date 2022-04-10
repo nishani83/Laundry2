@@ -1,11 +1,11 @@
 <?php
 
 include '../common/dbconnection.php';
-include '../model/categorymodel.php';
+include '../model/servicemodel.php';
 
 $ob = new dbconnection();
 $con = $ob->connection();
-$obj = new category();
+$obj = new service();
 //$result = $obj->viewAemployee($name);
 
 
@@ -14,36 +14,36 @@ $status = strtolower($_REQUEST['status']);
 switch ($status) {
     case "add":
         $arr = $_POST;
-        $categoryID = $obj->addCategory($arr);
+        $obj->addService($arr);
 
-        header("Location:../view/category.php?status=success");
+        header("Location:../view/service.php?status=success");
 
         break;
 
     case "update":
-        $empID = $_GET['categoryID'];
+        $serviceID = $_GET['serviceID'];
         $arr = $_POST;
-        $obj->updateCategory($categoryID, $arr);
-        header("Location:../view/category.php?status=success");
+        $obj->updateService($serviceID, $arr);
+        header("Location:../view/service.php?status=success");
 
         break;
 
     case "deactive":
-        $categoryID = $_GET['categoryID'];
-        $obj->deactiveCategory($categoryID);
-        header("Location:../view/category.php?status=success");
+        $serviceID = $_GET['serviceID'];
+        $obj->deactiveService($serviceID);
+        header("Location:../view/service.php?status=success");
         break;
 
     case "active":
-        $categoryID = $_GET['categoryID'];
-        $obj->activeCategory($categoryID);
-        header("Location:../view/category.php?status=success");
+        $serviceID = $_GET['serviceID'];
+        $obj->activeService($serviceID);
+        header("Location:../view/service.php?status=success");
         break;
 
     case "view":
-        $categoryID = $_GET['categoryID'];
+        $serviceID = $_GET['serviceID'];
 
-        $obj->viewCategory($categoryID);
-        header("Location:../view/category.php?status=success");
+        $obj->viewService($serviceID);
+        header("Location:../view/service.php?status=success");
         break;
 }

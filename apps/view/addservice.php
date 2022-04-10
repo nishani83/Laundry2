@@ -6,8 +6,13 @@ include '../common/dbconnection.php'; //To get connection string
 
 $ob = new dbconnection();
 $con = $ob->connection();
-
-//
+include '../model/itemmodel.php';
+$ob = new dbconnection();
+$con = $ob->connection();
+$obj = new item;
+$itemID = $_REQUEST['itemID'];
+$result = $obj->viewItem($itemID);
+$row = $result->fetch_array();
 ?>
 <html>
 
@@ -33,13 +38,13 @@ $con = $ob->connection();
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Add Employee</h1>
+                            <h1 class="m-0 text-dark">Add Service Price</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
-                                <li class="breadcrumb-item"><a href="employee.php">Employee</a></li>
-                                <li class="active breadcrumb-item">&nbsp; &nbsp;Add Employee</li>
+                                <li class="breadcrumb-item"><a href="service.php">Service</a></li>
+                                <li class="active breadcrumb-item">&nbsp; &nbsp;Add Service Price</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -55,26 +60,28 @@ $con = $ob->connection();
                         <div class="card-body">
 
                             <div id="example_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                                <form method="post" action="../controller/employeecontroller.php?status=Add" enctype="multipart/form-data">
+                                <form method="post" action="../controller/servicecontroller.php?status=Add" enctype="multipart/form-data">
                                     <div class="row mb-3">
                                         <div class="col-md-2 col-sm-6 col-xs-12">
-                                            <label>Name <span>*</span></label>
+                                            <label>Item </label>
                                         </div>
                                         <div class="col-md-8 col-sm-6 col-xs-12">
-                                            <input type="text" required="" name="name" id="name" placeholder="Name" class="form-control" />
+
+                                            <?php echo $row['itemName']; ?>
+                                            <input type="hidden" id="itemID" name="itemID" value="<?php echo $itemID; ?>">
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <div class="col-md-2 col-sm-6 col-xs-12">
-                                            <label>Designation <span>*</span></label>
+                                            <label>Service <span>*</span></label>
                                         </div>
                                         <div class="col-md-8 col-sm-6 col-xs-12">
-                                            <select name="designation" id="designation" required="" class="form-control">
-                                                <option value="">Select a Designation</option>
-                                                <option value="operator">Operator</option>
-                                                <option value="launderer">Launderer</option>
-                                                <option value="driver">Driver</option>
+                                            <select name="service" id="service" required="" class="form-control">
+                                                <option value="">Select a Service</option>
+                                                <option value="1">Dry Clean</option>
+                                                <option value="2">Wash</option>
+                                                <option value="3">Press</option>
 
                                                 </option>
 
@@ -84,59 +91,15 @@ $con = $ob->connection();
 
                                     <div class="row mb-3">
                                         <div class="col-md-2 col-sm-6 col-xs-12">
-                                            <label>ID Number</label>
+                                            <label>Price</label>
                                         </div>
                                         <div class="col-md-8 col-sm-6 col-xs-12">
-                                            <input type="text" required="" name="NIC" id="NIC" placeholder="ID Number" class="form-control" />
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-md-2 col-sm-6 col-xs-12">
-                                            <label>Licence Number</label>
-                                        </div>
-                                        <div class="col-md-8 col-sm-6 col-xs-12">
-                                            <input type="text" required="" name="licenceNo" id="licenceNo" placeholder="Licence Number" class="form-control" />
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-md-2 col-sm-6 col-xs-12">
-                                            <label>Contact No <span>*</span></label>
-                                        </div>
-                                        <div class="col-md-8 col-sm-6 col-xs-12">
-                                            <input type="tel" required="" name="contactNo" id="contactNo" placeholder="Contact No" class="form-control" />
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-md-2 col-sm-6 col-xs-12">
-                                            <label>Email <span>*</span></label>
-                                        </div>
-                                        <div class="col-md-8 col-sm-6 col-xs-12">
-                                            <input type="email" required="" name="email" id="email" placeholder="Email" class="form-control" onkeyup="checkEmail(this.value)" autocomplete="off" />
-                                            <span id="show"></span>
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-md-2 col-sm-6 col-xs-12">
-                                            <label>Address <span>*</span></label>
-                                        </div>
-                                        <div class="col-md-8 col-sm-6 col-xs-12">
-                                            <textarea name="address" id="address" class="form-control" placeholder="Address" required></textarea>
+                                            <input type="text" required="" name="price" id="price" placeholder="Price" class="form-control" />
                                         </div>
                                     </div>
 
 
-                                    <div class="row mb-3">
-                                        <div class="col-md-2 col-sm-6 col-xs-12">
-                                            <label>Hire Date</label>
-                                        </div>
-                                        <div class="col-md-8 col-sm-6 col-xs-12">
-                                            <input type="date" name="hireDate" id="hireDate" placeholder="hireDate" class="form-control" />
-                                        </div>
-                                    </div>
+
 
                                     <div class="row mb-3">
                                         <div class="col-md-2 col-sm-6 col-xs-12"></div>
@@ -168,12 +131,12 @@ $con = $ob->connection();
                 <script src="../DataTables/DataTables-1.10.24/js/dataTables.bootstrap4.min.js"></script>
 
                 <script type="text/javascript">
-                                                function confMessage(str) {
-                                                    var r = confirm("Do you want to " + str + " this employee?");
-                                                    if (!r) {
-                                                        return false;
-                                                    }
-                                                }
+                    function confMessage(str) {
+                        var r = confirm("Do you want to " + str + " this employee?");
+                        if (!r) {
+                            return false;
+                        }
+                    }
                 </script>
                 <script>
                     $(document).ready(function () {

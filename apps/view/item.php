@@ -3,7 +3,7 @@
 error_reporting(E_ERROR | E_WARNING | E_PARSE); //To hide errors
 include '../common/session.php';
 include '../common/dbconnection.php'; //To get connection string
-include '../model/itemmodel.php'; //To call employee model
+include '../model/itemmodel.php';
 $ob = new dbconnection();
 $con = $ob->connection();
 $obj = new item; //To create an object using employee class
@@ -43,56 +43,7 @@ $result = $obj->viewAllItem();
 
             <!-- Main content -->
             <section class="content">
-                <div class="card shadow mb-4">
-                    <div class="card-body">
 
-                        <div id="example_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                            <form method="post" action="../controller/categorycontroller.php?status=Add" enctype="multipart/form-data">
-                                <div class="row mb-3">
-                                    <div class="col-md-2 col-sm-6 col-xs-12">
-                                        <label>Name <span>*</span></label>
-                                    </div>
-                                    <div class="col-md-8 col-sm-6 col-xs-12">
-                                        <input type="text" required="" name="name" id="name" placeholder="Name" class="form-control" />
-                                    </div>
-                                </div>
-
-
-
-                                <div class="row mb-3">
-                                    <div class="col-md-2 col-sm-6 col-xs-12">
-                                        <label>Image <span>*</span></label>
-                                    </div>
-                                    <div class="col-md-8 col-sm-6 col-xs-12">
-                                        <input type="file" id="image" name="image" accept="image/*"/>
-                                    </div>
-
-                                </div>
-
-                                <div class="row mb-3">
-                                    <div class="col-md-2 col-sm-6 col-xs-12">
-                                        <label>Category <span>*</span></label>
-                                    </div>
-                                    <div class="col-md-8 col-sm-6 col-xs-12">
-                                        <input type="file" id="image" name="image" accept="image/*"/>
-                                    </div>
-
-                                </div>
-
-
-
-
-
-                                <div class="row mb-3">
-                                    <div class="col-md-2 col-sm-6 col-xs-12"></div>
-                                    <div class="col-md-10 col-sm-6 col-xs-12">
-                                        <button type="submit" class="btn btn-success">Add Category</button>                                    <button type="reset" class="btn btn-outline-secondary">Clear</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
 
                 <div class="row">
                     <div class="col-12">
@@ -126,25 +77,26 @@ $result = $obj->viewAllItem();
                                             <tr>
 
                                                 <td>
-                                                    <?php echo $row['categoryID']; ?>
+                                                    <?php echo $row['itemID']; ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $row['categoryName']; ?></br>
+                                                    <?php echo $row['itemName']; ?></br>
 
 
                                                 </td>
                                                 <td>
-                                                    <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['categoryImage']); ?>" />
+                                                    <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['itemImage']); ?>" />
                                                 </td>
 
                                                 <td>
-                                                    <a href="../view/viewemployee.php?empID=<?php echo $row['empID']; ?>&status=view"><button type="button" class="btn btn-success"> View</button></a>
-                                                    <a href="../view/updateemployee.php?empID=<?php echo $row['empID']; ?>&status=update">
+                                                    <a href="../view/viewitem.php?itemID=<?php echo $row['itemID']; ?>&status=view"><button type="button" class="btn btn-success"> View</button></a>
+                                                    <a href="../view/updateitem.php?itemID=<?php echo $row['itemID']; ?>&status=update">
                                                         <button type="button" class="btn btn-primary"> </i> Update</button></a>
 
-                                                    <a href="../controller/employeecontroller.php?empID=<?php echo $row['empID']; ?>&status=<?php echo $label; ?>">
+                                                    <a href="../controller/itemcontroller.php?itemID=<?php echo $row['itemID']; ?>&status=<?php echo $label; ?>">
                                                         <button type="button" class="<?php echo $class; ?>" onclick="return confMessage('<?php echo $label; ?>')">
                                                             <?php echo $label; ?></button></a>
+                                                    <a href="../view/addservice.php?itemID=<?php echo $row['itemID']; ?>&status=view"><button type="button" class="btn btn-warning"> Add Service Price</button></a>
                                                 </td>
                                             </tr>
                                         <?php } ?>

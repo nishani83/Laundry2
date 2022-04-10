@@ -1,0 +1,18 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/*
+    Created on : Mar 23, 2022, 3:57:13 PM
+    Author     : USER
+*/
+
+.event a {
+    background-color: #5FBA7D !important;
+    color: #ffffff !important;
+}
+
+.delivery a {
+    background-color: #ffc107 !important;
+    color: #ffffff !important;
+}

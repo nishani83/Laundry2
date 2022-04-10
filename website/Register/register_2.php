@@ -4,6 +4,7 @@ include '../../apps/common/dbconnection.php';
 $ob = new dbconnection();
 $con = $ob->connection();
 session_start();
+//test
 /* include '../common/session.php'; //To get session info
   include '../common/dbconnection.php'; //To get connection string
   include '../model/commonmodel.php'; //To call common vehicle model

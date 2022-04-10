@@ -31,7 +31,7 @@
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Daterange picker -->
-    <link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
+
     <!-- summernote -->
     <link rel="stylesheet" href="../plugins/summernote/summernote-bs4.css">
     <!-- Google Font: Source Sans Pro -->
@@ -44,5 +44,8 @@
     <link rel="stylesheet" href="../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+
+    <link rel="stylesheet" href="../assets/css/style.css">
 
 </head>

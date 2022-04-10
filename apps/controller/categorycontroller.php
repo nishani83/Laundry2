@@ -21,7 +21,7 @@ switch ($status) {
         break;
 
     case "update":
-        $empID = $_GET['categoryID'];
+        $categoryID = $_GET['categoryID'];
         $arr = $_POST;
         $obj->updateCategory($categoryID, $arr);
         header("Location:../view/category.php?status=success");
