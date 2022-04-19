@@ -1,4 +1,4 @@
-.tmp.driveupload/
+.tmp.driveupload
 .tmp.drivedownload
 /.tmp.drivedownload/
 .dbconnection.php
