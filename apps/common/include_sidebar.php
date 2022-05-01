@@ -47,66 +47,82 @@
                 </ul>
             </li>
 
-            <li class="nav-item has-treeview">
-                <a href="#" class="nav-link">
+
+
+            <li class="nav-item has-treeview ">
+                <a href="#" class="nav-link active">
                     <i class="nav-icon fas fa-calendar"></i>
                     <p>
                         Schedule
-
+                        <i class="fas fa-angle-right right"></i>
                     </p>
+
                 </a>
                 <ul class="nav nav-treeview">
 
+                    <li class="nav-item">
+                        <a href="../view/schedule.php" class="nav-link ">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Manage Schedules</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../view/viewAllPickUpDelivery.php" class="nav-link ">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Today's Pick up & Delivery</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../view/scheduleplan.php" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Schedule Planner</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../view/collectionmap.php" class="nav-link ">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Collection Map</p>
+                        </a>
+                    </li>
 
-                    <li class="nav-item">
-                        <a href="../pages/UI/timeline.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Timeline</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="../pages/UI/ribbons.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Ribbons</p>
-                        </a>
-                    </li>
+
                 </ul>
             </li>
 
             <li class="nav-item has-treeview">
-                <a href="#" class="nav-link">
+                <a href="../view/task.php" class="nav-link">
                     <i class="nav-icon fas fa-tasks"></i>
                     <p>
                         Task
 
                     </p>
                 </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="../pages/forms/general.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>General Elements</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="../pages/forms/advanced.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Advanced Elements</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="../pages/forms/editors.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Editors</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="pages/forms/validation.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Validation</p>
-                        </a>
-                    </li>
-                </ul>
+                <!--                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="../pages/forms/general.html" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>General Elements</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="../pages/forms/advanced.html" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Advanced Elements</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="../pages/forms/editors.html" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Editors</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="pages/forms/validation.html" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Validation</p>
+                                        </a>
+                                    </li>
+                                </ul>-->
             </li>
             <li class="nav-item">
                 <a href="item.php" class="nav-link">
@@ -179,7 +195,7 @@
             </li>
 
             <li class="nav-item has-treeview menu-open">
-                <a href="employee.php" class="nav-link active">
+                <a href="employee.php" class="nav-link ">
                     <i class="nav-icon fas fa-user"></i>
                     <p>
                         Employee
@@ -230,14 +246,44 @@
                     </p>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="customer.php" class="nav-link">
-                    <i class="nav-icon fas fa-file-alt"></i>
+            <li class="nav-item has-treeview menu-open">
+                <a href="#" class="nav-link active">
+                    <i class="nav-icon fas fa-calendar"></i>
                     <p>
-                        Reports
+                        Report
                         <i class="fas fa-angle-right right"></i>
                     </p>
+
                 </a>
+                <ul class="nav nav-treeview">
+
+                    <li class="nav-item">
+                        <a href="../view/reportincome.php" class="nav-link ">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Income Report</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../view/reportOrder.php" class="nav-link ">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Order Report</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../view/scheduleplan.php" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Task Report</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../view/reportcustomer.php" class="nav-link ">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Customer Report</p>
+                        </a>
+                    </li>
+
+
+                </ul>
             </li>
             <!--
             <li class="nav-header">EXAMPLES</li>

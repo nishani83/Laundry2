@@ -6,8 +6,6 @@ include '../model/employeemodel.php';
 $ob = new dbconnection();
 $con = $ob->connection();
 $obj = new employee();
-//$result = $obj->viewAemployee($name);
-
 
 $status = strtolower($_REQUEST['status']);
 

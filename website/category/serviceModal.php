@@ -11,6 +11,8 @@ $itemID = $_REQUEST['itemID'];
 $ob = new item();
 $res = $ob->viewItem($itemID);
 $row = $res->fetch_array();
+$obj = new service();
+$result = $obj->getServiceCharge($itemID)
 ?>
 <div >Customize Your Order
 
@@ -27,16 +29,22 @@ $row = $res->fetch_array();
             <div class = "pad15">
                 <img src="../../website/assets/img/icons/iron.png"  class = "img-fluid mx-auto d-block"/>
 
-                <p><?php echo $row['categoryName']; ?> </p>
+                <p>Iron</p>
 
 
             </div>
         </div>
-
+        <button class = "btn btn-primary leftLst"><</button>
+        <button class = "btn btn-primary rightLst">></button>
 
     </div>
 
-    <button class = "btn btn-primary leftLst"><</button>
-    <button class = "btn btn-primary rightLst">></button>
+    <div> Select Form</div>
+    <p>Hang</p>
+
+    <p>Special Notes</p>
+    <form>
+        <input type="text"  name="notes" id="notes" class="form-control" />
+    </form>
 </div>
 <script src="../assets/js/carousel.js"></script>

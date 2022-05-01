@@ -1,7 +1,7 @@
-<div class="wrapper">
+<div class="wrapper  ">
 
     <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light  ">
         <!-- Left navbar links -->
         <!--    <ul class="navbar-nav">
               <li class="nav-item">
@@ -26,14 +26,15 @@
                 </div>
               </div>
             </form>-->
-        <div class="row">
+
+        <div class="row user-panel mt-2 pb-2 mb-2 d-flex" >
 
 <!--            <img src="../assets/img/logo.png" class="center" style="width: 50px">-->
-            <h5 class="m-0 dark"><p class="text-primary"> &nbsp;&nbsp;&nbsp;&nbsp;Canren Wash Laundry Management</p></h5>
+            <h4 class="m-0 dark"><p class="text-primary"> &nbsp;&nbsp;&nbsp;&nbsp;Canren Wash Laundry Management</p></h4>
         </div>
 
         <!-- Right navbar links -->
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ml-auto ">
             <!-- Messages Dropdown Menu -->
             <!--            <li class="nav-item dropdown">
                             <a class="nav-link" data-toggle="dropdown" href="#">
@@ -135,10 +136,11 @@
 
                 </div>
             </li>
-
-            <!-- /.modal-content -->
-            </div>
-
         </ul>
+        <!-- /.modal-content -->
     </nav>
-    <!-- /.navbar -->
+</div>
+
+
+
+<!-- /.navbar -->

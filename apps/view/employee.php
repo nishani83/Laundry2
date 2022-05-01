@@ -21,14 +21,7 @@ $result = $obj->viewAllEmployee();
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <!--     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                                <h1 class="h3 mb-0 text-gray-800">Employee Management</h1>
-                                <a href="../view/addemployee.php"
-                                   class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
-                                    <i class="fas fa-address-card fa-sm text-white-50"></i> Add Employee
-                                </a>
-                            </div>-->
+
             <!-- /.content-header -->
             <div class="content-header">
                 <div class="container-fluid">
