@@ -20,6 +20,17 @@ class employee {
         return $result;
     }
 
+    public function viewAvailableLaunderers() {
+//   $leaveDate = date("yy-mm-dd", strtotime($lDate));
+
+        $con = $GLOBALS['con'];
+
+        //   $sql = "SELECT E.empID,E.empName FROM employee E inner join driver D on E.empID = D.empID where E.status='active' AND E.empID NOT IN (SELECT empID FROM `empleave` WHERE leaveDate = '$leaveDate');";
+        $sql = "SELECT E.empID,E.empName FROM employee E  where E.status='active' AND E.designation='launderer';";
+        $result = $con->query($sql);
+        return $result;
+    }
+
     public function viewAEmployee($empID) {
         $con = $GLOBALS['con'];
         //sql query

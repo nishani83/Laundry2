@@ -128,11 +128,11 @@ $result = $obj->viewAllCategory();
                                                 </td>
 
                                                 <td>
-                                                    <a href="../view/viewemployee.php?empID=<?php echo $row['empID']; ?>&status=view"><button type="button" class="btn btn-success"> View</button></a>
-                                                    <a href="../view/updateemployee.php?empID=<?php echo $row['empID']; ?>&status=update">
+
+                                                    <a href="../view/updateitem.php?itemID=<?php echo $row['itemID']; ?>&status=update">
                                                         <button type="button" class="btn btn-primary"> </i> Update</button></a>
 
-                                                    <a href="../controller/employeecontroller.php?empID=<?php echo $row['empID']; ?>&status=<?php echo $label; ?>">
+                                                    <a href="../controller/itemcontroller.php?itemID=<?php echo $row['itemID']; ?>&status=<?php echo $label; ?>">
                                                         <button type="button" class="<?php echo $class; ?>" onclick="return confMessage('<?php echo $label; ?>')">
                                                             <?php echo $label; ?></button></a>
                                                 </td>

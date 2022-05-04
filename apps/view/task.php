@@ -3,16 +3,15 @@
 error_reporting(E_ERROR | E_WARNING | E_PARSE); //To hide errors
 include '../common/session.php';
 include '../common/dbconnection.php'; //To get connection string
-include '../model/customermodel.php'; //To call employee model
+include '../model/taskmodel.php'; //To call employee model
 $ob = new dbconnection();
 $con = $ob->connection();
-$obj = new customer; //To create an object using employee class
-$result = $obj->viewAllCustomer();
+$obj = new task; //To create an object using employee class
+$result = $obj->viewAllTask();
 //
 ?>
 <html>
-    <?php echo '******'; ?>
-    <?php echo $row['customerID']; ?>
+
     <?php include '../common/include_head.php'; ?>
     <body class="hold-transition sidebar-mini layout-fixed">
 
@@ -35,7 +34,7 @@ $result = $obj->viewAllCustomer();
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Customer Management</h1>
+                            <h1 class="m-0 text-dark">Task Management</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -65,6 +64,7 @@ $result = $obj->viewAllCustomer();
                                         <tr>
                                             <th>Task ID</th>
                                             <th>Task Name</th>
+                                            <th>Order ID</th>
                                             <th>Due Date</th>
                                             <th>End Time</th>
                                             <th>Status</th>
@@ -74,155 +74,65 @@ $result = $obj->viewAllCustomer();
                                     </thead>
                                     <tbody>
                                         <?php
-//                                        while ($row = $result->fetch_array()) {
-//                                            //To check the status
-//                                            if (strtolower($row['status']) == "active") {
-//                                                $label = "Deactive";
-//                                                $class = "btn btn-danger";
-//                                                $iclass = "glyphicon glyphicon-remove";
-//                                            } else {
-//                                                $label = "Active";
-//                                                $class = "btn btn-info";
-//                                                $iclass = "glyphicon glyphicon-ok";
-//                                            }
-                                        ?>
-                                        <tr>
+                                        while ($row = $result->fetch_array()) {
+                                            //To check the status
+                                            if (strtolower($row['status']) == "active") {
+                                                $label = "Deactive";
+                                                $class = "btn btn-danger";
+                                                $iclass = "glyphicon glyphicon-remove";
+                                            } else {
+                                                $label = "Active";
+                                                $class = "btn btn-info";
+                                                $iclass = "glyphicon glyphicon-ok";
+                                            }
+                                            ?>
+                                            <tr>
 
 
-                                            <td>
-                                                <?php //echo $row['customerID']; ?>
+                                                <td>
+                                                    <?php echo $row['taskID']; ?>
 
-                                            </td>
-                                            <td>
-                                                <?php //echo $row['name']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $row['taskName']; ?>
 
-                                            </td>
-                                            <td>
-                                                <?php //echo $row['address']; ?>
-                                            </td>
-                                            <td>
-                                                <?php //echo $row['contactNo']; ?>
-                                            </td>
-
-                                            <td>
-                                                <?php //echo $row['status']; ?>
-                                            </td>
-                                            <td>
-                                                <?php //echo $row['status']; ?>
-                                            </td>
-                                            <td>
-                                                <a href="../view/viewcustomer.php?customerID=<?php //echo $row['customerID'];    ?>&status=view"><button type="button" class="btn btn-success"> View</button></a>
-                                                <a href="../view/updatecustomer.php?customerID=<?php //echo $row['customerID'];    ?>&status=update">
-                                                    <button type="button" class="btn btn-primary"> </i> Update</button></a>
-
-                                                <a href="../controller/customercontroller.php?customerID=<?php //echo $row['customerID'];    ?>&status=<?php echo $label; ?>">
-                                                    <button type="button" class="<?php echo $class; ?>" onclick="return confMessage('<?php echo $label; ?>')">
-                                                        <?php //echo $label; ?></button></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
+                                                </td>
+                                                <td>
+                                                    <?php echo $row['orderID']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $row['dueDate']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $row['endTime']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $row['status']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $row['empName']; ?>
+                                                </td>
 
 
-                                            <td>
-                                                <?php //echo $row['customerID']; ?>
+                                                <td>
+                                                    <?php //echo $row['status']; ?>
+                                                </td>
+                                                <td>
+                                                    <a href="../view/viewtask.php?taskID=<?php echo $row['taskID']; ?>&status=view"><button type="button" class="btn btn-success"> View</button></a>
+                                                    <a href="../view/updatetask.php?taskID=<?php echo $row['taskID']; ?>&status=update">
+                                                        <button type="button" class="btn btn-primary"> </i> Update</button></a>
 
-                                            </td>
-                                            <td>
-                                                <?php //echo $row['name']; ?>
-
-                                            </td>
-                                            <td>
-                                                <?php //echo $row['address']; ?>
-                                            </td>
-                                            <td>
-                                                <?php //echo $row['contactNo']; ?>
-                                            </td>
-
-                                            <td>
-                                                <?php //echo $row['status']; ?>
-                                            </td>
-                                            <td>
-                                                <?php //echo $row['status']; ?>
-                                            </td>
-                                            <td>
-                                                <a href="../view/viewcustomer.php?customerID=<?php //echo $row['customerID'];    ?>&status=view"><button type="button" class="btn btn-success"> View</button></a>
-                                                <a href="../view/updatecustomer.php?customerID=<?php //echo $row['customerID'];    ?>&status=update">
-                                                    <button type="button" class="btn btn-primary"> </i> Update</button></a>
-
-                                                <a href="../controller/customercontroller.php?customerID=<?php //echo $row['customerID'];    ?>&status=<?php echo $label; ?>">
-                                                    <button type="button" class="<?php echo $class; ?>" onclick="return confMessage('<?php echo $label; ?>')">
-                                                        <?php //echo $label; ?></button></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
+                                                    <a href="../controller/taskcontroller.php?taskID=<?php echo $row['taskID']; ?>&status=<?php echo $label; ?>">
+                                                        <button type="button" class="<?php echo $class; ?>" onclick="return confMessage('<?php echo $label; ?>')">
+                                                            <?php echo $label; ?></button></a>
+                                                </td>
+                                            </tr>
 
 
-                                            <td>
-                                                <?php //echo $row['customerID']; ?>
-
-                                            </td>
-                                            <td>
-                                                <?php //echo $row['name']; ?>
-
-                                            </td>
-                                            <td>
-                                                <?php //echo $row['address']; ?>
-                                            </td>
-                                            <td>
-                                                <?php //echo $row['contactNo']; ?>
-                                            </td>
-
-                                            <td>
-                                                <?php //echo $row['status']; ?>
-                                            </td>
-                                            <td>
-                                                <?php //echo $row['status']; ?>
-                                            </td>
-                                            <td>
-                                                <a href="../view/viewcustomer.php?customerID=<?php //echo $row['customerID'];    ?>&status=view"><button type="button" class="btn btn-success"> View</button></a>
-                                                <a href="../view/updatecustomer.php?customerID=<?php //echo $row['customerID'];    ?>&status=update">
-                                                    <button type="button" class="btn btn-primary"> </i> Update</button></a>
-
-                                                <a href="../controller/customercontroller.php?customerID=<?php //echo $row['customerID'];    ?>&status=<?php echo $label; ?>">
-                                                    <button type="button" class="<?php echo $class; ?>" onclick="return confMessage('<?php echo $label; ?>')">
-                                                        <?php //echo $label; ?></button></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
 
 
-                                            <td>
-                                                <?php //echo $row['customerID']; ?>
 
-                                            </td>
-                                            <td>
-                                                <?php //echo $row['name']; ?>
-
-                                            </td>
-                                            <td>
-                                                <?php //echo $row['address']; ?>
-                                            </td>
-                                            <td>
-                                                <?php //echo $row['contactNo']; ?>
-                                            </td>
-
-                                            <td>
-                                                <?php //echo $row['status']; ?>
-                                            </td>
-                                            <td>
-                                                <?php //echo $row['status']; ?>
-                                            </td>
-                                            <td>
-                                                <a href="../view/viewcustomer.php?customerID=<?php //echo $row['customerID'];    ?>&status=view"><button type="button" class="btn btn-success"> View</button></a>
-                                                <a href="../view/updatecustomer.php?customerID=<?php //echo $row['customerID'];    ?>&status=update">
-                                                    <button type="button" class="btn btn-primary"> </i> Update</button></a>
-
-                                                <a href="../controller/customercontroller.php?customerID=<?php //echo $row['customerID'];    ?>&status=<?php echo $label; ?>">
-                                                    <button type="button" class="<?php echo $class; ?>" onclick="return confMessage('<?php echo $label; ?>')">
-                                                        <?php //echo $label; ?></button></a>
-                                            </td>
-                                        </tr>
-                                        <?php // } ?>
+                                        <?php } ?>
                                     </tbody>
 
                                 </table>

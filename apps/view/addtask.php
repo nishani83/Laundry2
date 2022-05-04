@@ -3,10 +3,13 @@
 error_reporting(E_ERROR | E_WARNING | E_PARSE); //To hide errors
 include '../common/session.php';
 include '../common/dbconnection.php'; //To get connection string
+include '../model/employeemodel.php';
 
 $ob = new dbconnection();
 $con = $ob->connection();
-
+$obe = new Employee();
+//$ree = $obe->viewAvailableDrivers($date);
+$ree = $obe->viewAvailableLaunderers();
 //
 ?>
 <html>
@@ -38,7 +41,7 @@ $con = $ob->connection();
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
-                                <li class="breadcrumb-item"><a href="customer.php">Task</a></li>
+                                <li class="breadcrumb-item"><a href="task.php">Task</a></li>
                                 <li class="active breadcrumb-item">&nbsp; &nbsp;Add Task</li>
                             </ol>
                         </div><!-- /.col -->
@@ -55,13 +58,13 @@ $con = $ob->connection();
                         <div class="card-body">
 
                             <div id="example_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                                <form method="post" action="../controller/customercontroller.php?status=Add" enctype="multipart/form-data">
+                                <form method="post" action="../controller/taskcontroller.php?status=Add" enctype="multipart/form-data">
                                     <div class="row mb-3">
                                         <div class="col-md-2 col-sm-6 col-xs-12">
                                             <label>Task Name <span>*</span></label>
                                         </div>
                                         <div class="col-md-8 col-sm-6 col-xs-12">
-                                            <input type="text" required="" name="name" id="name" placeholder="Name" class="form-control" />
+                                            <input type="text" required="" name="taskname" id="taskname" placeholder="Task Name" class="form-control" />
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -70,13 +73,7 @@ $con = $ob->connection();
                                         </div>
 
                                         <div class="col-md-8 col-sm-6 col-xs-12">
-                                            <select name="designation" id="designation" required="" class="form-control">
-                                                <option value=""></option>
-                                                <option value="operator">Operator</option>
-                                                <option value="launderer">Launderer</option>
-                                                <option value="driver">Driver</option>
-
-                                            </select>
+                                            <input type="text" required="" name="orderID" id="orderID" placeholder="Order ID" class="form-control" />
                                         </div>
                                     </div>
 
@@ -87,28 +84,32 @@ $con = $ob->connection();
                                             <label>Due Date<span>*</span></label>
                                         </div>
                                         <div class="col-md-8 col-sm-6 col-xs-12">
-                                            <input type="text" id="datepicker"  onChange=" " >
+                                            <input type="text" id="datepicker"  onChange=" " name="dueDate">
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <div class="col-md-2 col-sm-6 col-xs-12">
-                                            <label>Assigned Launderer<span>*</span></label>
+                                            <label>Assigned Launderer <span>*</span></label>
                                         </div>
-                                        <div class="col-md-8 col-sm-6 col-xs-12">
-                                            <select name="designation" id="designation" required="" class="form-control">
-                                                <option value="">Select a Launderer</option>
-                                                <option value="operator">Operator</option>
-                                                <option value="launderer">Launderer</option>
-                                                <option value="driver">Driver</option>
+                                        <div>
+                                            <select name="empID" id="empID" class="form-control" required>
+                                                <option value="">Assigned Launderer</option>
+                                                <?php
+                                                while ($rowe = $ree->fetch_assoc()) {
+                                                    ?>
+                                                    <option value="<?php echo $rowe['empID']; ?>">
+                                                        <?php echo $rowe['empName']; ?>
+                                                    </option>
 
+                                                    <?php
+                                                }
+                                                ?>
                                             </select>
+
                                         </div>
+
                                     </div>
-
-
-
-
 
                                     <div class="row mb-3">
                                         <div class="col-md-2 col-sm-6 col-xs-12"></div>
@@ -120,75 +121,49 @@ $con = $ob->connection();
                                 </form>
                             </div>
                         </div>
-                        </section>
-                        <!-- /.content -->
                     </div>
-                    <!-- /.content-wrapper -->
-                    <?php include '../common/include_footer.php'; ?>
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <?php include '../common/include_footer.php'; ?>
 
-                    <!-- Control Sidebar -->
-                    <aside class="control-sidebar control-sidebar-dark">
-                        <!-- Control sidebar content goes here -->
-                    </aside>
-                    <!-- /.control-sidebar -->
-                </div>
-                <!-- ./wrapper -->
-                <?php include '../common/include_scripts.php'; ?>
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
 
-                <!-- Page level plugins -->
-                <script src="../DataTables/datatables.min.js"></script>
-                <script src="../DataTables/DataTables-1.10.24/js/dataTables.bootstrap4.min.js"></script>
+        <!-- ./wrapper -->
+        <?php include '../common/include_scripts.php'; ?>
 
-                <script type="text/javascript">
+        <!-- Page level plugins -->
+        <script src="../DataTables/datatables.min.js"></script>
+        <script src="../DataTables/DataTables-1.10.24/js/dataTables.bootstrap4.min.js"></script>
+
+        <script type="text/javascript">
 function confMessage(str) {
     var r = confirm("Do you want to " + str + " this customer?");
     if (!r) {
         return false;
     }
 }
-                </script>
-                <script>
-                    $(document).ready(function () {
-                        $('#example').DataTable();
-                    });
-                </script>
+        </script>
+        <script>
 
-                <!-- jQuery -->
-                <script src="../plugins/jquery/jquery.min.js"></script>
-                <!-- jQuery UI 1.11.4 -->
-                <script src="../plugins/jquery-ui/jquery-ui.min.js"></script>
-                <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-                <script>
-                    $.widget.bridge('uibutton', $.ui.button)
-                </script>
-                <!-- Bootstrap 4 -->
-                <script src="../DataTables/datatables.min.js"></script>
-                <script src="../DataTables/DataTables-1.10.24/js/dataTables.bootstrap4.min.js"></script>
-                <script src="../../bootstrap/js/bootstrap.min.js"></script>
-                <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-                <!-- ChartJS -->
-                <script src="../plugins/chart.js/Chart.min.js"></script>
-                <!-- Sparkline -->
-                <script src="../plugins/sparklines/sparkline.js"></script>
-                <!-- JQVMap -->
-                <script src="../plugins/jqvmap/jquery.vmap.min.js"></script>
-                <script src="../plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-                <!-- jQuery Knob Chart -->
-                <script src="../plugins/jquery-knob/jquery.knob.min.js"></script>
-                <!-- daterangepicker -->
-                <script src="../plugins/moment/moment.min.js"></script>
-                <script src="../plugins/daterangepicker/daterangepicker.js"></script>
-                <!-- Tempusdominus Bootstrap 4 -->
-                <script src="../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-                <!-- Summernote -->
-                <script src="../plugins/summernote/summernote-bs4.min.js"></script>
-                <!-- overlayScrollbars -->
-                <script src="../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-                <!-- AdminLTE App -->
-                <script src="../assets/js/adminlte.js"></script>
-                <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-                <script src="../assets/js/pages/dashboard.js"></script>
-                <!-- AdminLTE for demo purposes -->
-                <script src="../assets/js/demo.js"></script>
-                </body>
-                </html>
+            $(function () {
+                $("#datepicker").datepicker({dateFormat: 'yy-mm-dd'});
+            });
+
+        </script>
+
+
+
+        <!-- Bootstrap 4 -->
+
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <!--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
+        <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+    </body>
+</html>

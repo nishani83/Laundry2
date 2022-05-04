@@ -11,8 +11,7 @@ $result = $obj->viewAllCustomer();
 //
 ?>
 <html>
-    <?php echo '******'; ?>
-    <?php echo $row['customerID']; ?>
+
     <?php include '../common/include_head.php'; ?>
     <body class="hold-transition sidebar-mini layout-fixed">
 

@@ -1,26 +1,6 @@
 <?php
 
-class vehicle {
-
-    public function viewVehicleUsage($vehicleID) {
-        $con = $GLOBALS['con'];
-        //sql query
-        $sql = "SELECT scheduleDate,empName FROM schedule left join employee on schedule.driverID=employee.empID left join vehicle on schedule.vehicleID=vehicle.vehicleID where vehicle.vehicleID='$vehicleID' ORDER BY scheduleDate DESC  ; ";
-        //   $sql = "SELECT * FROM employee m,login l,role r WHERE m.employee_id=l.employee_id AND m.role_id=r.role_id ORDER BY m.employee_id DESC";
-        //Execute a query
-        $result = $con->query($sql);
-        return $result;
-    }
-
-    public function viewAllActiveVehicle() {
-        $con = $GLOBALS['con'];
-        //sql query
-        $sql = "SELECT * FROM vehicle where status='active'  ; ";
-        //   $sql = "SELECT * FROM employee m,login l,role r WHERE m.employee_id=l.employee_id AND m.role_id=r.role_id ORDER BY m.employee_id DESC";
-        //Execute a query
-        $result = $con->query($sql);
-        return $result;
-    }
+class task {
 
     public function viewVehicleType() {
         $con = $GLOBALS['con'];
@@ -41,22 +21,23 @@ class vehicle {
         return $result;
     }
 
-    function addVehicle($arr) {
-        $vehicleNo = $arr['vehicleNo'];
-        $vehicleType = $arr['vehicleType'];
-
+    function addTask($arr) {
+        $taskName = $arr['taskname'];
+        $dueDate = $arr['dueDate'];
+        $orderID = $arr['orderID'];
+        $launderer = $arr['empID'];
         $con = $GLOBALS['con'];
-        $sql = "INSERT INTO vehicle (vehicleNo,vehicleType,status) VALUES('$vehicleNo','$vehicleType','Active')";
+        $sql = "INSERT INTO task (taskName,orderID,dueDate,empID,status) VALUES('$taskName','$orderID','$dueDate','$launderer','active')";
         $result = $con->query($sql) or die($con->error);
-        $vehicleID = $con->insert_id; //Last ID
-        return $vehicleID;
+        $taskID = $con->insert_id; //Last ID
+        return $taskID;
     }
 
-    public function viewAllVehicle() {
+    public function viewAllTask() {
         $con = $GLOBALS['con'];
         //sql query
         //$sql = "SELECT * FROM vehicle v, vehicletype vt where v.vehicleType = vt.vehicleTypeID ORDER BY v.vehicleID DESC";
-        $sql = "SELECT * FROM vehicle v Left JOIN vehicletype vt ON v.vehicleType = vt.vehicleTypeID ORDER BY v.vehicleID DESC";
+        $sql = "SELECT * FROM task t Left JOIN employee e ON t.empID=e.empID where e.designation='launderer' ORDER BY t.taskID DESC";
         //Execute a query
         $result = $con->query($sql);
         return $result;
