@@ -19,6 +19,10 @@ $result = $obj->viewAllCustomer();
         <?php include '../common/include_topbar.php'; ?>
         <!-- Main Sidebar Container -->
         <?php include '../common/include_sidebar.php'; ?>
+        <script type="text/javascript">
+          var tab = document.getElementById('customer');
+          tab.className+=" active ";
+        </script>
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -164,7 +168,7 @@ $result = $obj->viewAllCustomer();
         <script src="../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
         <script src="../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
         <!-- AdminLTE App -->
-        <script src="../../assets/js/adminlte.min.js"></script>
+        <script src="../assets/js/adminlte.min.js"></script>
         <!-- AdminLTE for demo purposes -->
         <script src="../../assets/js/demo.js"></script>
         <!-- page script -->

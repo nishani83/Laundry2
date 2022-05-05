@@ -17,53 +17,43 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
                  with font-awesome or any other icon font library -->
-            <li class="nav-item has-treeview">
-                <a href="#" class="nav-link">
+            <li class="nav-item has-treeview " id="ordersMenu">
+                <a href="#" class="nav-link" id="order">
                     <i class="nav-icon fas fa-shopping-cart"></i>
                     <p>
                         Order
                         <i class="fas fa-angle-right right"></i>
                     </p>
                 </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="../pages/charts/chartjs.html" class="nav-link">
+                <ul class="nav nav-treeview ">
+                    <li class="nav-item ">
+                        <a href="../view/storeOrder.php" class="nav-link active">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>ChartJS</p>
+                            <p>Shop Orders</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="../pages/charts/flot.html" class="nav-link">
+                        <a href="../view/webOrder.php" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Flot</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="../pages/charts/inline.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Inline</p>
+                            <p>Web Orders</p>
                         </a>
                     </li>
                 </ul>
             </li>
 
-
-
-            <li class="nav-item has-treeview ">
-                <a href="#" class="nav-link active">
+            <li class="nav-item has-treeview" id="scheduleMenu">
+                <a href="#" class="nav-link" id="schedule">
                     <i class="nav-icon fas fa-calendar"></i>
                     <p>
                         Schedule
                         <i class="fas fa-angle-right right"></i>
                     </p>
-
                 </a>
                 <ul class="nav nav-treeview">
-
                     <li class="nav-item">
-                        <a href="../view/schedule.php" class="nav-link ">
+                        <a href="" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Manage Schedules</p>
+                            <p>Manage Schedule</p>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -73,59 +63,57 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="../view/scheduleplan.php" class="nav-link">
+                        <a href="" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Schedule Planner</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="../view/collectionmap.php" class="nav-link ">
+                        <a href="" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Collection Map</p>
                         </a>
                     </li>
-
-
                 </ul>
             </li>
 
             <li class="nav-item has-treeview">
-                <a href="../view/task.php" class="nav-link">
+                <a href="#" class="nav-link" id="task">
                     <i class="nav-icon fas fa-tasks"></i>
                     <p>
                         Task
 
                     </p>
                 </a>
-                <!--                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="../pages/forms/general.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>General Elements</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="../pages/forms/advanced.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Advanced Elements</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="../pages/forms/editors.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Editors</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="pages/forms/validation.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Validation</p>
-                                        </a>
-                                    </li>
-                                </ul>-->
+                <!-- <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="../pages/forms/general.html" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>General Elements</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../pages/forms/advanced.html" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Advanced Elements</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../pages/forms/editors.html" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Editors</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="pages/forms/validation.html" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Validation</p>
+                        </a>
+                    </li>
+                </ul> -->
             </li>
             <li class="nav-item">
-                <a href="item.php" class="nav-link">
+                <a href="item.php" class="nav-link " id="item">
                     <i class="nav-icon fas fa-tshirt"></i>
                     <p>
                         Item
@@ -134,7 +122,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="../view/category.php" class="nav-link">
+                <a href="../view/category.php" class="nav-link" id="category">
                     <i class="nav-icon fas fa-grip-horizontal"></i>
                     <p>
                         Category
@@ -152,7 +140,7 @@
                             </a>
                         </li>-->
             <li class="nav-item">
-                <a href="customer.php" class="nav-link">
+                <a href="customer.php" class="nav-link" id="customer">
                     <i class="nav-icon fas fa-users"></i>
                     <p>
                         Customer
@@ -162,13 +150,12 @@
             </li>
 
             <li class="nav-item has-treeview">
-                <a href="#" class="nav-link">
+                <a href="#" class="nav-link" id="driver">
                     <i class="nav-icon fas fa-id-card"></i>
 
 
                     <p>
                         Driver
-
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
@@ -194,8 +181,8 @@
                 </ul>
             </li>
 
-            <li class="nav-item has-treeview menu-open">
-                <a href="employee.php" class="nav-link ">
+            <li class="nav-item has-treeview">
+                <a href="employee.php" class="nav-link" id="employee">
                     <i class="nav-icon fas fa-user"></i>
                     <p>
                         Employee
@@ -208,8 +195,8 @@
 
 
 
-            <li class="nav-item has-treeview">
-                <a href="vehicle.php" class="nav-link">
+            <li class="nav-item has-treeview" >
+                <a href="vehicle.php" class="nav-link" id="vehicle">
                     <i class="nav-icon fas fa-truck"></i>
                     <p>
                         Vehicle
@@ -219,16 +206,15 @@
 
             </li>
             <li class="nav-item">
-                <a href="customer.php" class="nav-link">
+                <a href="customer.php" class="nav-link" id="loyalty">
                     <i class="nav-icon fas fa-gift"></i>
                     <p>
                         Loyalty
-                        <i class="fas fa-angle-right right"></i>
                     </p>
                 </a>
             </li>
-            <li class="nav-item has-treeview menu-open">
-                <a href="#" class="nav-link active">
+            <li class="nav-item has-treeview " id="reportMenu">
+                <a href="#" class="nav-link " id="report">
                     <i class="nav-icon fas fa-calendar"></i>
                     <p>
                         Report
