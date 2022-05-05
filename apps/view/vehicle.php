@@ -30,6 +30,10 @@ $module_name = ucfirst($marr[0]); //To get module name
         <?php include '../common/include_topbar.php'; ?>
         <!-- Main Sidebar Container -->
         <?php include '../common/include_sidebar.php'; ?>
+        <script type="text/javascript">
+          var tab = document.getElementById('vehicle');
+          tab.className+=" active ";
+        </script>
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
