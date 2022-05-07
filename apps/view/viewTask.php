@@ -4,6 +4,7 @@ include '../common/session.php'; //To get session info
 include '../common/dbconnection.php'; //To get connection string
 //include '../model/commonmodel.php'; //To call common vehicle model
 include '../model/taskmodel.php';
+include '../model/orderitemmodel.php';
 
 $ob = new dbconnection();
 $con = $ob->connection();
@@ -13,6 +14,9 @@ $taskID = $_REQUEST['taskID'];
 $obe = new task();
 $rese = $obe->viewTask($taskID);
 $rowe = $rese->fetch_array();
+$orderID = $rowe['orderID'];
+$obo = new orderitem();
+$res = $obo->viewItemsByOrder($orderID);
 ?>
 <html>
 
@@ -102,6 +106,72 @@ $rowe = $rese->fetch_array();
                 </div>
 
 
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="table-responsive">
+                            <table id="example1" class="table table-bordered table-striped">
+
+                                <thead>
+                                    <tr>
+                                        <th>Item ID</th>
+
+                                        <th>Item Name</th>
+                                        <th>Description</th>
+
+                                        <th>Status</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    while ($row = $res->fetch_array()) {
+                                        ?>
+                                        <tr>
+
+
+                                            <td>
+                                                <?php echo $row['orderItemID']; ?>
+
+                                            </td>
+                                            <td>
+                                                <?php echo $row['itemName']; ?>
+
+                                            </td>
+                                            <td>
+                                                <?php echo $row['description']; ?>
+
+                                            </td>
+                                            <td>
+                                                <?php
+                                                if (strlen($row['status']) == "todo") {
+                                                    echo " <span class= \"right badge badge-danger\"> ";
+                                                    echo $row['status'];
+                                                    echo "</span>";
+                                                } else {
+                                                    echo " <span class= \"right badge badge-success\"> ";
+                                                    echo $row['status'];
+                                                    echo "</span>";
+                                                };
+                                                ?>
+
+
+
+                                            </td>
+
+                                        </tr>
+
+
+
+
+
+                                    <?php } ?>
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
 
 
             </div>

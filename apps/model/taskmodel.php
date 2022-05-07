@@ -19,7 +19,7 @@ class task {
         $orderID = $arr['orderID'];
         $launderer = $arr['empID'];
         $con = $GLOBALS['con'];
-        $sql = "INSERT INTO task (taskName,orderID,dueDate,empID,status) VALUES('$taskName','$orderID','$dueDate','$launderer','todo')";
+        $sql = "INSERT INTO task (taskName,orderID,dueDate,empID,taskstatus) VALUES('$taskName','$orderID','$dueDate','$launderer','todo')";
         $result = $con->query($sql) or die($con->error);
         $taskID = $con->insert_id; //Last ID
         return $taskID;

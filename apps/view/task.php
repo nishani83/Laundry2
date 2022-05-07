@@ -19,8 +19,8 @@ $result = $obj->viewAllTask();
         <!-- Main Sidebar Container -->
         <?php include '../common/include_sidebar.php'; ?>
         <script type="text/javascript">
-          var tab = document.getElementById('task');
-          tab.className+=" active ";
+            var tab = document.getElementById('task');
+            tab.className += " active ";
         </script>
 
         <!-- Content Wrapper. Contains page content -->
@@ -80,15 +80,6 @@ $result = $obj->viewAllTask();
                                         <?php
                                         while ($row = $result->fetch_array()) {
                                             //To check the status
-                                            if (strtolower($row['status']) == "active") {
-                                                $label = "Deactive";
-                                                $class = "btn btn-danger";
-                                                $iclass = "glyphicon glyphicon-remove";
-                                            } else {
-                                                $label = "Active";
-                                                $class = "btn btn-info";
-                                                $iclass = "glyphicon glyphicon-ok";
-                                            }
                                             ?>
                                             <tr>
 
@@ -111,7 +102,7 @@ $result = $obj->viewAllTask();
                                                     <?php echo $row['endTime']; ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $row['status']; ?>
+                                                    <?php echo $row['taskstatus']; ?>
                                                 </td>
                                                 <td>
                                                     <?php echo $row['empName']; ?>
@@ -119,16 +110,14 @@ $result = $obj->viewAllTask();
 
 
                                                 <td>
-                                                    <?php //echo $row['status']; ?>
+                                                    <?php //echo $row['status'];  ?>
                                                 </td>
                                                 <td>
                                                     <a href="../view/viewtask.php?taskID=<?php echo $row['taskID']; ?>&status=view"><button type="button" class="btn btn-success"> View</button></a>
                                                     <a href="../view/updatetask.php?taskID=<?php echo $row['taskID']; ?>&status=update">
                                                         <button type="button" class="btn btn-primary"> </i> Update</button></a>
 
-                                                    <a href="../controller/taskcontroller.php?taskID=<?php echo $row['taskID']; ?>&status=<?php echo $label; ?>">
-                                                        <button type="button" class="<?php echo $class; ?>" onclick="return confMessage('<?php echo $label; ?>')">
-                                                            <?php echo $label; ?></button></a>
+
                                                 </td>
                                             </tr>
 
