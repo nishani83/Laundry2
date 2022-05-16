@@ -11,7 +11,6 @@ $msg = base64_encode("Incorrect Email address or Password");
 //Server side validation
 if ($_POST['email'] == "" || $_POST['pass'] == "") {
 //To encode the message
-
     //Data passing through URL
     header("Location:../view/login.php?msg=$msg");
     exit();
@@ -32,17 +31,17 @@ $pass = sha1(trim($_POST['pass'])); //Encript the password to with table field
 $obj = new login();
 $result = $obj->loginvalidate($email, $pass);
 $row = $result->fetch_array();
-
+$role = $row['roleID'];
+echo $role;
 //$userName = $row['name'];
 
-if ($result->num_rows == 1 ){
-       header("Location:../view/dashboard.php");
-}
-else{
-  header("Location:../view/login.php?msg=$msg");
-
+if (($result->num_rows == 1) && ($role == '2')) {
+    header("Location:../view/dashboardDriver.php");
+} else if ($result->num_rows == 1) {
+    header("Location:../view/dashboard.php");
+} else {
+    header("Location:../view/login.php?msg=$msg");
 }
 //To get customer details
-   $_SESSION['user_info'] = $row;
-
+$_SESSION['user_info'] = $row;
 ?>

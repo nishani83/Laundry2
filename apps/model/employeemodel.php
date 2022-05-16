@@ -63,7 +63,7 @@ class employee {
 
         //
 
-        $p = substr(sha1(microtime()), rand(0, 26), 5); //encrypted password
+        $p = sha1('abc'); //encrypted password
         $sqlRole = "select * from userrole where roleName = '$designation'";
         $result = $con->query($sqlRole);
         while ($row = $result->fetch_assoc()) {
