@@ -17,6 +17,10 @@ $con = $ob->connection();
         <?php include '../common/include_topbar.php'; ?>
         <!-- Main Sidebar Container -->
         <?php include '../common/include_sidebar.php'; ?>
+        <script type="text/javascript">
+          var tab = document.getElementById('customer');
+          tab.className+=" active ";
+        </script>
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">

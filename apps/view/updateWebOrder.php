@@ -7,14 +7,14 @@ include '../model/employeemodel.php';
 $ob = new dbconnection();
 $con = $ob->connection();
 
-$empID = $_REQUEST['empID'];
+// $orderID = $_REQUEST['orderID'];
 
 //$obj = new role(); //To create an object using role class
 //$result = $obj->viewRole(); //To get all roles' info
 
-$obe = new employee();
-$rese = $obe->viewAEmployee($empID);
-$rowe = $rese->fetch_array();
+// $obe = new order();
+// $rese = $obe->viewAOrder($orderID);
+// $rowe = $rese->fetch_array();
 ?>
 <html>
 
@@ -89,6 +89,52 @@ $rowe = $rese->fetch_array();
                         </form>
                     </div>
                 </div>
+                <br>
+
+                <div class="card shadow mb-4">
+                    <div class="card-body">
+                      <div style="width:80%">
+                        <label>Update the collected Order Item List <span>*</span></label>
+                        <form method="post" action="../controller/employeecontroller.php?status=Update&empID=<?php echo $empID; ?>" enctype="multipart/form-data">
+                          <table id="example1" class="table table-bordered table-striped">
+
+                              <thead>
+                                  <tr>
+                                      <th>#</th>
+                                      <th>Item</th>
+                                      <th>Availability</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Blouse</td>
+                                    <td> <input type="checkbox" name="available" value=""> &nbsp Collected </td>
+                                </tr>
+
+                                <tr>
+                                    <td>4</td>
+                                    <td>Abaya</td>
+                                    <td> <input type="checkbox" name="available" value=""> &nbsp Collected </td>
+                                </tr>
+
+                                <tr>
+                                    <td>3</td>
+                                    <td>Saree</td>
+                                    <td> <input type="checkbox" name="available" value=""> &nbsp Collected </td>
+                                </tr>
+                              </tbody>
+                          </table>
+                          <div class="row mb-3">
+                              <div class="col-md-12 col-sm-6 col-xs-12" style="text-align:right;">
+                                  <button type="submit" class="btn btn-warning">Update</button>
+                                  <button type="reset" class="btn btn-outline-secondary">Clear</button>
+                              </div>
+                          </div>
+                        </form>
+                    </div> </div>
+                </div>
+
             </section>
         </div>
         <!-- /.container-fluid -->

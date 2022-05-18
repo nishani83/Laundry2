@@ -26,6 +26,10 @@ $rowe = $rese->fetch_array();
         <?php include '../common/include_sidebar.php'; ?>
         <script type="text/javascript">
           var tab = document.getElementById('order');
+          tab.className+=" active ";
+          var tab = document.getElementById('ordersMenu');
+          tab.className+="menu-open ";
+          var tab = document.getElementById('storeOrder');
           tab.className+=" active";
         </script>
 

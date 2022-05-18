@@ -141,18 +141,33 @@ $module_name = ucfirst($marr[0]); //To get module name
 <script src="../DataTables/DataTables-1.10.24/js/dataTables.bootstrap4.min.js"></script>
 
 <script type="text/javascript">
-                                               function confMessage(str) {
-                                                   var r = confirm("Do you want to " + str + " this vehicle?");
-                                                   if (!r) {
-                                                       return false;
-                                                   }
-                                               }
+   function confMessage(str) {
+       var r = confirm("Do you want to " + str + " this vehicle?");
+       if (!r) {
+           return false;
+       }
+   }
 </script>
 <script>
     $(document).ready(function () {
         $('#example').DataTable();
     });
 </script>
+
+
+<script src="../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables -->
+<script src="../plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../assets/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../../assets/js/demo.js"></script>
+
 </body>
 
 </html>
