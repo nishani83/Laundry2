@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <?php
 error_reporting(E_ERROR | E_WARNING | E_PARSE); //To hide errors
@@ -183,3 +184,15 @@ $result1 = $obj->viewAllTask();
         </script>
     </body>
 </html>
+
+<script type="text/javascript">
+    var tab = document.getElementById('taskL');
+    tab.className += " active ";
+    var tab = document.getElementById('taskMenu');
+    tab.className += " menu-open";
+    var tab = document.getElementById('taskSummery');
+    tab.className += " active";
+</script>
+
+<!-- navbar script -->
+

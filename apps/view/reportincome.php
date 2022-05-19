@@ -21,6 +21,15 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE); //To hide errors
         <!-- Main Sidebar Container -->
         <?php include '../common/include_sidebar.php'; ?>
 
+        <script type="text/javascript">
+          var tab = document.getElementById('reportincome');
+          tab.className+=" active";
+          var tab = document.getElementById('reportMenu');
+          tab.className+=" menu-open";
+          var tab = document.getElementById('report');
+          tab.className+=" active";
+        </script>
+
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
 
@@ -117,6 +126,20 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE); //To hide errors
         }
     });
 </script>
+
+
+<script src="../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables -->
+<script src="../plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../assets/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../../assets/js/demo.js"></script>
 </body>
 
 </html>
