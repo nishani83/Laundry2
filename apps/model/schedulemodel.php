@@ -15,30 +15,37 @@ class schedule {
         return $result;
     }
 
-    public function viewAllDriverBinCollection($driverID) {
+    public function viewDriverAssignedSchedules($driverID) {
         $con = $GLOBALS['con'];
         //sql query
-        $sql = "SELECT * FROM schedule s
-        Inner JOIN vehicle v ON s.vehicleID=v.vehicleID
-        Inner JOIN vehicletype vt ON v.vehicleTypeID = vt.vehicleTypeID
-        Inner JOIN employee e ON s.driverID=e.empID
-        Inner JOIN route r ON r.routeID=s.routeID
-WHERE s.driverID='$driverID' AND s.isConfirmed='Active'
-        ORDER BY s.sDate DESC";
+        $sql = "SELECT s.scheduleID,v.vehicleNo,s.startTime FROM schedule s
+        LEFT JOIN vehicle v ON s.vehicleID=v.vehicleID
+        LEFT JOIN employee e ON s.driverID=e.empID
+
+WHERE s.driverID='$driverID'
+        ORDER BY s.scheduleDate DESC";
         //Execute a query
         $result = $con->query($sql);
         return $result;
     }
 
-    public function viewScheduleBins($scheduleID) {
+    public function viewSchedulePendingOrders($scheduleID) {
         $con = $GLOBALS['con'];
         //sql query
-        $sql = "SELECT * FROM schedule s
-        Inner JOIN garbageloc g ON g.scheduleID=s.scheduleID
-    INNER JOIN binallocation ba ON ba.binAllocationID = g.binAllocationID
-INNER JOIN bintype bt ON ba.binTypeID= bt.binTypeID
-INNER JOIN binvolume bv ON bv.binVolumeID=ba.binVolumeID
-WHERE s.scheduleID='$scheduleID'";
+        $sql = "SELECT s.orderID FROM schedule_weborder s
+            LEFT JOIN orders o ON o.orderID=s.orderID
+WHERE s.scheduleID='$scheduleID' and o.orderStatus='pending'";
+        //Execute a query
+        $result = $con->query($sql);
+        return $result;
+    }
+
+    public function viewScheduleDeliveryOrders($scheduleID) {
+        $con = $GLOBALS['con'];
+        //sql query
+        $sql = "SELECT s.orderID FROM schedule_weborder s
+            LEFT JOIN orders o ON o.orderID=s.orderID
+WHERE s.scheduleID='$scheduleID' and o.orderStatus='onDelivery'";
         //Execute a query
         $result = $con->query($sql);
         return $result;

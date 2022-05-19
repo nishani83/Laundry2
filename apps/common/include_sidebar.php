@@ -1,3 +1,5 @@
+
+
 <aside class="main-sidebar sidebar-light-primary elevation-4">
     <!-- Brand Logo -->
 
@@ -51,7 +53,7 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="" class="nav-link">
+                        <a href="../view/schedule.php" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Manage Schedule</p>
                         </a>
@@ -63,13 +65,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link">
+                        <a href="../view/scheduleplan.php" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Schedule Planner</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link">
+                        <a href="../view/collectionmap.php" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Collection Map</p>
                         </a>
@@ -78,20 +80,30 @@
             </li>
 
             <li class="nav-item has-treeview">
-                <a href="#" class="nav-link" id="task">
+                <a href="" class="nav-link" id="task">
                     <i class="nav-icon fas fa-tasks"></i>
                     <p>
                         Task
 
                     </p>
                 </a>
-                <!-- <ul class="nav nav-treeview">
+                <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="../pages/forms/general.html" class="nav-link">
+                        <a href="../view/Task.php" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>General Elements</p>
+                            <p>Manage Task</p>
                         </a>
                     </li>
+                </ul>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="../view/taskSummery.php" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Task Summery</p>
+                        </a>
+                    </li>
+                </ul>
+                <!--
                     <li class="nav-item">
                         <a href="../pages/forms/advanced.html" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
