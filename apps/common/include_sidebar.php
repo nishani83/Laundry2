@@ -18,22 +18,18 @@
             <!-- Add icons to the links using the .nav-icon class
                  with font-awesome or any other icon font library -->
             <li class="nav-item has-treeview " id="ordersMenu">
-                <a href="#" class="nav-link" id="order">
-                    <i class="nav-icon fas fa-shopping-cart"></i>
-                    <p>
-                        Order
-                        <i class="fas fa-angle-right right"></i>
-                    </p>
+                <a href="#" class="nav-link" id="order"><i class="nav-icon fas fa-shopping-cart"></i>
+                    <p>Order<i class="fas fa-angle-right right"></i></p>
                 </a>
                 <ul class="nav nav-treeview ">
                     <li class="nav-item ">
-                        <a href="../view/storeOrder.php" class="nav-link active">
+                        <a href="../view/storeOrder.php" class="nav-link " id="storeOrder">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Shop Orders</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="../view/webOrder.php" class="nav-link">
+                        <a href="../view/webOrder.php" class="nav-link" id="webOrder">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Web Orders</p>
                         </a>
@@ -42,7 +38,7 @@
             </li>
 
             <li class="nav-item has-treeview" id="scheduleMenu">
-                <a href="#" class="nav-link" id="schedule">
+                <a href="#" class="nav-link" id="scheduleM">
                     <i class="nav-icon fas fa-calendar"></i>
                     <p>
                         Schedule
@@ -51,25 +47,25 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="" class="nav-link">
+                        <a href="../view/schedule.php" class="nav-link" id="schedule">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Manage Schedule</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="../view/viewAllPickUpDelivery.php" class="nav-link ">
+                        <a href="../view/viewAllPickUpDelivery.php" class="nav-link " id="viewAllPickUpDelivery">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Today's Pick up & Delivery</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link">
+                        <a href="../view/scheduleplan.php" class="nav-link" id="schedsuleplan">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Schedule Planner</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link">
+                        <a href="../view/collectionmap.php" class="nav-link" id="collectionmap">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Collection Map</p>
                         </a>
@@ -77,28 +73,28 @@
                 </ul>
             </li>
 
-            <li class="nav-item has-treeview">
-                <a href="#" class="nav-link" id="task">
+            <li class="nav-item has-treeview" id="taskMenu">
+                <a href="#" class="nav-link" id="taskL">
                     <i class="nav-icon fas fa-tasks"></i>
                     <p>
                         Task
-
+                        <i class="fas fa-angle-right right"></i>
                     </p>
                 </a>
-                <!-- <ul class="nav nav-treeview">
+                <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="../pages/forms/general.html" class="nav-link">
+                        <a href="../view/task.php" class="nav-link" id="task">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>General Elements</p>
+                            <p>Manage Tasks</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="../pages/forms/advanced.html" class="nav-link">
+                        <a href="../view/taskSummery.php" class="nav-link" id="taskSummery">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Advanced Elements</p>
+                            <p>Task Summery</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a href="../pages/forms/editors.html" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Editors</p>
@@ -109,8 +105,8 @@
                             <i class="far fa-circle nav-icon"></i>
                             <p>Validation</p>
                         </a>
-                    </li>
-                </ul> -->
+                    </li> -->
+                </ul>
             </li>
             <li class="nav-item">
                 <a href="item.php" class="nav-link " id="item">
@@ -149,33 +145,27 @@
                 </a>
             </li>
 
-            <li class="nav-item has-treeview">
+            <li class="nav-item has-treeview" id="driverMenu">
                 <a href="#" class="nav-link" id="driver">
                     <i class="nav-icon fas fa-id-card"></i>
 
 
                     <p>
-                        Driver
+                        Driver <i class="fas fa-angle-right right"></i>
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
 
                     <li class="nav-item">
-                        <a href="../pages/layout/fixed-topnav.html" class="nav-link">
+                        <a href="../view/driverSchedule.php" class="nav-link" id="driverSchedule">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Fixed Navbar</p>
+                            <p>View Schedules</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="../pages/layout/fixed-footer.html" class="nav-link">
+                        <a href="../view/ id="".php" class="nav-link" id="driverAvailability">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Fixed Footer</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="../pages/layout/collapsed-sidebar.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Collapsed Sidebar</p>
+                            <p>View Availability</p>
                         </a>
                     </li>
                 </ul>
@@ -205,16 +195,31 @@
                 </a>
 
             </li>
-            <li class="nav-item">
-                <a href="customer.php" class="nav-link" id="loyalty">
+
+            <li class="nav-item has-treeview" id="loyaltyMenu">
+                <a href="#" class="nav-link" id="loyalty">
                     <i class="nav-icon fas fa-gift"></i>
                     <p>
-                        Loyalty
+                        Loyalty <i class="fas fa-angle-right right"></i>
                     </p>
                 </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="../view/points.php" class="nav-link" id="points">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>View Schedules</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../view/referrals.php" class="nav-link" id="referrals">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>View Availability</p>
+                        </a>
+                    </li>
+                </ul>
             </li>
             <li class="nav-item has-treeview " id="reportMenu">
-                <a href="#" class="nav-link " id="report">
+                <a href="#" class="nav-link" id="report">
                     <i class="nav-icon fas fa-calendar"></i>
                     <p>
                         Report
@@ -225,25 +230,25 @@
                 <ul class="nav nav-treeview">
 
                     <li class="nav-item">
-                        <a href="../view/reportincome.php" class="nav-link ">
+                        <a href="../view/reportincome.php" class="nav-link " id="reportincome">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Income Report</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="../view/reportOrder.php" class="nav-link ">
+                        <a href="../view/reportOrder.php" class="nav-link " id="reportOrder">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Order Report</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="../view/scheduleplan.php" class="nav-link">
+                        <a href="../view/reportTask.php" class="nav-link" id="reportTask">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Task Report</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="../view/reportcustomer.php" class="nav-link ">
+                        <a href="../view/reportCustomer.php" class="nav-link " id="reportcustomer">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Customer Report</p>
                         </a>

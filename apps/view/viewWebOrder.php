@@ -8,11 +8,11 @@ include '../model/employeemodel.php';
 $ob = new dbconnection();
 $con = $ob->connection();
 
-$empID = $_REQUEST['empID'];
-
-$obe = new employee();
-$rese = $obe->viewAEmployee($empID);
-$rowe = $rese->fetch_array();
+// $empID = $_REQUEST['empID'];
+//
+// $obe = new employee();
+// $rese = $obe->viewAEmployee($empID);
+// $rowe = $rese->fetch_array();
 ?>
 <html>
 
@@ -25,6 +25,10 @@ $rowe = $rese->fetch_array();
         <?php include '../common/include_sidebar.php'; ?>
         <script type="text/javascript">
           var tab = document.getElementById('order');
+          tab.className+=" active ";
+          var tab = document.getElementById('ordersMenu');
+          tab.className+="menu-open ";
+          var tab = document.getElementById('webOrder');
           tab.className+=" active";
         </script>
 
@@ -111,8 +115,14 @@ $rowe = $rese->fetch_array();
                         <div class="col-md-2 col-sm-6 col-xs-12">
                             <label>Contact No :</label>
                         </div>
-                        <div class="col-md-8 col-sm-6 col-xs-12">
+                        <div class="col-md-3 col-sm-6 col-xs-12">
                             0781267844
+                        </div>
+                        <div class="col-md-2 col-sm-6 col-xs-12">
+                            <label>Provide a Refund :</label>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                              <button type="submit" class="btn btn-info">Refund Receipt</button>
                         </div>
                     </div>
 

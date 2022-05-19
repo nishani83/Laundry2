@@ -19,8 +19,17 @@ $result = $obj->viewAllTask();
         <!-- Main Sidebar Container -->
         <?php include '../common/include_sidebar.php'; ?>
         <script type="text/javascript">
+
+          var tab = document.getElementById('taskL');
+          tab.className+=" active ";
+          var tab = document.getElementById('taskMenu');
+          tab.className+=" menu-open";
+          var tab = document.getElementById('task');
+          tab.className+=" active";
+
             var tab = document.getElementById('task');
             tab.className += " active ";
+
         </script>
 
         <!-- Content Wrapper. Contains page content -->
@@ -173,7 +182,7 @@ $result = $obj->viewAllTask();
         <script src="../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
         <script src="../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
         <!-- AdminLTE App -->
-        <script src="../../assets/js/adminlte.min.js"></script>
+        <script src="../assets/js/adminlte.min.js"></script>
         <!-- AdminLTE for demo purposes -->
         <script src="../../assets/js/demo.js"></script>
         <!-- page script -->
