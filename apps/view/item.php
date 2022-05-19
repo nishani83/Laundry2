@@ -193,7 +193,7 @@ $catlist = $cat->viewAllCategory();
 
         <script type="text/javascript">
             function confMessage(str) {
-                var r = confirm("Do you want to " + str + " this employee?");
+                var r = confirm("Do you want to " + str + " this item?");
                 if (!r) {
                     return false;
                 }

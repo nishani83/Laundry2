@@ -194,6 +194,23 @@ h1, h2, h3, h4, h5, h6 {
     text-decoration: none;
 
 }
+
+.getstarted#cart-button{
+    position: relative;
+}
+
+.getstarted#cart-button span{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgb(168, 168, 168);
+    border-radius: 50%;
+    color: #fff;
+    width: 20px;
+    display: inline-block;
+    text-align: center;
+}
+
 .navbar a i, .navbar a:focus i {
     font-size: 12px;
     line-height: 0;
@@ -1587,4 +1604,17 @@ section {
     background: #00805d;
     color: #fff;
     text-decoration: none;
+}
+
+.checkout-form .btn.btn-warning{
+    border-radius: 0;
+    height: 44px;
+}
+
+.place-order-btn{
+    border: none;
+    width: 100%;
+    background-color: #15a1d5;
+    font-weight: 600;
+    color: #fff;
 }

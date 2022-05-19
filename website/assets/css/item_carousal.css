@@ -180,3 +180,7 @@ div {
 .bbb_viewed_item.is_new .item_new {
     display: inline-block
 }
+
+.item_cats{
+    text-decoration: none;
+}
