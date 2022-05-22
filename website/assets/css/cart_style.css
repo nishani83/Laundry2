@@ -113,6 +113,7 @@ h2 {
     color: white;
     font-weight: bold;
     border-radius: 20px;
+    color:#15a1d5 ;
 }
 
 .add-to-cart:hover {
@@ -253,3 +254,5 @@ h2 {
     transition: background .5s;
     border-radius: 4px;
 }
+
+

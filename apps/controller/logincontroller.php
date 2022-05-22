@@ -21,7 +21,8 @@ $msg = base64_encode("Incorrect Email address or Password");
 if(isset($_POST['web_customer_login']) && $_POST['web_customer_login'] == "webCusLogin"){
 
   if ($_POST['wc_email'] == "" || $_POST['wc_pass'] == "") {
-      header("Location:../../website/cart.php?login=login&msg=$msg");
+      // header("Location:../../website/cart.php?login=login&msg=$msg");
+      header('Location: ' . $_SERVER['HTTP_REFERER'].'?login=login&msg='.$msg);
       exit();
   }
  
@@ -34,15 +35,26 @@ if(isset($_POST['web_customer_login']) && $_POST['web_customer_login'] == "webCu
 
   if ($result->num_rows == 1) {
 
+    //To get customer details
+    $_SESSION['user_info'] = $row;
     $_SESSION['customer_id'] = $row['customerID'];
 
-    header("Location:../../website/order.php");
+    $new_url = explode("?", $_SERVER['HTTP_REFERER']);
+    header('Location: ' . $new_url[0]);
     
   }else{
-    header("Location:../../website/cart.php?login=login&msg=$msg");
+
+    $page_url = explode("?", $_SERVER['HTTP_REFERER']);
+    if(preg_match('/\blogin=login\b/', $page_url[1])){
+      header('Location: ' . $_SERVER['HTTP_REFERER'].'&msg='.$msg);
+    }else{
+      header('Location: ' . $_SERVER['HTTP_REFERER'].'?login=login&msg='.$msg);
+    }
+    
+
   }
   
-}else{
+}else if(isset($_POST['email']) && isset($_POST['pass'])){
 
   //Server side validation
   if ($_POST['email'] == "" || $_POST['pass'] == "") {
@@ -74,4 +86,16 @@ if(isset($_POST['web_customer_login']) && $_POST['web_customer_login'] == "webCu
     $_SESSION['customer_id'] = $row['customerID'];
    
 }
+
+
+// logout 
+if(isset($_GET['logout']) && $_GET['logout']=="logout"){
+
+  unset($_SESSION['user_info']);
+  unset($_SESSION['customer_id']);
+
+  header("Location:../../website/products.php");
+
+}
+
 ?>

@@ -82,7 +82,7 @@ class order {
         $serviceid = $_SESSION['my_bucket'][$x]['item_method'];
         $form = $_SESSION['my_bucket'][$x]['item_form'];
 
-        $sqlorderitem = "INSERT INTO orderitem (itemID, qty, status, orderID, serviceID, form) VALUES('$itemID','$qty','incompleted','$newOrderID','$serviceid','$form')";
+        $sqlorderitem = "INSERT INTO orderitem (itemID, qty, status, orderID, serviceID, form) VALUES('$itemID','$qty','pending','$newOrderID','$serviceid','$form')";
         $con->query($sqlorderitem) or die($con->error);
       }
 
@@ -115,7 +115,7 @@ class order {
       LEFT JOIN item ON orderitem.itemID = item.itemID
       LEFT JOIN service ON orderitem.serviceID = service.serviceID
       RIGHT JOIN service_item ON (service_item.serviceID = service.serviceID) AND (service_item.itemID = item.itemID)
-      WHERE orderitem.orderID = '$orderID'";
+      WHERE orderitem.orderID = '$orderID' ORDER BY orderitem.orderItemID ASC";
 
       $result = $con->query($sql);
       return $result;
@@ -137,6 +137,38 @@ class order {
       $sql = "UPDATE weborder SET payment_status = 'paid' WHERE weborderID = '$orderid'";
       $paychange = $con->query($sql) or die($con->error);
       return $paychange;
+
+    }
+
+    // all orders of user
+    public function viewAllOrdersOfUser($userid){
+
+      $con = $GLOBALS['con'];
+      //sql query
+      $sql = "SELECT weborder.weborderID, weborder.deliveryDate, weborder.delivery_address, orders.orderDate, orders.amount, orders.orderStatus
+      FROM weborder 
+      INNER JOIN orders on weborder.weborderID=orders.orderID
+      WHERE orders.customerID='$userid' ";
+
+      $result = $con->query($sql);
+      return $result;
+
+    }
+
+
+    // get order details by orderid 
+    public function viewOrderDetailsByOrderID($orderid){
+
+      $con = $GLOBALS['con'];
+      //sql query
+      $sql = "SELECT weborder.*, orders.*, customer.*
+      FROM weborder 
+      INNER JOIN orders ON orders.orderID = weborder.weborderID
+      INNER JOIN customer ON customer.customerID = orders.customerID
+      WHERE weborder.weborderID='$orderid' LIMIT 1";
+
+      $result = $con->query($sql);
+      return $result;
 
     }
 
