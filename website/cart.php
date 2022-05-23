@@ -60,32 +60,8 @@ if(isset($_SESSION['my_bucket']) && sizeof($_SESSION['my_bucket'])){
 <body>
 
     <!-- ======= Header ======= -->
-    <header id="header" class="fixed-top d-flex align-items-center">
-        <div class="container">
-            <div class="header-container d-flex align-items-center justify-content-between">
-                <div class="logo">
-                    <h1 class="text-light"><a href="index.html"><span>Canren</span></a></h1>
-                    <!-- Uncomment below if you prefer to use an image logo -->
-                    <!-- <a href="index.html"><img src="logo.png" alt="" class="img-fluid"></a>-->
-                </div>
-
-                <nav id="navbar" class="navbar">
-                    <ul>
-                        <li class="link-left"><a class="nav-link scrollto active" href="#hero">Home</a></li>
-                        <li class="link-left"><a class="nav-link scrollto" href="#about">About</a></li>
-                        <li class="link-left"><a class="nav-link scrollto" href="#services">Services</a></li>
-                        <li class="link-left"><a class="nav-link scrollto " href="#rewards">Referrals and Rewards</a></li>
-
-                        <li class="link-left"><a class="nav-link scrollto" href="#contact">Contact</a></li>
-                        <li class="link-right"><a class="nav-link scrollto" href="../website/Register/register_1.php">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Register </a></li>
-                        <li class="link-right"><a class="getstarted scrollto" id='cart-button' href="cart.php">Show Cart <span id="bucket-count"><?php echo $bucketCount; ?><span></a></li>
-                    </ul>
-                    <i class="bi bi-list mobile-nav-toggle"></i>
-                </nav><!-- .navbar -->
-
-            </div><!-- End Header Container -->
-        </div>
-    </header><!-- End Header -->
+    <?php include 'common/header.php'; ?>
+    <!-- End Header -->
 
     <!-- ======= Hero Section ======= -->
     <!-- <section id="hero" class="d-flex align-items-center">
@@ -193,7 +169,7 @@ if(isset($_SESSION['my_bucket']) && sizeof($_SESSION['my_bucket'])){
                                                         $b_form = ($_SESSION['my_bucket'][$x]['item_form']==1)?"Fold":"Hang";
                                                     ?>
                                                     <tr>
-                                                        <td><?php echo $row['itemName']; ?></td>
+                                                        <td><?php echo ucfirst($row['itemName']); ?></td>
                                                         <td><?php echo $row['serviceType']; ?></td>
                                                         <td><?php echo $b_form; ?></td>
                                                         <td><?php echo $row['price']; ?></td>
@@ -234,8 +210,9 @@ if(isset($_SESSION['my_bucket']) && sizeof($_SESSION['my_bucket'])){
                                                 </article>
                                                 <form action="../apps/controller/bucketcontroller.php" method="post" role="form" class="checkout-form mt-4">
                                                     <!-- Set up a container element for the button -->
-                                                    <input class="btn btn-warning" type="submit" name="gotocheckout" value="Checkout">
-
+                                                    <?php if(isset($_SESSION['my_bucket']) && (!empty($_SESSION['my_bucket']))){ ?>
+                                                    <input class="btn btn-warning checkout-btn" type="submit" name="gotocheckout" value="Checkout">
+                                                    <?php }?>     
                                                     <a href="products.php" class="btn btn-warning" type="button">Back to Shopping</a>
                                                     <!-- Include the PayPal JavaScript SDK -->
                                             </div>
@@ -334,70 +311,7 @@ if(isset($_SESSION['my_bucket']) && sizeof($_SESSION['my_bucket'])){
                             <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
                           </div>-->
             </div>
-        </footer><!-- End Footer -->
-
-
-        <!-- login pop up -->
-        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Login</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="login-logo text-center mb-2">
-                            <img src="../apps/assets/img/logo.png" width="200"></br>
-                            <br> <b>Laundry </b>Management
-                        </div>
-                        <?php
-                        //If there is an error
-                        if (isset($_REQUEST['msg'])) {
-                            echo base64_decode($_REQUEST['msg']);
-                        }
-                        ?>
-                        <form class="user" action="../apps/controller/logincontroller.php" method="post">
-                            <div class="input-group mb-3">
-                                <input type="hidden" name="web_customer_login" value="webCusLogin">
-                                <input type="email" class="form-control" placeholder="Email" id ="email" name="wc_email">
-                                <div class="input-group-append">
-                                    <div class="input-group-text">
-                                        <span class="fas fa-envelope"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="input-group mb-3">
-                                <input type="password" class="form-control" placeholder="Password" id="pass" name="wc_pass">
-                                <div class="input-group-append">
-                                    <div class="input-group-text">
-                                        <span class="fas fa-lock"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-8">
-                                    <div class="icheck-primary">
-                                        <input type="checkbox" id="remember">
-                                        <label for="remember">
-                                            Remember Me
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <button type="submit" class="btn btn-primary btn-block w-100">Sign In</button>
-                                </div>
-                            </div>
-                        </form>
-
-                    </div>
-                    <div class="modal-footer">
-                        <p>If not sign up <a href="Register/register_1.php"> Sign Up</a> here.</p>
-                    </div>
-                </div>
-            </div>
-        </div>                    
+        </footer><!-- End Footer -->               
 
         <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
@@ -414,6 +328,8 @@ if(isset($_SESSION['my_bucket']) && sizeof($_SESSION['my_bucket'])){
         <!-- Template Main JS File -->
         <script src="assets/js/main.js"></script>
         <script src="https://app.payhere.co/embed/embed.js"></script>
+
+        <?php include 'common/scripts.php'; ?>
 
 </body>
 
@@ -441,15 +357,10 @@ $('.bucket-remove-item').click(function (e) {
     });
 
 });
-</script>
 
-<!-- login pop up show  -->
-<script>
-    <?php if(isset($_REQUEST['login']) && $_REQUEST['login']=="login"){ ?>
-    $(window).on('load', function(){ 
-        $('#loginModal').modal('show');
-    });
-    <?php } ?>
+$('.checkout-btn').click(function (e) { 
+    localStorage.removeItem('orderPlaced');
+});
 </script>
 
 </html>

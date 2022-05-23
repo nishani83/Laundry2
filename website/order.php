@@ -11,10 +11,7 @@ session_start();
 $ob = new dbconnection();
 $con = $ob->connection();
 
-if (!isset($_SESSION['customer_id'])) {
-    header("Location:../apps/view/login.php");
-
-}else if(!isset($_SESSION['my_bucket']) || $_SESSION['my_bucket'] == ""){
+if(!isset($_SESSION['my_bucket']) || $_SESSION['my_bucket'] == ""){
     header("Location:products.php");
 
 }else{
@@ -61,39 +58,16 @@ if (!isset($_SESSION['customer_id'])) {
         * Author: BootstrapMade.com
         * License: https://bootstrapmade.com/license/
         ======================================================== -->
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
 
     <!-- ======= Header ======= -->
-    <header id="header" class="fixed-top d-flex align-items-center">
-        <div class="container">
-            <div class="header-container d-flex align-items-center justify-content-between">
-                <div class="logo">
-                    <h1 class="text-light"><a href="index.html"><span>Canren</span></a></h1>
-                    <!-- Uncomment below if you prefer to use an image logo -->
-                    <!-- <a href="index.html"><img src="logo.png" alt="" class="img-fluid"></a>-->
-                </div>
+    <?php include 'common/header.php'; ?>
 
-                <nav id="navbar" class="navbar">
-                    <ul>
-                        <li class="link-left"><a class="nav-link scrollto active" href="#hero">Home</a></li>
-                        <li class="link-left"><a class="nav-link scrollto" href="#about">About</a></li>
-                        <li class="link-left"><a class="nav-link scrollto" href="#services">Services</a></li>
-                        <li class="link-left"><a class="nav-link scrollto " href="#rewards">Referrals and Rewards</a></li>
-
-                        <li class="link-left"><a class="nav-link scrollto" href="#contact">Contact</a></li>
-                        <li class="link-right"><a class="nav-link scrollto" href="../website/Register/register_1.php">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Register </a></li>
-                        <li class="link-right"><a class="getstarted scrollto" id='cart-button' href="cart.php">Show Cart <span id="bucket-count"><?php echo $bucketCount; ?><span></a></li>
-                    </ul>
-                    <i class="bi bi-list mobile-nav-toggle"></i>
-                </nav><!-- .navbar -->
-
-            </div><!-- End Header Container -->
-        </div>
-    </header><!-- End Header -->
+    <!-- End Header -->
 
     <!-- ======= Hero Section ======= -->
     <!-- <section id="hero" class="d-flex align-items-center">
@@ -239,7 +213,8 @@ if (!isset($_SESSION['customer_id'])) {
                                                     </div>
                                                     <div class="col-md-4 form-group">
                                                         <p>Pickup Time</p>
-                                                        <input type="time" name="pickuptime" class="form-control" id="pickuptime" placeholder="" min="09:00" max="17:00" step="600" required>
+                                                        <input type="time" name="pickuptime" class="form-control" id="pickuptime" placeholder="" min="09:00" max="17:00" step="" required>
+                                                        <label style="font-size: 12px;">(Please Select 9.00 am - 5.00 pm)</label>
                                                     </div>
                                                     <div class="col-md-4 form-group">
                                                         <p>Delivery Date</p>
@@ -283,6 +258,9 @@ if (!isset($_SESSION['customer_id'])) {
                                                 <div class="php-email-form mt-4">
 
                                                     <input type="submit" class="from-control place-order-btn" name="place-order" value="Place Order">
+
+                                                    <a href="payment.php" class="goto-pay-btn d-none">Continue to Payment</a>
+
                                                     <div class="paynow-txt mb-2 d-none">
                                                         <p style="color: red;"><b>You Must Pay Now for Complete the Order</b></p>
                                                     </div>
@@ -344,14 +322,6 @@ if (!isset($_SESSION['customer_id'])) {
 
 
             <!-- ======= About Section ======= -->
-
-
-
-
-
-
-
-
 
         </main><!-- End #main -->
 
@@ -439,6 +409,7 @@ if (!isset($_SESSION['customer_id'])) {
         <script src="assets/js/main.js"></script>
         <script src="https://app.payhere.co/embed/embed.js"></script>
 
+        <?php include 'common/scripts.php'; ?>
         
         <script>
 
@@ -464,15 +435,30 @@ if (!isset($_SESSION['customer_id'])) {
                     data: data,
                     success: function(res){
                         if(res == 1){
-                            $('.paynow-txt').removeClass('d-none');
-                            $('.place-order-btn').hide();
-                            $('#paypal-button-container').removeClass('d-none');
+                            localStorage.setItem("orderPlaced", "1");
+                            window.location.href = "http://localhost/laundrymgt/website/payment.php";
                         }
                     }
                 });
 
             });
 
+        </script>
+
+        <script>
+            $(document).ready(function () {
+
+                // if didn't login show login modal 
+                <?php if (!isset($_SESSION['customer_id'])) { ?>
+                    $('#loginModal').modal('show');
+                <?php  } ?>
+
+                // if come to this page again wihout complete the order, show continue to pay btn 
+                if(localStorage.getItem("orderPlaced") == "1"){
+                    $('.place-order-btn').addClass('d-none');
+                    $('.goto-pay-btn').removeClass('d-none');
+                }
+            });
         </script>
 
 </body>

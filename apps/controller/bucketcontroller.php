@@ -24,8 +24,30 @@ $method = $_POST['method'];
 $form = $_POST['form'];
 $qty = $_POST['qty'];
 
-$nb=array("item_id"=>$itemid, "item_method"=>$method, "item_form"=>$form, "item_qty"=>$qty);
-array_push($_SESSION['my_bucket'],$nb);
+$a = 0;
+$X = "";
+
+foreach($_SESSION['my_bucket'] as $x => $result) {
+  if(($_SESSION['my_bucket'][$x]['item_id'] == $itemid) && ($_SESSION['my_bucket'][$x]['item_method'] == $method) && ($_SESSION['my_bucket'][$x]['item_form'] == $form)){
+    $a = 1;
+    $X = $x;
+  }
+}
+
+// if submit same item same data udate the qty
+if($a==1){
+
+  $nbc = array("item_id"=>$itemid, "item_method"=>$method, "item_form"=>$form, "item_qty"=>($_SESSION['my_bucket'][$X]['item_qty']+$qty));
+  array_push($_SESSION['my_bucket'],$nbc);
+  unset($_SESSION['my_bucket'][$X]);
+
+// ad new item 
+}else{
+
+  $nb=array("item_id"=>$itemid, "item_method"=>$method, "item_form"=>$form, "item_qty"=>$qty);
+  array_push($_SESSION['my_bucket'],$nb);
+
+}
 
 header("Location:../../website/products.php");
 
@@ -49,8 +71,12 @@ if(isset($_POST['action']) && $_POST['action'] == "removeItemFromBucket"){
 if(isset($_POST['gotocheckout'])){
 
   if(isset($_SESSION['customer_id']) && ($_SESSION['customer_id'] != "")){
-      
-    header("Location:../../website/order.php");
+
+    if(!isset($_SESSION['my_bucket'])){
+      header("Location:../../website/products.php");
+    }else{
+      header("Location:../../website/order.php");
+    }
 
   }else{
 
