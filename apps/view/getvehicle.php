@@ -13,7 +13,8 @@ $obj = new vehicle;
 $vehicleNo = $_REQUEST['vehicleNo'];
 
 $nor = $obj->checkVehicle($vehicleNo);
-if ($nor > 0) {
+$result = $nor->fetch_assoc();
+if ($result['count'] > 0) {
     echo('1');
 } else {
     echo('0');

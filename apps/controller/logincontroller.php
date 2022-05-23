@@ -95,7 +95,11 @@ if (isset($_POST['web_customer_login']) && $_POST['web_customer_login'] == "webC
 
     if (($result->num_rows == 1) && ($role == '2')) {
         header("Location:../view/dashboardDriver.php");
+    } else if (($result->num_rows == 1) && ($role == '3')) {
+        header("Location:../view/dashboardLaunderer.php");
     } else if ($result->num_rows == 1) {
+
+
         header("Location:../view/dashboard.php");
     } else {
         header("Location:../view/login.php?msg=$msg");

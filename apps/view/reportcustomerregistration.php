@@ -87,6 +87,7 @@ print (json_encode(array_values($months)));
 </a>
 
 <?php include '../common/include_scripts.php'; ?>
+<script src="../assets/js/adminlte.min.js"></script>
 <script>
     var ctx = document.getElementById('myChart').getContext('2d');
     var myChart = new Chart(ctx, {
