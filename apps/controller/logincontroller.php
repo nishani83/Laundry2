@@ -72,14 +72,22 @@ if(isset($_POST['web_customer_login']) && $_POST['web_customer_login'] == "webCu
   $obj = new login();
   $result = $obj->loginvalidate($email, $pass);
   $row = $result->fetch_array();
-
+  $role = $row['roleID'];
+  echo $role;
   //$userName = $row['name'];
 
-  if ($result->num_rows == 1 ){
+  if (($result->num_rows == 1) && ($role == '2')){
+    header("Location:../view/dashboardDriver.php");
+
+  }elseif(($result->num_rows == 1) && ($role == '3')){
+    header("Location:../view/dashboardLaunderer.php");
+
+  }else if($result->num_rows == 1){
     header("Location:../view/dashboard.php");
-  }
-  else{
+
+  }else{
     header("Location:../view/login.php?msg=$msg");
+    
   }
   //To get customer details
     $_SESSION['user_info'] = $row;
