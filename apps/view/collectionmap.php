@@ -102,6 +102,15 @@ while ($row = $result->fetch_assoc()) {
         <?php include '../common/include_topbar.php'; ?>
         <!-- Main Sidebar Container -->
         <?php include '../common/include_sidebar.php'; ?>
+        <script type="text/javascript">
+          var tab = document.getElementById('collectionmap');
+          tab.className+=" active ";
+          var tab = document.getElementById('scheduleMenu');
+          tab.className+=" menu-open";
+          var tab = document.getElementById('scheduleM');
+          tab.className+=" active";
+        </script>
+
         <div class="content-wrapper">
             <div class="row">
                 <div class="col-12">
@@ -178,5 +187,18 @@ while ($row = $result->fetch_assoc()) {
         }
         ;
     </script>
+
+    <script src="../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables -->
+    <script src="../plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../assets/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../../assets/js/demo.js"></script>
 
 </html>

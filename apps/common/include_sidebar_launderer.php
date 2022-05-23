@@ -1,5 +1,6 @@
 
 
+
 <aside class="main-sidebar sidebar-light-primary elevation-4">
     <!-- Brand Logo -->
 
@@ -10,7 +11,7 @@
             <img src="../assets/img/user.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-            <a href="#" class="d-block">Admin</a>
+            <a href="#" class="d-block"><?php echo $userName; ?></a>
         </div>
     </div>
 
@@ -23,15 +24,15 @@
                 <a href="#" class="nav-link" id="order">
                     <i class="nav-icon fas fa-shopping-cart"></i>
                     <p>
-                        Order
+                        Task
                         <i class="fas fa-angle-right right"></i>
                     </p>
                 </a>
                 <ul class="nav nav-treeview ">
                     <li class="nav-item ">
-                        <a href="../view/storeOrder.php" class="nav-link active">
+                        <a href="../view/laundererTask.php" class="nav-link active">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Shop Orders</p>
+                            <p>My Tasks</p>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -53,9 +54,9 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="../view/schedule.php" class="nav-link">
+                        <a href="../view/DriverSchedule.php" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Manage Schedule</p>
+                            <p>My Schedules</p>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -65,13 +66,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="../view/scheduleplan.php" class="nav-link">
+                        <a href="" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Schedule Planner</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="../view/collectionmap.php" class="nav-link">
+                        <a href="" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Collection Map</p>
                         </a>
@@ -83,7 +84,7 @@
                 <a href="" class="nav-link" id="task">
                     <i class="nav-icon fas fa-tasks"></i>
                     <p>
-                        Task
+                        Leave
 
                     </p>
                 </a>
@@ -124,146 +125,7 @@
                     </li>
                 </ul> -->
             </li>
-            <li class="nav-item">
-                <a href="item.php" class="nav-link " id="item">
-                    <i class="nav-icon fas fa-tshirt"></i>
-                    <p>
-                        Item
 
-                    </p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="../view/category.php" class="nav-link" id="category">
-                    <i class="nav-icon fas fa-grip-horizontal"></i>
-                    <p>
-                        Category
-
-                    </p>
-                </a>
-            </li>
-            <!--            <li class="nav-item">
-                            <a href="service.php" class="nav-link">
-                                <i class="nav-icon fas fa-tags"></i>
-                                <p>
-                                    Service
-
-                                </p>
-                            </a>
-                        </li>-->
-            <li class="nav-item">
-                <a href="customer.php" class="nav-link" id="customer">
-                    <i class="nav-icon fas fa-users"></i>
-                    <p>
-                        Customer
-
-                    </p>
-                </a>
-            </li>
-
-            <li class="nav-item has-treeview">
-                <a href="#" class="nav-link" id="driver">
-                    <i class="nav-icon fas fa-id-card"></i>
-
-
-                    <p>
-                        Driver
-                    </p>
-                </a>
-                <ul class="nav nav-treeview">
-
-                    <li class="nav-item">
-                        <a href="../pages/layout/fixed-topnav.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Fixed Navbar</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="../pages/layout/fixed-footer.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Fixed Footer</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="../pages/layout/collapsed-sidebar.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Collapsed Sidebar</p>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="nav-item has-treeview">
-                <a href="employee.php" class="nav-link" id="employee">
-                    <i class="nav-icon fas fa-user"></i>
-                    <p>
-                        Employee
-        <!--                <i class="right fas fa-angle-left"></i>-->
-                    </p>
-                </a>
-
-            </li>
-
-
-
-
-            <li class="nav-item has-treeview" >
-                <a href="vehicle.php" class="nav-link" id="vehicle">
-                    <i class="nav-icon fas fa-truck"></i>
-                    <p>
-                        Vehicle
-
-                    </p>
-                </a>
-
-            </li>
-            <li class="nav-item">
-                <a href="customer.php" class="nav-link" id="loyalty">
-                    <i class="nav-icon fas fa-gift"></i>
-                    <p>
-                        Loyalty
-                    </p>
-                </a>
-            </li>
-            <li class="nav-item has-treeview " id="reportMenu">
-                <a href="#" class="nav-link " id="report">
-                    <i class="nav-icon fas fa-calendar"></i>
-                    <p>
-                        Report
-                        <i class="fas fa-angle-right right"></i>
-                    </p>
-
-                </a>
-                <ul class="nav nav-treeview">
-
-                    <li class="nav-item">
-                        <a href="../view/reportincome.php" class="nav-link ">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Income Report</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="../view/reportOrder.php" class="nav-link ">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Order Report</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="../view/scheduleplan.php" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Task Report</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="../view/reportcustomer.php" class="nav-link ">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Customer Report</p>
-                        </a>
-                    </li>
-
-
-                </ul>
-            </li>
             <!--
             <li class="nav-header">EXAMPLES</li>
             <li class="nav-item">

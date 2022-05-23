@@ -230,6 +230,7 @@ $resc = $obo->viewCompletedOrders();
       <!--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
     <script src="../assets/js/popper.min.js"></script>
+    <script src="../assets/js/adminlte.min.js"></script>
     <script src="../plugins/Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.bs4.min.js"></script>
     <script>
                                                 function load_date(val)

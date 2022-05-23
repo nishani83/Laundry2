@@ -84,4 +84,12 @@ class vehicle {
         $result = $con->query($sql);
     }
 
+    function checkVehicle($vehicleNo) {
+        $con = $GLOBALS['con'];
+        $sql = "SELECT count(vehicleNo)as count FROM vehicle WHERE vehicleNo='$vehicleNo'";
+        $result = $con->query($sql);
+
+        return $result;
+    }
+
 }

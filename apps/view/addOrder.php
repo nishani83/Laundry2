@@ -27,6 +27,10 @@ $con = $ob->connection();
         <?php include '../common/include_sidebar.php'; ?>
         <script type="text/javascript">
           var tab = document.getElementById('order');
+          tab.className+=" active ";
+          var tab = document.getElementById('ordersMenu');
+          tab.className+="menu-open ";
+          var tab = document.getElementById('storeOrder');
           tab.className+=" active";
         </script>
 
@@ -73,14 +77,27 @@ $con = $ob->connection();
                                             <label>No of Items <span>*</span></label>
                                         </div>
                                         <div class="col-md-4 col-sm-6 col-xs-12">
-                                            <input type="number" required="" name="itemNo" id="itemNo" placeholder="Items" class="form-control" value="3"/>
+                                            <input type="number" required="" name="itemNo" id="itemNo" onchange="myFunction()" placeholder="Items" class="form-control" />
                                           </div>
                                     </div> <br>
 
+                                    <script>
+                                      function myFunction() {
+                                        var number = document.getElementById('itemNo').value
+                                        var divs = document.getElementById('appending')
+                                        for (var i = 1; i < number; i++) {
+                                          const div = document.getElementById('individualItems')
+                                          const clone = div.cloneNode(true);
+                                          clone.id = "individualItems"+i;
+                                          divs.appendChild(clone);
 
+                                        }
+                                      }
+                                    </script>
 
                                     <form method="post" action="../controller/employeecontroller.php?status=Add" enctype="multipart/form-data">
-                                    <div class="row">
+                                      <div id="appending">
+                                    <div class="row" id="individualItems" style="margin-Bottom:10px;">
                                         <div class="col-md-1 col-sm-6 col-xs-12">
                                             <label>Item <span>*</span> :</label>
                                         </div>
@@ -117,86 +134,7 @@ $con = $ob->connection();
                                               <input type="radio" name="form" value="1" class="check"> Fold <br>
                                               <input type="radio" name="form" value="1" class="check"> Hang
                                         </div>
-                                    </div> <br>
-
-                                    <div class="row">
-                                        <div class="col-md-1 col-sm-6 col-xs-12">
-                                            <label>Item <span>*</span> :</label>
-                                        </div>
-                                        <div class="col-md-2 col-sm-6 col-xs-12" style="margin-right:10px;">
-                                          <select name="itemName" id="itemName" required="" class="form-control">
-                                              <option value="">Select</option>
-                                              <option value="">Frock</option>
-                                              <option value="">Blouse</option>
-                                              <option value="">Abaya</option>
-                                              <option value="">Bottom</option>
-                                              <option value="">Skirt</option>
-                                              <option value="">Lungi</option>
-                                              </option>
-                                          </select>
-                                        </div>
-                                        <div class="col-md-1 col-sm-6 col-xs-12">
-                                            <label>Description :</label>
-                                        </div>
-                                        <div class="col-md-3 col-sm-6 col-xs-12" style="margin-right:10px;">
-                                            <textarea name="description" id="description" class="form-control" placeholder="Address" required></textarea>
-                                        </div>
-                                        <div class="col-md-1 col-sm-6 col-xs-12">
-                                            <label>Service Method <span>*</span></label>
-                                        </div>
-                                        <div class="col-md-1 col-sm-6 col-xs-12">
-                                              <input type="radio" name="method" value="1" class="check"> Washing <br>
-                                              <input type="radio" name="method" value="1" class="check"> Pressing <br>
-                                              <input type="radio" name="method" value="1" class="check"> Folding
-                                        </div>
-                                        <div class="col-md-1 col-sm-6 col-xs-12">
-                                            <label>Form <span>*</span></label>
-                                        </div>
-                                        <div class="col-md-1 col-sm-6 col-xs-12">
-                                              <input type="radio" name="form" value="1" class="check"> Fold <br>
-                                              <input type="radio" name="form" value="1" class="check"> Hang
-                                        </div>
-                                    </div> <br>
-
-                                    <div class="row">
-                                        <div class="col-md-1 col-sm-6 col-xs-12">
-                                            <label>Item <span>*</span> :</label>
-                                        </div>
-                                        <div class="col-md-2 col-sm-6 col-xs-12" style="margin-right:10px;">
-                                          <select name="itemName" id="itemName" required="" class="form-control">
-                                              <option value="">Select</option>
-                                              <option value="">Frock</option>
-                                              <option value="">Blouse</option>
-                                              <option value="">Abaya</option>
-                                              <option value="">Bottom</option>
-                                              <option value="">Skirt</option>
-                                              <option value="">Lungi</option>
-                                              </option>
-                                          </select>
-                                        </div>
-                                        <div class="col-md-1 col-sm-6 col-xs-12">
-                                            <label>Description :</label>
-                                        </div>
-                                        <div class="col-md-3 col-sm-6 col-xs-12" style="margin-right:10px;">
-                                            <textarea name="description" id="description" class="form-control" placeholder="Address" required></textarea>
-                                        </div>
-                                        <div class="col-md-1 col-sm-6 col-xs-12">
-                                            <label>Service Method <span>*</span></label>
-                                        </div>
-                                        <div class="col-md-1 col-sm-6 col-xs-12">
-                                              <input type="radio" name="method" value="1" class="check"> Washing <br>
-                                              <input type="radio" name="method" value="1" class="check"> Pressing <br>
-                                              <input type="radio" name="method" value="1" class="check"> Folding
-                                        </div>
-                                        <div class="col-md-1 col-sm-6 col-xs-12">
-                                            <label>Form <span>*</span></label>
-                                        </div>
-                                        <div class="col-md-1 col-sm-6 col-xs-12">
-                                              <input type="radio" name="form" value="1" class="check"> Fold <br>
-                                              <input type="radio" name="form" value="1" class="check"> Hang
-                                        </div>
-                                    </div> <br>
-
+                                    </div> </div>
 
                                     <br> <hr>
 

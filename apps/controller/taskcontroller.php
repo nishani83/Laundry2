@@ -2,10 +2,12 @@
 
 include '../common/dbconnection.php';
 include '../model/taskmodel.php';
+include '../model/notificationmodel.php';
 
 $ob = new dbconnection();
 $con = $ob->connection();
 $obj = new task();
+$obn = new notification;
 //$result = $obj->viewAemployee($name);
 
 
@@ -15,7 +17,9 @@ switch ($status) {
     case "add":
         $arr = $_POST;
         $obj->addTask($arr);
-
+        $type = 'task';
+        $msg = 'new task assigned';
+        $obn->addNotification($type, $msg, $arr);
         header("Location:../view/task.php?status=success");
 
         break;
@@ -28,10 +32,11 @@ switch ($status) {
 
         break;
 
-    case "deactive":
+    case "inprogress":
         $taskID = $_GET['taskID'];
-        $obj->deactiveTask($taskID);
-        header("Location:../view/task.php?status=success");
+        $empID = $_GET['empID'];
+        $obj->changeTaskStatus($taskID);
+        header("Location:../view/laundererTask.php?empID=$empID");
         break;
 
     case "active":

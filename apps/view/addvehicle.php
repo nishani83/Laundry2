@@ -19,6 +19,10 @@ $result = $obj->viewVehicleType(); //To get all vehicle type info
         <?php include '../common/include_topbar.php'; ?>
         <!-- Main Sidebar Container -->
         <?php include '../common/include_sidebar.php'; ?>
+        <script type="text/javascript">
+            var tab = document.getElementById('vehicle');
+            tab.className += " active";
+        </script>
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -62,7 +66,9 @@ $result = $obj->viewVehicleType(); //To get all vehicle type info
                                         <label>Vehicle No <span>*</span></label>
                                     </div>
                                     <div class="col-md-8 col-sm-6 col-xs-12">
-                                        <input type="text" required="" name="vehicleNo" id="vehicleNo" placeholder="Vehicle No" class="form-control" value="" />
+                                        <span id="vehicleMsg"></span><br/>
+                                        <input type="text" required="" name="vehicleNo" id="vehicleNo" placeholder="Vehicle No" class="form-control" value="" onfocusout="checkVehicle();" />
+
                                     </div>
                                 </div>
 
@@ -110,7 +116,40 @@ $result = $obj->viewVehicleType(); //To get all vehicle type info
 </a>
 
 <?php include '../common/include_scripts.php'; ?>
+<script type="text/javascript">
+    function checkVehicle()
+    {
 
+        if (document.getElementById("vehicleNo").value.length > 0)
+        {
+
+            $.ajax({
+                type: "POST",
+                data: {
+                    vehicleNo: $('#vehicleNo').val(),
+                },
+                url: "getvehicle.php",
+                success: function (data)
+                {
+                    if (data == 1)
+                    {
+                        vehicle_state = true;
+                        $('#vehicleMsg')
+                                .css('color', 'red')
+                                .html("vehicle already exists");
+                    } else
+                    {
+                        vehicle_state = false;
+                        $('#vehicleMsg')
+                                .css('color', 'green')
+                                .html("vehicle available.");
+                    }
+
+                }
+            });
+        }
+    }
+</script>
 </body>
 
 </html>

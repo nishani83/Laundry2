@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <?php
 error_reporting(E_ERROR | E_WARNING | E_PARSE); //To hide errors
-include '../common/session.php'; //To get session info
+include '../common/session.php';
 include '../common/dbconnection.php'; //To get connection string
-include '../model/schedulemodel.php'; //To call schedule model
-
+include '../model/schedulemodel.php'; //To call employee model
 $ob = new dbconnection();
 $con = $ob->connection();
-$obj = new schedule; //To create an object using schedule class
-$result = $obj->viewAllSchedule(); //To get all schedules info
+$obj = new schedule; //To create an object using employee class
+$driverID = $user_info['empID'];
+$result = $obj->viewDriverAssignedSchedules($driverID);
+//
 ?>
-<html lang="en">
+<html>
 
     <?php include '../common/include_head.php'; ?>
     <body class="hold-transition sidebar-mini layout-fixed">
@@ -19,12 +20,8 @@ $result = $obj->viewAllSchedule(); //To get all schedules info
         <!-- Main Sidebar Container -->
         <?php include '../common/include_sidebar.php'; ?>
         <script type="text/javascript">
-          var tab = document.getElementById('schedule');
-          tab.className+=" active ";
-          var tab = document.getElementById('scheduleMenu');
-          tab.className+=" menu-open";
-          var tab = document.getElementById('scheduleM');
-          tab.className+=" active";
+            var tab = document.getElementById('employee');
+            tab.className += " active ";
         </script>
 
         <!-- Content Wrapper. Contains page content -->
@@ -35,16 +32,10 @@ $result = $obj->viewAllSchedule(); //To get all schedules info
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Schedule Management</h1>
+                            <h1 class="m-0 text-dark">My Schedules</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
 
-                                <li class="breadcrumb-item active"> <a href="addschedule.php"
-                                                                       class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
-                                        <i class="fas fa-address-card fa-sm text-white-50"></i> Add Schedule
-                                    </a></li>
-                            </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
@@ -60,16 +51,15 @@ $result = $obj->viewAllSchedule(); //To get all schedules info
                             </div>
                             <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped">
+
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
-                                            <th>Driver Name</th>
-                                            <th>Vehicle Type</th>
-                                            <th>Vehicle No</th>
-
-                                            <th>Schedule Date</th>
+                                            <th>Schedule ID</th>
                                             <th>Start Time</th>
-                                            <th>Actions</th>
+                                            <th>Assigned Vehicle</th>
+                                            <th>Pick Ups</th>
+                                            <th>Deliveries</th>
+                                            <th>Cities</th>
 
                                         </tr>
                                     </thead>
@@ -77,41 +67,53 @@ $result = $obj->viewAllSchedule(); //To get all schedules info
                                         <?php
                                         while ($row = $result->fetch_array()) {
                                             ?>
+
                                             <tr>
 
                                                 <td>
-                                                    <?php echo $row['scheduleID']; ?>
+                                                    <?php echo $row['scheduleID'];
+                                                    ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $row['empName']; ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $row['vehicleType']; ?>
+                                                    <?php echo $row['startTime']; ?>
+
+
                                                 </td>
                                                 <td>
                                                     <?php echo $row['vehicleNo']; ?>
                                                 </td>
-
                                                 <td>
-                                                    <?php echo $row['scheduleDate']; ?>
+                                                    <?php
+                                                    $scheduleID = $row['scheduleID'];
+                                                    $result2 = $obj->viewSchedulePendingOrders($scheduleID);
+                                                    while ($row2 = $result2->fetch_array()) {
+                                                        ?>
+                                                        <a href="ItemsInSchedule.php?orderID=<?php echo $row2['orderID']; ?>">
+                                                            <?php echo $row2['orderID']; ?></a>
+                                                        </br>
+                                                    <?php } ?>
+
                                                 </td>
                                                 <td>
-                                                    <?php echo $row['startTime']; ?>
+                                                    <?php
+                                                    $scheduleID = $row['scheduleID'];
+                                                    $result3 = $obj->viewScheduleDeliveryOrders($scheduleID);
+                                                    while ($row3 = $result3->fetch_array()) {
+                                                        ?>
+                                                        <a href="ItemsInSchedule.php?orderID=<?php echo $row3['orderID']; ?>" <?php echo $row3['orderID']; ?></a>
+                                                            </br>
+                                                    <?php }
+                                                    ?>
                                                 </td>
-
                                                 <td>
-                                                    <a href="../view/viewschedule.php?scheduleID=<?php echo $row['scheduleID']; ?>&status=View">
-                                                        <button type="button" class="btn btn-success"> </i> View</button></a>
-
-                                                    <a href="../view/updateschedule.php?scheduleID=<?php echo $row['scheduleID']; ?>&status=Update">
-                                                        <button type="button" class="btn btn-primary"> </i> Update</button></a>
-
-                                                    <!--                                            <a href="../controller/schedulecontroller.php?scheduleID=--><?php //echo $row['scheduleID'];          ?><!--&status=Delete">-->
-                                                    <!--                                                <button type="button" class="btn btn-danger" onclick="return confMessage()">Delete</button></a>-->
+                                                        <?php //echo $row['status'];   ?>
+                                                </td>
+                                                <td>
                                                 </td>
                                             </tr>
-                                        <?php } ?>
+<?php } ?>
                                     </tbody>
+
                                 </table>
                             </div>
                             <!-- /.card-body -->
@@ -125,7 +127,7 @@ $result = $obj->viewAllSchedule(); //To get all schedules info
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-        <?php include '../common/include_footer.php'; ?>
+<?php include '../common/include_footer.php'; ?>
 
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
@@ -133,31 +135,20 @@ $result = $obj->viewAllSchedule(); //To get all schedules info
         </aside>
         <!-- /.control-sidebar -->
         <!-- ./wrapper -->
-        <?php include '../common/include_scripts.php'; ?>
-        <!-- Scroll to Top Button-->
-        <a class="scroll-to-top rounded" href="#page-top">
-            <i class="fas fa-angle-up"></i>
-        </a>
-
-
+<?php include '../common/include_scripts.php'; ?>
 
         <!-- Page level plugins -->
-        <script src="../DataTables/datatables.min.js"></script>
-        <script src="../DataTables/DataTables-1.10.24/js/dataTables.bootstrap4.min.js"></script>
+
 
         <script type="text/javascript">
-            function confMessage() {
-                var r = confirm("Do you want to delete this schedule ?");
+            function confMessage(str) {
+                var r = confirm("Do you want to " + str + " this employee?");
                 if (!r) {
                     return false;
                 }
             }
         </script>
-        <script>
-            $(document).ready(function () {
-                $('#example').DataTable({"bSort": false});
-            });
-        </script>
+
 
         <script src="../plugins/jquery/jquery.min.js"></script>
         <!-- Bootstrap 4 -->
@@ -170,8 +161,15 @@ $result = $obj->viewAllSchedule(); //To get all schedules info
         <!-- AdminLTE App -->
         <script src="../assets/js/adminlte.min.js"></script>
         <!-- AdminLTE for demo purposes -->
-        <script src="../assets/js/demo.js"></script>
+        <script src="../../assets/js/demo.js"></script>
         <!-- page script -->
+        <script>
+            $(function () {
+                $("#example1").DataTable({
+                    "responsive": true,
+                    "autoWidth": false,
+                });
+            });
+        </script>
     </body>
-
 </html>
