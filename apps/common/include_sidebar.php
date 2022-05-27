@@ -20,27 +20,35 @@
             <!-- Add icons to the links using the .nav-icon class
                  with font-awesome or any other icon font library -->
             <li class="nav-item has-treeview " id="ordersMenu">
-                <a href="#" class="nav-link" id="order">
+                <a href="../view/webOrder.php" class="nav-link" id="order">
                     <i class="nav-icon fas fa-shopping-cart"></i>
                     <p>
                         Order
-                        <i class="fas fa-angle-right right"></i>
+<!--                        <i class="fas fa-angle-right right"></i>-->
                     </p>
                 </a>
-                <ul class="nav nav-treeview ">
-                    <li class="nav-item ">
-                        <a href="../view/storeOrder.php" class="nav-link active">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Shop Orders</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="../view/webOrder.php" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Web Orders</p>
-                        </a>
-                    </li>
-                </ul>
+
+                <!--                 <a href="#" class="nav-link" id="order">
+                                    <i class="nav-icon fas fa-shopping-cart"></i>
+                                    <p>
+                                        Order
+                                        <i class="fas fa-angle-right right"></i>
+                                    </p>
+                                </a>-->
+                <!--                <ul class="nav nav-treeview ">
+                                    <li class="nav-item ">
+                                        <a href="../view/storeOrder.php" class="nav-link active">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Shop Orders</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="../view/webOrder.php" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Web Orders</p>
+                                        </a>
+                                    </li>
+                                </ul>-->
             </li>
 
             <li class="nav-item has-treeview" id="scheduleMenu">

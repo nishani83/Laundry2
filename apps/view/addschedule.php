@@ -33,9 +33,21 @@ $obo = new order;
 //$reso = $obo->viewPendingOrders($date);
 //$resc = $obo->viewCompletedOrders($date);
 
-$reso = $obo->viewPendingOrders();
-$resc = $obo->viewCompletedOrders();
+$reso = $obo->viewPendingOrdersAll();
+$pickupRows = array();
+while ($rp = $reso->fetch_assoc()) {
+    $pickupRows[] = $rp;
+}
+$pickupJson = json_encode($pickupRows);
+
+$resc = $obo->viewCompletedOrdersAll();
+$deliveryRows = array();
+while ($rd = $resc->fetch_assoc()) {
+    $deliveryRows[] = $rd;
+}
+$deliveryJson = json_encode($deliveryRows);
 ?>
+
 <html lang="en">
 
 
@@ -89,7 +101,7 @@ $resc = $obo->viewCompletedOrders();
                                             <label>Schedule Date <span>*</span></label>
                                         </div>
                                         <div class="col-md-8 col-sm-6 col-xs-12">
-                                            <input type="text" id="datepicker"  onChange="//load_date(this.value)" >
+                                            <input type="text" id="datepicker"  onChange="load_date(this.value)" >
 
                                         </div>
                                     </div>
@@ -99,8 +111,10 @@ $resc = $obo->viewCompletedOrders();
                                             <label>Schedule Start Time <span>*</span></label>
                                         </div>
                                         <div class="col-md-8 col-sm-6 col-xs-12">
-                                            <select name="vehicleID" id="vehicleID" class="form-control" required>
+                                            <select name="scheduleID" id="scheduleID" class="form-control" required>
                                                 <option value="">Select a Time</option>
+                                                <option value="1">9.00-12.00</option>
+                                                <option value="2">2.00-5.00</option>
                                             </select>
                                         </div>
                                     </div>
@@ -166,14 +180,14 @@ $resc = $obo->viewCompletedOrders();
                                             <label>PickUp Requests <span>*</span></label>
                                         </div>
                                         <div class="col-md-8 col-sm-6 col-xs-12">
-                                            <select name="pick[]" id="pick" class="form-control" multiple required>
+                                            <select name="pick" multiple="multiple" id="pick" class="form-control" required>
                                                 <?php
-                                                while ($rowb = $reso->fetch_assoc()) {
-                                                    ?>
-                                                    <option value="<?php echo $rowb['weborderID']; ?>">
-                                                        <?php echo $rowb['items'] . " pieces"; ?>
-                                                    </option>
-                                                <?php }
+                                                //  while ($rowb = $reso->fetch_assoc()) {
+                                                ?>
+                                                    <!--<option value="<?php //echo $rowb['weborderID'];                                                                                  ?>">-->
+                                                <?php //echo $rowb['items'] . " pieces" . $rowb['customerID'];  ?>
+                                                </option>
+                                                <?php //}
                                                 ?>
                                             </select>
                                         </div>
@@ -186,14 +200,14 @@ $resc = $obo->viewCompletedOrders();
                                             <label>Delivery<span>*</span></label>
                                         </div>
                                         <div class="col-md-8 col-sm-6 col-xs-12">
-                                            <select name="del[]" id="del" class="form-control" multiple required>
+                                            <select name="del" id="del" class="form-control" required multiple="multiple">
                                                 <?php
-                                                while ($rowd = $resc->fetch_assoc()) {
-                                                    ?>
-                                                    <option value="<?php echo $rowd['weborderID']; ?>">
-                                                        <?php echo $rowd['items'] . " pieces"; ?>
-                                                    </option>
-                                                <?php }
+                                                // while ($rowd = $resc->fetch_assoc()) {
+                                                ?>
+<!--                                                <option value="<?php //echo $rowd['weborderID'];                                      ?>">
+                                                <?php //echo $rowd['items'] . " pieces";  ?>
+                                                </option>-->
+                                                <?php //}
                                                 ?>
                                             </select>
                                         </div>
@@ -235,19 +249,57 @@ $resc = $obo->viewCompletedOrders();
     <script>
                                                 function load_date(val)
                                                 {
-                                                    alert(val)
 
-                                                    window.location = "addschedule.php?dateselected=" + val;
+
+                                                    // window.location = "addschedule.php?dateselected=" + val;
                                                     //header("Location: page2.php?id=".$var);
+                                                    // function () {
+                                                    //$("#pick").bsMultiSelect();
+//                                                        $("#del").bsMultiSelect();
+                                                    //$("#pick").select2();
+                                                    let pickups =<?php echo $pickupJson; ?>;
+                                                    let delivery =<?php echo $deliveryJson; ?>;
+                                                    let deliverySelect = $("#del");
+                                                    let pickupSelect = $("#pick");
+                                                    let dateSelected = val;
+                                                    if (dateSelected) {
+                                                        pickupSelect.empty();
+                                                        $.each(pickups, function (index, item) {
+                                                            if (dateSelected === item.pickupDate) {
+                                                                var $option = $('<option></option>')
+                                                                        .attr('value', item.weborderID)
+                                                                        .text(item.items + " pieces  " + item.weborderID + " " + item.city)
+                                                                        .prop('selected', true);
+                                                                $('#pick').append($option).change();
+                                                                //$("#pick").append($("<option></option>").val(item.weborderID).html(item.items + "pieces  " + item.weborderID + " " + item.city));
+                                                            }
+                                                        });
+                                                        deliverySelect.empty();
+                                                        $.each(delivery, function (index, item) {
+                                                            if (dateSelected === item.deliveryDate) {
+                                                                var $option = $('<option></option>')
+                                                                        .attr('value', item.weborderID)
+                                                                        .text(item.items + " pieces  " + item.weborderID + " " + item.city)
+                                                                        .prop('selected', true);
+                                                                $('#del').append($option).change();
+                                                                //$("#del").append($("<option></option>").val(item.weborderID).html(item.items + "pieces  " + item.weborderID + " " + item.city));
+                                                            }
+                                                        });
+                                                    }
                                                 }
+
+                                                //  }
+
+//
+
+
+
 
                                                 $(function ()
                                                 {
                                                     $("#datepicker").datepicker({dateFormat: 'yy-mm-dd', minDate: 0}
                                                     );
                                                     let vehicles = <?php echo $vehicleJson; ?>;
-                                                    $("#pick").bsMultiSelect();
-                                                    $("#del").bsMultiSelect();
                                                     $("#vehicleTypeID").change(
                                                             function () {
                                                                 let vehicleSelect = $("#vehicleID");

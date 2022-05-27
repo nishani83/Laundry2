@@ -24,7 +24,7 @@ switch ($status) {
         $arr = $_POST;
         $customerID = $obj->addWebCustomer($arr);
 
-        header("Location:../../website/register/viewWebCustomer.php?customerID=$customerID");
+        header("Location:../view/login.php");
 
         break;
 

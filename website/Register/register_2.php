@@ -3,6 +3,8 @@
 include '../../apps/common/dbconnection.php';
 $ob = new dbconnection();
 $con = $ob->connection();
+//$status = $_REQUEST['status'];
+
 session_start();
 /* include '../common/session.php'; //To get session info
   include '../common/dbconnection.php'; //To get connection string
@@ -31,7 +33,7 @@ session_start();
   $minDate = getDate1(60); */
 ?>
 <html lang="en">
-<?php include '../common/include_head.php'; ?>
+    <?php include '../common/include_head.php'; ?>
     <link rel="stylesheet" href='../assets/css/custom-styles.css'>
     <link href="../assets/css/sb-admin-2.min.css" rel="stylesheet">
 
@@ -77,8 +79,9 @@ session_start();
                                             <div class="text-center">
 
                                                 <h1 class="h6 text-gray-900 mb-4">Enter your Verification Code</h1>
-                                                <h1 class="text-xs text-gray-900 mb-4">You must have received 4 digit number to your email</h1>
-                                            </div>
+                                                <?php //if ($status == "success") { ?>
+                                                <h1 class="text-xs text-success mb-4 ">You must have received 4 digit number to your email</h1>
+                                                <?php //} ?> </div>
 
                                             <div class="form-group">
                                                 <input type="text" name="otp" id="otp" placeholder="xxxx" class="form-control" onkeyup="EnableDisable(this)"/>
@@ -89,11 +92,11 @@ session_start();
 
                                         </form>
                                         <hr>
+                                        <!--                                        <div class="text-center">
+                                                                                    <a class="small" href="otp.php">Problem? Resend OTP via SMS</a>
+                                                                                </div>-->
                                         <div class="text-center">
-                                            <a class="small" href="otp.php">Problem? Resend OTP via SMS</a>
-                                        </div>
-                                        <div class="text-center">
-                                            <p class="small" >Step 2 of 3</p>
+                                            <p class="small" >Step 2 of 4</p>
                                         </div>
                                     </div>
                                 </div>
@@ -111,32 +114,32 @@ session_start();
 
     </body>
     <script type="text/javascript">
-        $(document).ready(function () {
-            $('form').submit(function () {
-                var email = $('#email').val();
-                var pass = $('#pass').val();
-                var errorMessage = $('#error');
-                //To check both email and password
-                if (email == "" && pass == "") {
-                    errorMessage.show();
-                    errorMessage.text("Please enter your email and password");
-                    return false;
-                }
-                //To check empty email
-                if (email == "") {
-                    errorMessage.show();
-                    errorMessage.text("Please enter your Email address");
-                    return false;
-                }
-                //To check empty password
-                if (pass == "") {
-                    errorMessage.show();
-                    errorMessage.text("Please enter your password");
-                    return false;
-                }
-
-            });
-        });
+//        $(document).ready(function () {
+//            $('form').submit(function () {
+//                var email = $('#email').val();
+//                var pass = $('#pass').val();
+//                var errorMessage = $('#error');
+//                //To check both email and password
+//                if (email == "" && pass == "") {
+//                    errorMessage.show();
+//                    errorMessage.text("Please enter your email and password");
+//                    return false;
+//                }
+//                //To check empty email
+//                if (email == "") {
+//                    errorMessage.show();
+//                    errorMessage.text("Please enter your Email address");
+//                    return false;
+//                }
+//                //To check empty password
+//                if (pass == "") {
+//                    errorMessage.show();
+//                    errorMessage.text("Please enter your password");
+//                    return false;
+//                }
+//
+//            });
+//        });
     </script>
 
     <script type="text/javascript">

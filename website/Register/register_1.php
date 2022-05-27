@@ -79,7 +79,7 @@ $con = $ob->connection();
                                                 <input type="text" required="" name="last_name" id="last_name" placeholder="Last Name" class="form-control" />
                                             </div><!-- comment -->
                                             <div class="form-group">
-                                                <input type="text" required="" name="phone" id="phone" placeholder="07xxxxxxxx" class="form-control" />
+                                                <input type="text" required="" name="phone" id="phone" placeholder="07xxxxxxxx" class="form-control" onblur="checkMobile();" />
                                             </div>
 
 
@@ -92,7 +92,7 @@ $con = $ob->connection();
                                         <hr>
 
                                         <div class="text-center">
-                                            <p class="small" >Step 1 of 3</p>
+                                            <p class="small" >Step 1 of 4</p>
                                         </div>
                                     </div>
                                 </div>
@@ -110,7 +110,11 @@ $con = $ob->connection();
 
     </body>
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(document).ready(function ()
+
+
+
+        {
             $('form').submit(function () {
                 var email = $('#email').val();
                 var pass = $('#pass').val();
@@ -135,7 +139,45 @@ $con = $ob->connection();
                 }
 
             });
-        });
+
+            document.getElementById("phone").addEventListener("keyup", checkLenght);
+        }
+
+        );
+    </script>
+    <script type="text/javascript">
+
+        function checkMobile()
+
+
+        {
+            var mobile = document.getElementById('phone');
+            var errorMessage = $('#error');
+            if (mobile.value.length != 10) {
+                errorMessage.show();
+                errorMessage.text("Please enter phone number with 10 digits");
+                return false;
+            }
+        }
+
+
+
+        function checkLenght() {
+            var checklen = document.getElementById("phone");
+            checklen = $('#phone').val();
+            var errorMessage = $('#error');
+            if (checklen.length == 10) {
+                errorMessage.hide();
+
+            } else {
+                errorMessage.show();
+                errorMessage.text("Please enter phone number with 10 digits");
+                return false;
+            }
+
+
+        }
+
     </script>
 
 </html>

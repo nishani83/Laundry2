@@ -27,12 +27,12 @@ $result = $obj->viewAllWebOrders();
         <!-- Main Sidebar Container -->
         <?php include '../common/include_sidebar.php'; ?>
         <script type="text/javascript">
-            var tab = document.getElementById('order');
-            tab.className += " active ";
-            var tab = document.getElementById('ordersMenu');
-            tab.className += "menu-open ";
-            var tab = document.getElementById('webOrder');
-            tab.className += " active";
+//            var tab = document.getElementById('order');
+//            tab.className += " active ";
+//            var tab = document.getElementById('ordersMenu');
+//            tab.className += "menu-open ";
+//            var tab = document.getElementById('webOrder');
+//            tab.className += " active";
         </script>
 
         <!-- Content Wrapper. Contains page content -->
@@ -90,106 +90,113 @@ $result = $obj->viewAllWebOrders();
                                         <?php
                                         while ($row = $result->fetch_array()) {
                                             ?>
-                                            }
+
                                             <tr>
-                                                <td>  <?php echo $row['empID']; ?></td>
+                                                <td>  <?php echo $row['weborderID']; ?></td>
                                                 <td><?php echo $row['name']; ?></td>
                                                 <td><?php echo $row['pickupDate']; ?></td>
-                                                <td>Rs.800 <br> <span class = "right badge badge-warning">COD</span></td>
-                                                <td>Pending</td>
-                                                <td>12/B/1, CT Gardens, Bokundara</td>
-                                                <td>2022-04-13</td>
-                                                <td>9.00 -12.00 </td>
-                                                <td>Rs.200</td>
+                                                   <td><?php echo $row['amount']; ?><!-- <br> <span class = "right badge badge-warning">COD</span>--></td>
+                                                <td><?php echo $row['orderStatus']; ?></td>
+                                                <td><?php echo $row['address']; ?></td>
+                                                <td><?php echo $row['deliveryDate']; ?></td>
+                                                <td><?php
+                                                    if ($row['deliveryTime'] == 1) {
+                                                        echo "9.00-12.00";
+                                                    } else
+                                                        echo "2.00-5.00";
+                                                    ?> </td>
+                                                <td><?php echo $row['deliveryCharge']; ?></td>
                                                 <td>
-                                                    <a href = "../view/viewWebOrder.php?empID=<?php echo $row['empID']; ?>&status=view"><button type = "button" class = "btn btn-success"> View</button></a>
-                                                    <a href = "../view/updateWebOrder.php?empID=<?php echo $row['empID']; ?>&status=update">
+                                                    <a href = "../view/viewWebOrder.php?weborderID=<?php echo $row['weborderID']; ?>&status=view"><button type = "button" class = "btn btn-success"> View</button></a>
+
+                                                    <a href = "../view/updateWebOrder.php?weborderID=<?php echo $row['weborderID']; ?>&status=update">
                                                         <button type = "button" class = "btn btn-primary"> </i> Update</button></a>
 
-                                                    <a href = "../controller/employeecontroller.php?empID=<?php echo $row['empID']; ?>&status=<?php echo $label; ?>">
-                                                        <button type = "button" class = "btn btn-danger" onclick = "return confMessage('Do you wanna cancel this')">
+                                                    <a href = "../controller/ordercontroller.php?weborderID=<?php echo $row['weborderID']; ?>&status=<?php echo $label; ?>">
+                                                        <button type = "button" class = "btn btn-danger" onclick = "return confMessage('Do you want to cancel this')">
                                                             Cancel</button></a>
                                                 </td>
-                                            </tr>
+                                            <?php } ?>
+                                        </tr>
 
-                                            <tr>
-                                                <td>OW000008</td>
-                                                <td>sathya weerawardana</td>
-                                                <td>2022-04-09</td>
-                                                <td>Rs.1200</td>
-                                                <td>Pending</td>
-                                                <td>24, kolamunna, piliyandala</td>
-                                                <td>2022-04-12</td>
-                                                <td>2.00-5.00</td>
-                                                <td>Rs.200</td>
-                                                <td>
-                                                    <a href = "../view/viewWebOrder.php?empID=<?php echo $row['empID']; ?>&status=view"><button type = "button" class = "btn btn-success"> View</button></a>
-                                                    <a href = "../view/updateWebOrder.php?empID=<?php echo $row['empID']; ?>&status=update">
-                                                        <button type = "button" class = "btn btn-primary"> </i> Update</button></a>
+    <!--                                            <tr>
+                                                    <td>OW000008</td>
+                                                    <td>sathya weerawardana</td>
+                                                    <td>2022-04-09</td>
+                                                    <td>Rs.1200</td>
+                                                    <td>Pending</td>
+                                                    <td>24, kolamunna, piliyandala</td>
+                                                    <td>2022-04-12</td>
+                                                    <td>2.00-5.00</td>
+                                                    <td>Rs.200</td>
+                                                    <td>
+                                                        <a href = "../view/viewWebOrder.php?empID=<?php echo $row['empID']; ?>&status=view"><button type = "button" class = "btn btn-success"> View</button></a>
+                                                        <a href = "../view/updateWebOrder.php?empID=<?php echo $row['empID']; ?>&status=update">
+                                                            <button type = "button" class = "btn btn-primary"> </i> Update</button></a>
 
-                                                    <a href = "../controller/employeecontroller.php?empID=<?php echo $row['empID']; ?>&status=<?php echo $label; ?>">
-                                                        <button type = "button" class = "btn btn-danger" onclick = "return confMessage('Do you wanna cancel this')">
-                                                            Cancel</button></a>
-                                                </td>
-                                            </tr>
+                                                        <a href = "../controller/employeecontroller.php?empID=<?php echo $row['empID']; ?>&status=<?php echo $label; ?>">
+                                                            <button type = "button" class = "btn btn-danger" onclick = "return confMessage('Do you wanna cancel this')">
+                                                                Cancel</button></a>
+                                                    </td>
+                                                </tr>
 
-                                            <tr>
-                                                <td>OW000010</td>
-                                                <td>Nimna Perera</td>
-                                                <td>2022-04-03</td>
-                                                <td>Rs.750 <br> <span class = "right badge badge-warning">COD</span></td>
-                                                <td>Completed</td>
-                                                <td>67, galpotta, piliyandala</td>
-                                                <td>2022-04-10</td>
-                                                <td>9.00 -12.00 </td>
-                                                <td>Rs.200</td>
-                                                <td>
-                                                    <a href = "../view/viewWebOrder.php?empID=<?php echo $row['empID']; ?>&status=view"><button type = "button" class = "btn btn-success"> View</button></a>
+                                                <tr>
+                                                    <td>OW000010</td>
+                                                    <td>Nimna Perera</td>
+                                                    <td>2022-04-03</td>
+                                                    <td>Rs.750 <br> <span class = "right badge badge-warning">COD</span></td>
+                                                    <td>Completed</td>
+                                                    <td>67, galpotta, piliyandala</td>
+                                                    <td>2022-04-10</td>
+                                                    <td>9.00 -12.00 </td>
+                                                    <td>Rs.200</td>
+                                                    <td>
+                                                        <a href = "../view/viewWebOrder.php?empID=<?php echo $row['empID']; ?>&status=view"><button type = "button" class = "btn btn-success"> View</button></a>
 
-                                                </td>
-                                            </tr>
+                                                    </td>
+                                                </tr>
 
-                                            <tr>
-                                                <td>OW000011</td>
-                                                <td>santhush gamage</td>
-                                                <td>2022-04-15</td>
-                                                <td>Rs.1350</td>
-                                                <td>Cancelled</td>
-                                                <td>"Gimhana", Makuluduwa, Maharagama</td>
-                                                <td>2022-04-20</td>
-                                                <td>9.00 -12.00 </td>
-                                                <td>Rs.200</td>
-                                                <td>
-                                                    <a href = "../view/viewWebOrder.php?empID=<?php echo $row['empID']; ?>&status=view"><button type = "button" class = "btn btn-success"> View</button></a>
+                                                <tr>
+                                                    <td>OW000011</td>
+                                                    <td>santhush gamage</td>
+                                                    <td>2022-04-15</td>
+                                                    <td>Rs.1350</td>
+                                                    <td>Cancelled</td>
+                                                    <td>"Gimhana", Makuluduwa, Maharagama</td>
+                                                    <td>2022-04-20</td>
+                                                    <td>9.00 -12.00 </td>
+                                                    <td>Rs.200</td>
+                                                    <td>
+                                                        <a href = "../view/viewWebOrder.php?empID=<?php echo $row['empID']; ?>&status=view"><button type = "button" class = "btn btn-success"> View</button></a>
 
-                                                </td>
-                                            </tr>
+                                                    </td>
+                                                </tr>-->
 
-                                        </tbody>
+                                    </tbody>
 
-                                    </table>
-                                </div>
-                                <!--/.card-body-->
+                                </table>
                             </div>
-                            <!--/.card-->
+                            <!--/.card-body-->
                         </div>
-                        <!--/.col-->
+                        <!--/.card-->
                     </div>
-                    <!--/.row-->
-                </section>
-                <!--/.content-->
-            </div>
-            <!--/.content-wrapper-->
-            <?php include '../common/include_footer.php';
-            ?>
+                    <!--/.col-->
+                </div>
+                <!--/.row-->
+            </section>
+            <!--/.content-->
+        </div>
+        <!--/.content-wrapper-->
+        <?php include '../common/include_footer.php';
+        ?>
 
-            <!-- Control Sidebar -->
-            <aside class="control-sidebar control-sidebar-dark">
-                <!-- Control sidebar content goes here -->
-            </aside>
-            <!-- /.control-sidebar -->
-            <!-- ./wrapper -->
-            <?php include '../common/include_scripts.php'; ?>
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+        <!-- ./wrapper -->
+        <?php include '../common/include_scripts.php'; ?>
 
         <!-- Page level plugins -->
 
@@ -206,7 +213,7 @@ $result = $obj->viewAllWebOrders();
 
         <script src="../plugins/jquery/jquery.min.js"></script>
         <!-- Bootstrap 4 -->
-        <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
         <!-- DataTables -->
         <script src="../plugins/datatables/jquery.dataTables.min.js"></script>
         <script src="../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>

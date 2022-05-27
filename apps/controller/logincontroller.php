@@ -5,9 +5,7 @@ if (!isset($_SESSION)) {
     session_start();
 }
 
-////To set default time zone
-date_default_timezone_set("Asia/colombo");
-$msg = base64_encode("Incorrect Email address or Password");
+
 
 //Server side validation
 if ($_POST['email'] == "" || $_POST['pass'] == "") {

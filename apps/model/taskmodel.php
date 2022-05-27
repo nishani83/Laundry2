@@ -78,4 +78,15 @@ WHERE empID='$laundererID'
         return $result;
     }
 
+    public function viewLaundererAssignedTasksWithTaskID($laundererID, $taskID) {
+        $con = $GLOBALS['con'];
+        //sql query
+        $sql = "SELECT * FROM task
+      WHERE empID='$laundererID' AND taskID = '$taskID'
+      ORDER BY dueDate";
+        //Execute a query
+        $result = $con->query($sql);
+        return $result;
+    }
+
 }

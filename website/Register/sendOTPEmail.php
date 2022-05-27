@@ -5,6 +5,7 @@
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
 
 // Start the session
 session_start();
@@ -12,38 +13,40 @@ session_start();
 require '../../vendor/autoload.php';
 try {
     $otp = rand(1000, 9999);
-    $_SESSION['session_otp'] = $otp;
+    $_SESSION['session_otp '] = $otp;
     $_SESSION['email'] = $_POST['email'];
-    $mail = new PHPMailer(true);
-    $mail->isSMTP();
-    $mail->SMTPAuth = true;
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-    $mail->SMTPOptions = array(
-        'ssl' => array(
-            'verify_peer' => false,
-            'verify_peer_name' => false,
-            'allow_self_signed' => true
-        )
-    );
-    $mail->Host = 'smtp.gmail.com';
-    $mail->Port = '587';
-    $mail->isHTML();
-    $mail->Username = 'helpdesk.canrenwash@gmail.com';
-    $mail->Password = 'passwordchanged';
-    $mail->SetFrom('helpdesk.canrenwash@gmail.com', 'CanrenWash');
-    $mail->Subject = "Canren Wash OTP for Signup";
-    $mail->Body = nl2br("Dear Sir/ Madam, \n Please use the following OTP " . $otp . " to complete your signup.Do NOT share this number with anyone.");
-    // $to = 'nishani.dilu@gmail.com';
     $to = $_POST['email'];
-    echo $to;
-    $mail->AddAddress($to);
+    $mail = new PHPMailer();
+    $mail->IsSMTP();
+    echo $otp;
+    $mail->SMTPDebug = 0;
+    $mail->SMTPAuth = TRUE;
+    $mail->SMTPSecure = "tls";
+    $mail->Port = 587;
+    // $mail->Host       = "smtp.gmail.com";
+    $mail->Host = "smtp.mail.yahoo.com";
+    $mail->Username = "helpdesk.canrenwash@yahoo.com";
 
-    $result = $mail->Send();
-    if ($result) {
+    $mail->Password = "euxiibijzdjqmibo";
+
+    $mail->IsHTML(true);
+    $mail->AddAddress($to, "recipient-name");
+    $mail->SetFrom("helpdesk.canrenwash@yahoo.com", "Canren Wash");
+    //$mail->AddReplyTo("reply-to-email", "reply-to-name");
+    //$mail->AddCC("cc-recipient-email", "cc-recipient-name");
+    $mail->Subject = "Canren Wash OTP for Signup";
+    $content = nl2br("Dear Sir/ Madam, \n Please use the following OTP " . $otp . " to complete your signup.Do NOT share this number with anyone.");
+
+    $mail->MsgHTML($content);
+    if (!$mail->Send()) {
+        echo "Sent Failed - Error : ";
+        //var_dump($mail);
+        return false;
+    } else {
+        // $status = "success";
         header("Location:register_2.php");
         exit();
-    } else {
-        echo "Sent Failed - Error : ";
+        return true;
     }
 } catch (Exception $e) {
     echo $mail->ErrorInfo;

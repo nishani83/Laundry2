@@ -18,7 +18,7 @@ $result = $obj->viewDriverAssignedSchedules($driverID);
 
         <?php include '../common/include_topbar.php'; ?>
         <!-- Main Sidebar Container -->
-        <?php include '../common/include_sidebar.php'; ?>
+        <?php include '../common/include_sidebar_driver.php'; ?>
         <script type="text/javascript">
             var tab = document.getElementById('employee');
             tab.className += " active ";
@@ -102,16 +102,16 @@ $result = $obj->viewDriverAssignedSchedules($driverID);
                                                         ?>
                                                         <a href="ItemsInSchedule.php?orderID=<?php echo $row3['orderID']; ?>" <?php echo $row3['orderID']; ?></a>
                                                             </br>
-                                                    <?php }
-                                                    ?>
+                                                        <?php }
+                                                        ?>
                                                 </td>
                                                 <td>
-                                                        <?php //echo $row['status'];   ?>
+                                                    <?php //echo $row['status'];   ?>
                                                 </td>
                                                 <td>
                                                 </td>
                                             </tr>
-<?php } ?>
+                                        <?php } ?>
                                     </tbody>
 
                                 </table>
@@ -127,7 +127,7 @@ $result = $obj->viewDriverAssignedSchedules($driverID);
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-<?php include '../common/include_footer.php'; ?>
+        <?php include '../common/include_footer.php'; ?>
 
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
@@ -135,7 +135,7 @@ $result = $obj->viewDriverAssignedSchedules($driverID);
         </aside>
         <!-- /.control-sidebar -->
         <!-- ./wrapper -->
-<?php include '../common/include_scripts.php'; ?>
+        <?php include '../common/include_scripts.php'; ?>
 
         <!-- Page level plugins -->
 
@@ -151,8 +151,7 @@ $result = $obj->viewDriverAssignedSchedules($driverID);
 
 
         <script src="../plugins/jquery/jquery.min.js"></script>
-        <!-- Bootstrap 4 -->
-        <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
         <!-- DataTables -->
         <script src="../plugins/datatables/jquery.dataTables.min.js"></script>
         <script src="../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>

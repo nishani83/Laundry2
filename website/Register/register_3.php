@@ -31,7 +31,7 @@
   $minDate = getDate1(60); */
 ?>
 <html lang="en">
-<?php include '../common/include_head.php'; ?>
+    <?php include '../common/include_head.php'; ?>
     <link rel="stylesheet" href='../assets/css/custom-styles.css'>
     <link href="../assets/css/sb-admin-2.min.css" rel="stylesheet">
     <style>
@@ -207,7 +207,7 @@
 
                                         <div class="form-group">
                                             <button type="submit" class="btn btn-primary btn-block" value="submit">
-                                                Finish
+                                                Next
                                             </button>
                                         </div>
 
@@ -216,7 +216,7 @@
                                         <hr>
 
                                         <div class="text-center">
-                                            <p class="small" >Step 3 of 3</p>
+                                            <p class="small" >Step 3 of 4</p>
                                         </div>
                                     </div>
                                 </div>

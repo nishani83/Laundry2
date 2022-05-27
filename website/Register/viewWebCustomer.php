@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 include '../../apps/common/dbconnection.php';
-include '../../apps/common/session.php'; //To get connection string
+//include '../../apps/common/session.php'; //To get connection string
 //include '../model/commonmodel.php'; //To call common vehicle model
 include '../../apps/model/customermodel.php';
 

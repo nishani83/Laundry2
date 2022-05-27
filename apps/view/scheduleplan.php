@@ -11,6 +11,7 @@ $con = $ob->connection();
 $obj = new employee; //To create an object using employee class
 
 $date = $_GET['dateselected'];
+//$status = "view";
 
 $result = $obj->viewAvailableDrivers($date); //To get all employees info
 
@@ -33,12 +34,12 @@ $resc = $obo->viewCompletedOrders($date);
         <!-- Main Sidebar Container -->
         <?php include '../common/include_sidebar.php'; ?>
         <script type="text/javascript">
-          var tab = document.getElementById('schedsuleplan');
-          tab.className+=" active ";
-          var tab = document.getElementById('scheduleMenu');
-          tab.className+=" menu-open";
-          var tab = document.getElementById('scheduleM');
-          tab.className+=" active";
+            var tab = document.getElementById('schedsuleplan');
+            tab.className += " active ";
+            var tab = document.getElementById('scheduleMenu');
+            tab.className += " menu-open";
+            var tab = document.getElementById('scheduleM');
+            tab.className += " active";
         </script>
 
         <!-- Content Wrapper. Contains page content -->
@@ -268,8 +269,7 @@ $resc = $obo->viewCompletedOrders($date);
 <?php include '../common/include_scripts.php'; ?>
 
 <script src="../plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
 <!-- DataTables -->
 <script src="../plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>

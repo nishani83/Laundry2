@@ -14,3 +14,15 @@ $leavedate = $_GET['selecteddate'];
 $obj->viewAvailableDrivers($leavedate);
 
 header("Location:../view/scheduleplan.php?status=success");
+
+$status = strtolower($_REQUEST['status']);
+
+switch ($status) {
+    case "add":
+        $arr = $_POST;
+        $empID = $obj->addEmployee($arr);
+
+        header("Location:../view/employee.php?status=success");
+
+        break;
+}

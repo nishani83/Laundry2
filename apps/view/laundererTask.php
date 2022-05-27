@@ -101,6 +101,9 @@ $obo = new orderitem();
                                                     if ($nor['count'] == 0) {
 
                                                         $re = $obj->changeStatus($taskID, $s);
+                                                        $resTS = $obj->viewLaundererAssignedTasksWithTaskID($laundererID, $taskID);
+                                                        $rowTS = $resTS->fetch_assoc();
+                                                        $row['taskstatus'] = $rowTS['taskstatus'];
                                                     }
 
                                                     if (($row['taskstatus']) == "todo") {
@@ -122,12 +125,18 @@ $obo = new orderitem();
                                                 <td>
                                                     <a href="../view/viewtaskLaunderer.php?taskID=<?php echo $row['taskID']; ?>&status=view"><button type="button" class="btn btn-success"> View</button></a>
 
+                                                    <?php if ($row['taskstatus'] != "todo") { ?>
+                                                        <button type="button" id="startbutton" class="btn btn-danger" disabled >start</button>
+                                                        <?php
+                                                    } else {
 
-                                                    <?php $status = "inprogress"; ?>
-                                                    <a href="../controller/taskcontroller.php?empID=<?php echo $laundererID; ?>&taskID=<?php echo $row['taskID']; ?>&status=<?php echo $status; ?>">
-                                                        <button type="button" id="startbutton" class="btn btn-danger" onclick="disableButton(this)">
-                                                            Start <?php //echo $label;                                                      ?></button>   </a>                                            </td>
-
+                                                        $status = "inprogress";
+                                                        ?>
+                                                        <a href="../controller/taskcontroller.php?empID=<?php echo $laundererID; ?>&taskID=<?php echo $row['taskID']; ?>&status=<?php echo $status; ?>">
+                                                            <button type="button" id="startbutton" class="btn btn-danger" onclick=" disableButton(this)">
+                                                                Start</button>   </a>
+                                                    <?php } ?>
+                                                    </button>   </a>                                            </td>
 
                                             </tr>
                                             <?php
@@ -177,8 +186,7 @@ $obo = new orderitem();
         </script>
 
         <script src="../plugins/jquery/jquery.min.js"></script>
-        <!-- Bootstrap 4 -->
-        <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
         <!-- DataTables -->
         <script src="../plugins/datatables/jquery.dataTables.min.js"></script>
         <script src="../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>

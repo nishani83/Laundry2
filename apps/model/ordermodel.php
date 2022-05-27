@@ -9,9 +9,18 @@ class order {
         return $result;
     }
 
+    public function viewWebOrder($weborderID) {
+        $con = $GLOBALS['con'];
+        $sql = "select * from orders left join weborder on orders.orderID=weborder.weborderID left join customer on customer.customerID=orders.customerID left join task on task.orderID=weborder.weborderID left join employee on employee.empID=task.empID where weborderId='$weborderID'";
+        //weborder.weborderID,customer.name,weborder.pickupDate,orders.amount,orders.orderStatus
+        $result = $con->query($sql);
+        return $result;
+    }
+
     public function viewAllWebOrders() {
         $con = $GLOBALS['con'];
-        $sql = "select weborder.weborderID,customer.name,weborder.pickupDate from orders left join weborder on orders.orderID=weborder.weborderID left join customer on customer.customerID=orders.orderID";
+        $sql = "select * from orders left join weborder on orders.orderID=weborder.weborderID left join customer on customer.customerID=orders.customerID ORDER BY weborder.weborderID DESC";
+        //weborder.weborderID,customer.name,weborder.pickupDate,orders.amount,orders.orderStatus
         $result = $con->query($sql);
         return $result;
     }
@@ -25,21 +34,43 @@ class order {
         return $result;
     }
 
-    public function viewPendingOrders() {
+    public function viewPendingOrdersAll() {
         $con = $GLOBALS['con'];
         //sql query
         $d = date($cd);
         //   $sql = "SELECT weborder.weborderID,weborder.pickupDate,weborder.pickupTime,customer.city,count(orderitem.itemID) AS items FROM weborder left join orders on weborder.weborderID=orders.orderID left join customer on customer.customerID=orders.customerID left join orderitem on orderitem.orderID=weborder.weborderID where orders.orderStatus='pending' and pickupDate='$d' group by orderitem.orderID  ; ";
-        $sql = "SELECT weborder.weborderID,weborder.pickupDate,weborder.pickupTime,customer.city,count(orderitem.itemID) AS items FROM weborder left join orders on weborder.weborderID=orders.orderID left join customer on customer.customerID=orders.customerID left join orderitem on orderitem.orderID=weborder.weborderID where orders.orderStatus='pending' group by orderitem.orderID  ; ";
+        $sql = "SELECT weborder.weborderID,weborder.pickupDate,weborder.pickupTime,customer.city,sum(orderitem.qty) AS items FROM weborder left join orders on weborder.weborderID=orders.orderID left join customer on customer.customerID=orders.customerID left join orderitem on orderitem.orderID=weborder.weborderID where orders.orderStatus='pending' group by orderitem.orderID  ; ";
+        // $sql = "SELECT weborder.weborderID,weborder.pickupDate,weborder.pickupTime,customer.city FROM weborder left join orders on weborder.weborderID=orders.orderID left join customer on customer.customerID=orders.customerID left join orderitem on orderitem.orderID=weborder.weborderID where orders.orderStatus='pending'   ; ";
         $result = $con->query($sql);
         return $result;
     }
 
-    public function viewCompletedOrders() {
+    public function viewPendingOrders($cd) {
+        $con = $GLOBALS['con'];
+        //sql query
+        $d = date($cd);
+        $sql = "SELECT weborder.weborderID,weborder.pickupDate,weborder.pickupTime,customer.city,count(orderitem.itemID) AS items FROM weborder left join orders on weborder.weborderID=orders.orderID left join customer on customer.customerID=orders.customerID left join orderitem on orderitem.orderID=weborder.weborderID where orders.orderStatus='pending' and pickupDate='$d' group by orderitem.orderID  ; ";
+        //$sql = "SELECT weborder.weborderID,weborder.pickupDate,weborder.pickupTime,customer.city,sum(orderitem.qty) AS items FROM weborder left join orders on weborder.weborderID=orders.orderID left join customer on customer.customerID=orders.customerID left join orderitem on orderitem.orderID=weborder.weborderID where orders.orderStatus='pending' group by orderitem.orderID  ; ";
+        // $sql = "SELECT weborder.weborderID,weborder.pickupDate,weborder.pickupTime,customer.city FROM weborder left join orders on weborder.weborderID=orders.orderID left join customer on customer.customerID=orders.customerID left join orderitem on orderitem.orderID=weborder.weborderID where orders.orderStatus='pending'   ; ";
+        $result = $con->query($sql);
+        return $result;
+    }
+
+    public function viewCompletedOrdersAll() {
         $con = $GLOBALS['con'];
         //sql query
         //  $sql = "SELECT weborder.weborderID,weborder.deliveryDate,weborder.deliveryTime,customer.city,count(orderitem.itemID) AS items FROM weborder left join orders on weborder.weborderID=orders.orderID left join customer on customer.customerID=orders.customerID left join orderitem on orderitem.orderID=weborder.weborderID where orders.orderStatus='completed' and deliveryDate='$d' group by orderitem.orderID";
-        $sql = "SELECT weborder.weborderID,weborder.deliveryDate,weborder.deliveryTime,customer.city,count(orderitem.itemID) AS items FROM weborder left join orders on weborder.weborderID=orders.orderID left join customer on customer.customerID=orders.customerID left join orderitem on orderitem.orderID=weborder.weborderID where orders.orderStatus='completed' group by orderitem.orderID";
+        $sql = "SELECT weborder.weborderID,weborder.deliveryDate,weborder.deliveryTime,customer.city,sum(orderitem.qty) AS items FROM weborder left join orders on weborder.weborderID=orders.orderID left join customer on customer.customerID=orders.customerID left join orderitem on orderitem.orderID=weborder.weborderID where orders.orderStatus='completed' group by orderitem.orderID";
+        $result = $con->query($sql);
+        return $result;
+    }
+
+    public function viewCompletedOrders($cd) {
+        $con = $GLOBALS['con'];
+        $d = date($cd);
+        //sql query
+        $sql = "SELECT weborder.weborderID,weborder.deliveryDate,weborder.deliveryTime,customer.city,count(orderitem.itemID) AS items FROM weborder left join orders on weborder.weborderID=orders.orderID left join customer on customer.customerID=orders.customerID left join orderitem on orderitem.orderID=weborder.weborderID where orders.orderStatus='completed' and deliveryDate='$d' group by orderitem.orderID";
+        // $sql = "SELECT weborder.weborderID,weborder.deliveryDate,weborder.deliveryTime,customer.city,sum(orderitem.qty) AS items FROM weborder left join orders on weborder.weborderID=orders.orderID left join customer on customer.customerID=orders.customerID left join orderitem on orderitem.orderID=weborder.weborderID where orders.orderStatus='completed' group by orderitem.orderID";
         $result = $con->query($sql);
         return $result;
     }

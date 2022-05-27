@@ -24,12 +24,12 @@ $con = $ob->connection();
     <!-- Main Sidebar Container -->
     <?php include '../common/include_sidebar.php'; ?>
     <script type="text/javascript">
-      var tab = document.getElementById('viewAllPickUpDelivery');
-      tab.className+=" active ";
-      var tab = document.getElementById('scheduleMenu');
-      tab.className+=" menu-open";
-      var tab = document.getElementById('scheduleM');
-      tab.className+=" active";
+        var tab = document.getElementById('viewAllPickUpDelivery');
+        tab.className += " active ";
+        var tab = document.getElementById('scheduleMenu');
+        tab.className += " menu-open";
+        var tab = document.getElementById('scheduleM');
+        tab.className += " active";
     </script>
 
     <!-- Content Wrapper. Contains page content -->
@@ -92,26 +92,26 @@ $con = $ob->connection();
                                         <tr>
 
                                             <td>OW000001
-                                                <!--                                            --><?php //echo $row['binType'];                                       ?>
+                                                <!--                                            --><?php //echo $row['binType'];                                        ?>
 
                                             <td>
-                                                <!--                                            --><?php //echo $row['points'];                                       ?>
+                                                <!--                                            --><?php //echo $row['points'];                                        ?>
                                                 02-04-2022
                                             </td>
 
                                             <td>
                                                 Nimna Perera
-                                                <!--                                            --><?php //echo $row['addDate'];                                       ?>
+                                                <!--                                            --><?php //echo $row['addDate'];                                        ?>
                                             </td>
                                             <td>
                                                 Piliyandala
-                                                <!--                                            --><?php //echo $row['addPoints'];                                       ?>
+                                                <!--                                            --><?php //echo $row['addPoints'];                                        ?>
                                             </td>
 
 
                                             <td>
                                                 5
-                                                <!--                                            --><?php //echo $row['addDate'];                                       ?>
+                                                <!--                                            --><?php //echo $row['addDate'];                                        ?>
                                             </td>
 
                                         </tr>
@@ -119,52 +119,52 @@ $con = $ob->connection();
                                         <tr>
 
                                             <td>
-                                                <!--                                            --><?php //echo $row['binType'];                                       ?>
+                                                <!--                                            --><?php //echo $row['binType'];                                        ?>
                                                 OW000002
                                             <td>
-                                                <!--                                            --><?php //echo $row['points'];                                       ?>
+                                                <!--                                            --><?php //echo $row['points'];                                        ?>
                                                 02-04-2022
                                             </td>
 
                                             <td>
                                                 Chathuri Fernando
-                                                <!--                                            --><?php //echo $row['addDate'];                                       ?>
+                                                <!--                                            --><?php //echo $row['addDate'];                                        ?>
                                             </td>
                                             <td>
                                                 Piliyandala
-                                                <!--                                            --><?php //echo $row['addPoints'];                                       ?>
+                                                <!--                                            --><?php //echo $row['addPoints'];                                        ?>
                                             </td>
 
 
                                             <td>
                                                 7
-                                                <!--                                            --><?php //echo $row['addDate'];                                       ?>
+                                                <!--                                            --><?php //echo $row['addDate'];                                        ?>
                                             </td>
 
                                         </tr>
                                         <tr>
 
                                             <td>OW000003
-                                                <!--                                            --><?php //echo $row['binType'];                                       ?>
+                                                <!--                                            --><?php //echo $row['binType'];                                        ?>
 
                                             <td>
-                                                <!--                                            --><?php //echo $row['points'];                                       ?>
+                                                <!--                                            --><?php //echo $row['points'];                                        ?>
                                                 03-04-2022
                                             </td>
 
                                             <td>
                                                 Gimhana Perera
-                                                <!--                                            --><?php //echo $row['addDate'];                                       ?>
+                                                <!--                                            --><?php //echo $row['addDate'];                                        ?>
                                             </td>
                                             <td>
                                                 Maharagama
-                                                <!--                                            --><?php //echo $row['addPoints'];                                       ?>
+                                                <!--                                            --><?php //echo $row['addPoints'];                                        ?>
                                             </td>
 
 
                                             <td>
                                                 1
-                                                <!--                                            --><?php //echo $row['addDate'];                                       ?>
+                                                <!--                                            --><?php //echo $row['addDate'];                                        ?>
                                             </td>
 
                                         </tr>
@@ -172,56 +172,56 @@ $con = $ob->connection();
                                         <tr>
 
                                             <td>
-                                                <!--                                            --><?php //echo $row['binType'];                                       ?>
+                                                <!--                                            --><?php //echo $row['binType'];                                        ?>
                                                 OW000004
                                             <td>
-                                                <!--                                            --><?php //echo $row['points'];                                       ?>
+                                                <!--                                            --><?php //echo $row['points'];                                        ?>
                                                 03-04-2022
                                             </td>
 
                                             <td>
                                                 Umesha Walisundara
-                                                <!--                                            --><?php //echo $row['addDate'];                                       ?>
+                                                <!--                                            --><?php //echo $row['addDate'];                                        ?>
                                             </td>
                                             <td>
                                                 Bokundara
-                                                <!--                                            --><?php //echo $row['addPoints'];                                       ?>
+                                                <!--                                            --><?php //echo $row['addPoints'];                                        ?>
                                             </td>
 
 
                                             <td>
                                                 8
-                                                <!--                                            --><?php //echo $row['addDate'];                                       ?>
+                                                <!--                                            --><?php //echo $row['addDate'];                                        ?>
                                             </td>
 
                                         </tr>
                                         <tr>
 
                                             <td>
-                                                <!--                                            --><?php //echo $row['binType'];                                       ?>
+                                                <!--                                            --><?php //echo $row['binType'];                                        ?>
                                                 OW000005
                                             <td>
-                                                <!--                                            --><?php //echo $row['points'];                                       ?>
+                                                <!--                                            --><?php //echo $row['points'];                                        ?>
                                                 04-04-2022
                                             </td>
 
                                             <td>
                                                 Nikitha Nivedh
-                                                <!--                                            --><?php //echo $row['addDate'];                                       ?>
+                                                <!--                                            --><?php //echo $row['addDate'];                                        ?>
                                             </td>
                                             <td>
                                                 Piliyandala
-                                                <!--                                            --><?php //echo $row['addPoints'];                                       ?>
+                                                <!--                                            --><?php //echo $row['addPoints'];                                        ?>
                                             </td>
 
 
                                             <td>
                                                 4
-                                                <!--                                            --><?php //echo $row['addDate'];                                       ?>
+                                                <!--                                            --><?php //echo $row['addDate'];                                        ?>
                                             </td>
 
                                         </tr>
-                                        <!--                                --><?php //}                                       ?>
+                                        <!--                                --><?php //}                                        ?>
                                     </tbody>
                                     <tfoot>
                                         <tr>
@@ -279,8 +279,7 @@ $con = $ob->connection();
     </script>
 
     <script src="../plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
     <!-- DataTables -->
     <script src="../plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
