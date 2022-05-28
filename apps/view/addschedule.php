@@ -133,7 +133,7 @@ $deliveryJson = json_encode($deliveryRows);
                                                 <?php
                                                 //  while ($rowe = $ree->fetch_assoc()) {
                                                 ?>
-   <!--                                                    <option value="<?php //echo $rowe['empID'];     ?>">-->
+   <!--                                                    <option value="<?php //echo $rowe['empID'];       ?>">-->
                                                 <?php //echo $rowe['empName']; ?>
                                                 </option>
 
@@ -189,7 +189,7 @@ $deliveryJson = json_encode($deliveryRows);
                                                 <?php
                                                 //  while ($rowb = $reso->fetch_assoc()) {
                                                 ?>
-                                                    <!--<option value="<?php //echo $rowb['weborderID'];                                                                                                    ?>">-->
+                                                    <!--<option value="<?php //echo $rowb['weborderID'];                                                                                                      ?>">-->
                                                 <?php //echo $rowb['items'] . " pieces" . $rowb['customerID'];   ?>
                                                 </option>
                                                 <?php //}
@@ -209,7 +209,7 @@ $deliveryJson = json_encode($deliveryRows);
                                                 <?php
                                                 // while ($rowd = $resc->fetch_assoc()) {
                                                 ?>
-<!--                                                <option value="<?php //echo $rowd['weborderID'];                                                        ?>">
+<!--                                                <option value="<?php //echo $rowd['weborderID'];                                                          ?>">
                                                 <?php //echo $rowd['items'] . " pieces";   ?>
                                                 </option>-->
                                                 <?php //}
@@ -297,18 +297,15 @@ $deliveryJson = json_encode($deliveryRows);
                                                         driverSelect.empty();
                                                         let drivers =<?php echo $driverJson; ?>;
                                                         $.each(drivers, function (index, item) {
-                                                            if (vehicleTypeId) {
-                                                                driverSelect.empty();
-                                                                driverSelect.append($("<option></option>").val("").html("Select a Driver"));
-                                                                $.each(vehicles, function (index, item) {
-                                                                    if (dateSelected != item.leaveDate) {
-                                                                        driverSelect.append($("<option></option>").val(item.driverID).html(item.empName));
-                                                                    }
-                                                                });
-                                                            } else {
-                                                                driverSelect.empty();
-                                                                driverSelect.append($("<option></option>").val("").html("Select a Driver"));
-                                                            }
+
+                                                            driverSelect.empty();
+                                                            driverSelect.append($("<option></option>").val("").html("Select a Driver"));
+                                                            $.each(drivers, function (index, item) {
+                                                                if (dateSelected != item.leaveDate) {
+                                                                    driverSelect.append($("<option></option>").val(item.driverID).html(item.empName));
+                                                                }
+                                                            });
+
                                                         });
                                                     }
 
