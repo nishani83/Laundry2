@@ -95,27 +95,37 @@ WHERE s.scheduleID='$scheduleID' and o.orderStatus='onDelivery'";
     }
 
     function addSchedule($arr) {
-        $driverID = $arr['driverID'];
-        $routeID = $arr['routeID'];
+        $scheduleDate = $arr['datepicker'];
+        $startTime = $arr['starttime'];
         $vehicleID = $arr['vehicleID'];
-        $sDate = $arr['sDate'];
-        $start = $arr['start'];
-        $end = $arr['end'];
-        $startOdo = $arr['startOdo'];
-        $binLoc = $arr['binLoc'];
+        $driverID = $arr['driverID'];
+
+        $pickup = $arr['pick'];
+        //  $delivery = $arr['del'];
 
         $con = $GLOBALS['con'];
-        $sql = "INSERT INTO schedule (driverID,routeID, vehicleID, sDate,startTime,endTime,startMeter, isConfirmed) VALUES('$driverID','$routeID','$vehicleID','$sDate','$start','$end','$startOdo','Approved')";
-        $result = $con->query($sql);
-
+        $sql = "INSERT INTO schedule (createdDate,scheduleDate,startTime, vehicleID, driverID, isConfirmed) VALUES(NOW(),'$scheduleDate','$startTime','$vehicleID','$driverID','pending')";
+        $result = $con->query($sql)or die($con->error);
         $scheduleID = $con->insert_id;
+
+        $status = "assigned";
+        $sql2 = "INSERT INTO empleave(empID,leaveDate,time)VALUES('$driverID','$scheduleDate','$startTime')";
+        $result2 = $con->query($sql2) or die($con->error);
+
+        $type = "pickup";
+
         $query = array();
 
-        foreach ($binLoc as $binLocId) {
-            $query[] = "('$scheduleID', '$binLocId')";
+        foreach ($pickup as $orderID) {
+            $sql = "INSERT INTO schedule_weborder(scheduleID, orderID,type) VALUES ('$scheduleID','$orderID','$type')";
+            $result = $con->query($sql)or die($con->error);
+
+            echo $orderID;
+            // $query[] = "('$scheduleID', '$orderID','$type')";
         }
 
-        $con->query('INSERT INTO garbageloc(scheduleID, binAllocationID) VALUES ' . implode(',', $query));
+        //  $con->query('INSERT INTO schedule_weborder(scheduleID, orderID,type) VALUES ' . implode(',', $query));
+        return $scheduleID;
     }
 
     function updateschedule($scheduleID, $arr) {

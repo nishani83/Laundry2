@@ -1,28 +1,21 @@
 <?php
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHP.php to edit this template
- */
 include '../common/dbconnection.php';
-include '../model/employeemodel.php';
+include '../model/schedulemodel.php';
 
 $ob = new dbconnection();
 $con = $ob->connection();
-$obj = new employee();
-$leavedate = $_GET['selecteddate'];
-$obj->viewAvailableDrivers($leavedate);
-
-header("Location:../view/scheduleplan.php?status=success");
+$obj = new schedule();
 
 $status = strtolower($_REQUEST['status']);
 
 switch ($status) {
     case "add":
         $arr = $_POST;
-        $empID = $obj->addEmployee($arr);
+        $empID = $obj->addSchedule($arr);
 
-        header("Location:../view/employee.php?status=success");
-
+        header("Location:../view/schedule.php?status=success");
+        echo $empID;
         break;
 }
+?>

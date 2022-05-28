@@ -177,27 +177,23 @@
                     <p>
                         Driver
                     </p>
+                    <i class="fas fa-angle-right right"></i>
                 </a>
                 <ul class="nav nav-treeview">
 
                     <li class="nav-item">
-                        <a href="../pages/layout/fixed-topnav.html" class="nav-link">
+                        <a href="../view/Jobs.php" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Fixed Navbar</p>
+                            <p>Jobs</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="../pages/layout/fixed-footer.html" class="nav-link">
+                        <a href="../view/LeaveDrivers.php" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Fixed Footer</p>
+                            <p>Leave</p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="../pages/layout/collapsed-sidebar.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Collapsed Sidebar</p>
-                        </a>
-                    </li>
+
                 </ul>
             </li>
 

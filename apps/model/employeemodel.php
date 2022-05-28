@@ -9,13 +9,14 @@ class employee {
         return $result;
     }
 
-    public function viewAvailableDrivers() {
+    public function viewAllDrivers() {
 //   $leaveDate = date("yy-mm-dd", strtotime($lDate));
 
         $con = $GLOBALS['con'];
 
         //   $sql = "SELECT E.empID,E.empName FROM employee E inner join driver D on E.empID = D.empID where E.status='active' AND E.empID NOT IN (SELECT empID FROM `empleave` WHERE leaveDate = '$leaveDate');";
-        $sql = "SELECT E.empID,E.empName FROM employee E inner join driver D on E.empID = D.empID where E.status='active' AND E.empID NOT IN (SELECT empID FROM `empleave`);";
+        //   $sql = "SELECT E.empID,E.empName FROM employee E inner join driver D on E.empID = D.empID where E.status='active' AND E.empID NOT IN (SELECT empID FROM empleave);";
+        $sql = "SELECT * FROM employee E inner join driver D on E.empID = D.empID inner join empleave L on E.empID=L.empID where E.status='active' AND E.designation='driver';";
         $result = $con->query($sql);
         return $result;
     }

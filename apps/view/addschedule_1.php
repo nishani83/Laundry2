@@ -15,12 +15,7 @@ $con = $ob->connection();
 $date = $_GET['dateselected'];
 $obe = new Employee();
 //$ree = $obe->viewAvailableDrivers($date);
-$ree = $obe->viewAllDrivers();
-$driverRows = array();
-while ($rd = $ree->fetch_assoc()) {
-    $driverRows[] = $rd;
-}
-$driverJson = json_encode($driverRows);
+$ree = $obe->viewAvailableDrivers();
 
 $obv = new vehicle();
 $revt = $obv->viewVehicleType();
@@ -129,16 +124,16 @@ $deliveryJson = json_encode($deliveryRows);
                                         </div>
                                         <div class="col-md-8 col-sm-6 col-xs-12">
                                             <select name="driverID" id="driverID" class="form-control" required>
-                                                <option value="">Select a Driver</option>-->
+                                                <option value="">Select a Driver</option>
                                                 <?php
-                                                //  while ($rowe = $ree->fetch_assoc()) {
-                                                ?>
-   <!--                                                    <option value="<?php //echo $rowe['empID'];   ?>">-->
-                                                <?php //echo $rowe['empName']; ?>
-                                                </option>
+                                                while ($rowe = $ree->fetch_assoc()) {
+                                                    ?>
+                                                    <option value="<?php echo $rowe['empID']; ?>">
+                                                        <?php echo $rowe['empName']; ?>
+                                                    </option>
 
-                                                <?php
-                                                // }
+                                                    <?php
+                                                }
                                                 ?>
                                             </select>
                                         </div>
@@ -189,8 +184,8 @@ $deliveryJson = json_encode($deliveryRows);
                                                 <?php
                                                 //  while ($rowb = $reso->fetch_assoc()) {
                                                 ?>
-                                                    <!--<option value="<?php //echo $rowb['weborderID'];                                                                                                  ?>">-->
-                                                <?php //echo $rowb['items'] . " pieces" . $rowb['customerID'];   ?>
+                                                    <!--<option value="<?php //echo $rowb['weborderID'];                                                                                        ?>">-->
+                                                <?php //echo $rowb['items'] . " pieces" . $rowb['customerID'];  ?>
                                                 </option>
                                                 <?php //}
                                                 ?>
@@ -209,8 +204,8 @@ $deliveryJson = json_encode($deliveryRows);
                                                 <?php
                                                 // while ($rowd = $resc->fetch_assoc()) {
                                                 ?>
-<!--                                                <option value="<?php //echo $rowd['weborderID'];                                                      ?>">
-                                                <?php //echo $rowd['items'] . " pieces";   ?>
+<!--                                                <option value="<?php //echo $rowd['weborderID'];                                            ?>">
+                                                <?php //echo $rowd['items'] . " pieces";  ?>
                                                 </option>-->
                                                 <?php //}
                                                 ?>
@@ -280,6 +275,7 @@ $deliveryJson = json_encode($deliveryRows);
                                                                 //$("#pick").append($("<option></option>").val(item.weborderID).html(item.items + "pieces  " + item.weborderID + " " + item.city));
                                                             }
                                                         });
+
                                                         //populate driver
                                                         deliverySelect.empty();
                                                         $.each(delivery, function (index, item) {
@@ -292,22 +288,13 @@ $deliveryJson = json_encode($deliveryRows);
                                                                 //$("#del").append($("<option></option>").val(item.weborderID).html(item.items + "pieces  " + item.weborderID + " " + item.city));
                                                             }
                                                         });
+
                                                         //populate driver
                                                         let driverSelect = $("#driverID");
-                                                        driverSelect.empty();
-                                                        let drivers =<?php echo $driverJson; ?>;
-                                                        $.each(drivers, function (index, item) {
-                                                            if (dateSelected != item.leaveDate) {
-                                                                var $option = $('<option></option>')
-                                                                        .attr('value', item.empID)
-                                                                        .text(item.empNane)
-                                                                        .prop('selected', true);
-                                                                $('#driverID').append($option).change();
-                                                            }
-                                                        });
                                                     }
-
                                                 }
+
+                                                //  }
 
 //
 
