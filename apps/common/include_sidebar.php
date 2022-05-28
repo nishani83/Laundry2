@@ -249,7 +249,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="../view/scheduleplan.php" class="nav-link">
+                        <a href="../view/reporttasks.php" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Task Report</p>
                         </a>
@@ -552,3 +552,27 @@
 </div>
 <!-- /.sidebar -->
 </aside>
+
+<style>
+  /* side nav bar  */
+.main-sidebar.sidebar-light-primary{
+  bottom: 0;
+  float: none;
+  height: 100vh;
+  left: 0;
+  position: fixed;
+  top: 0;
+  overflow:scroll;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.main-sidebar.sidebar-light-primary::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.main-sidebar.sidebar-light-primary{
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+</style>

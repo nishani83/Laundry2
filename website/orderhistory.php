@@ -8,6 +8,13 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE); //To hide errors
 include '../apps/common/dbconnection.php'; //To get connection string
 include '../apps/model/ordermodel.php'; //To call customer model
 
+// set bucket count in header 
+if(isset($_SESSION['my_bucket']) && sizeof($_SESSION['my_bucket'])){
+    $bucketCount = sizeof($_SESSION['my_bucket']);
+}else{
+    $bucketCount = 0;
+}
+
 $ob = new dbconnection();
 $con = $ob->connection();
 

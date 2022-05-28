@@ -3,32 +3,19 @@
 error_reporting(E_ERROR | E_WARNING | E_PARSE); //To hide errors
 include '../common/session.php'; //To get session info
 include '../common/dbconnection.php'; //To get connection string
-include '../model/ordermodel.php'; //To call customer model
-//
+include '../model/customermodel.php'; //To call customer model
+
 $ob = new dbconnection();
 $con = $ob->connection();
-$obj = new order; //To create an object using customer class
 
-$fd_result = $obj->firstOrderDate(); //first order date 
-$fod = $fd_result->fetch_assoc();
-
-if(isset($_POST['date_1']) && isset($_POST['date_2'])){
-  $date1 = $_POST['date_1'];
-  $date2 = $_POST['date_2'];
-
-  $selectedDate1 = $date1;
-  $selectedDate2 =  $date2;
-
+if(isset($_POST['selectedYear'])){
+  $s_year = $_POST['selectedYear'];
 }else{
-  $date1 = "";
-  $date2 = "";
-
-  $selectedDate1 = $fod['orderDate'];
-  $selectedDate2 = date('Y-m-d');
+  $s_year = date('Y');
 }
 
-$result = $obj->viewAllOrdersByDates($date1, $date2); //To get orders info
-
+$obj = new customer; //To create an object using customer class
+$result = $obj->reportCustomerIncome($s_year) //To get all customers info
 ?>
 <html lang="en">
 
@@ -37,14 +24,13 @@ $result = $obj->viewAllOrdersByDates($date1, $date2); //To get orders info
     <link rel="stylesheet" type="text/css" href="../plugins/SearchBuilder-1.0.1/css/searchBuilder.bootstrap4.min.css">
     <link rel="stylesheet" type="text/css" href="../plugins/Buttons-1.7.0/css/buttons.dataTables.min.css">
 
-    <?php include '../common/include_head.php'; ?>
     <body class="hold-transition sidebar-mini layout-fixed" id="page-top">
 
         <?php include '../common/include_topbar.php'; ?>
         <!-- Main Sidebar Container -->
         <?php include '../common/include_sidebar.php'; ?>
         <script type="text/javascript">
-          var tab = document.getElementById('reportOrder');
+          var tab = document.getElementById('reportcustomer');
           tab.className+=" active";
           var tab = document.getElementById('reportMenu');
           tab.className+=" menu-open";
@@ -60,7 +46,7 @@ $result = $obj->viewAllOrdersByDates($date1, $date2); //To get orders info
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Web Order Report</h1>
+                            <h1 class="m-0 text-dark">Web Customer Incomes</h1>
                         </div><!-- /.col -->
 
                     </div><!-- /.row -->
@@ -71,37 +57,42 @@ $result = $obj->viewAllOrdersByDates($date1, $date2); //To get orders info
                 <div class="card-body">
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="javascrpit:void(0);">
-                                <i class="fa fa-table"></i> &nbsp; Order Details
+                            <a class="nav-link" href="reportincome.php">
+                                <i class="fa fa-chart-pie"></i> &nbsp; Each Month Income
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="reportorderstatus.php">
-                                <i class="fa fa-chart-pie"></i> &nbsp; Order Status
+                            <a class="nav-link active" aria-current="page" href="javascrpit:void(0);">
+                                <i class="fa fa-table"></i> &nbsp; Earnings from Customers
                             </a>
                         </li>
                     </ul>
-                    <div class="date-select mt-3">
-                        <form action="" id="dateselect" name="date_range" method="POST" class="d-flex align-center">
-                          <div class="form-group mb-0 mr-5">
-                            <label for="">Date From :</label>
-                            <input type="date" name="date_1" value="<?php echo $selectedDate1; ?>" class="">
-                          </div>
-                          <div class="form-group mb-0">
-                            <label for="">Date To :</label>
-                            <input type="date" id="date2" name="date_2" value="<?php echo $selectedDate2;?>" class="">
-                          </div>
-                        </form>
-                    </div>
-                    <div class="table-responsive">
+                   
+                    <div class="table-responsive position-relative mt-5">
+                        <div class="year-select d-flex align-center mb-2 position-absolute">
+                            <label class="mb-0 mr-2">Year</label>
+                            <form action="" id="yearSelect" method="POST">
+                              <input type="text" id="datepicker" name="selectedYear" value="<?php echo $s_year;?>" class="mr-5">
+                            </form>
+                        </div>
                         <table class="table table-bordered" id="example" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th>#</th>
                                     <th>Customer</th>
-                                    <th>Order Date</th>
-                                    <th>Order Amount</th>
-                                    <th>Status</th>
+                                    <th>Jan</th>
+                                    <th>Feb</th>
+                                    <th>Mar</th>
+                                    <th>Apr</th>
+                                    <th>May</th>
+                                    <th>Jun</th>
+                                    <th>Jul</th>
+                                    <th>Aug</th>
+                                    <th>Sep</th>
+                                    <th>Oct</th>
+                                    <th>Nov</th>
+                                    <th>Dec</th>
+                                    <th>Total</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -110,23 +101,18 @@ $result = $obj->viewAllOrdersByDates($date1, $date2); //To get orders info
                                   while ($row = $result->fetch_array()) {
                                   ?>
                                     <tr>
-                                        <td>
-                                            <?php echo $c; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo ucwords($row['name']); ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $row['orderDate']; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $row['amount']; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $row['orderStatus']; ?>
-                                        </td>
+                                        <td><?php echo $c; ?></td>
+                                        <td><?php echo ucwords($row['name']); ?></td>
+                                        <?php 
+                                        for($i=1; $i<=12; $i++){
+                                          $re_m = $obj->customerOrdersTotalofMonth($row['customerID'], $s_year, $i);
+                                          $row_amount = $re_m->fetch_assoc();
+                                        ?>
+                                        <td><?php echo $row_amount['amount'];?></td>
+                                        <?php }?>
+                                        <td><?php echo $row['customerTot']; ?></td>
                                     </tr>
-                                <?php $c++; } ?>
+                                  <?php $c++; } ?>
                             </tbody>
                         </table>
                     </div>
@@ -156,14 +142,17 @@ $result = $obj->viewAllOrdersByDates($date1, $date2); //To get orders info
 <script src="../plugins/SearchBuilder-1.0.1/js/dataTables.searchBuilder.min.js"></script>
 <script src="../plugins/SearchBuilder-1.0.1/js/searchBuilder.bootstrap4.min.js"></script>
 <script>
-    $(document).ready(function () {
-        $('#example').DataTable({
-            dom: 'QBfrtip',
-            buttons: [
-                'copy', 'csv', 'excel', 'pdf', 'print'
-            ]
-        });
-    });
+    $(document).ready(function() {
+      $('#example').DataTable( {
+          dom: 'Bfrtip',
+          buttons: [
+              'copyHtml5',
+              'excelHtml5',
+              'csvHtml5',
+              'pdfHtml5'
+          ]
+      } );
+    } );
 </script>
 
 
@@ -179,15 +168,25 @@ $result = $obj->viewAllOrdersByDates($date1, $date2); //To get orders info
 <script src="../assets/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../assets/js/demo.js"></script>
-</body>
+
+<!-- datepicker  -->
+<script src="../plugins/datepicker/bootstrap-datepicker.js"></script>
+<link rel="stylesheet" href="../plugins/datepicker/bootstrap-datepicker.css"/>
 
 <script>
+  $("#datepicker").datepicker({
+    format: "yyyy",
+    viewMode: "years", 
+    minViewMode: "years"
+  });
 
-// date range form submit 
-$("#date2").on("change",function(){
-    $('form#dateselect').submit();
-});
+  $("#datepicker").on("change",function(){
+    $('form#yearSelect').submit();
+  });
 
 </script>
+
+
+</body>
 
 </html>
