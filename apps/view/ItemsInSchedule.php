@@ -18,7 +18,7 @@ $obj = new orderitem; //To create an object using employee class
 
 $orderID = $_REQUEST['orderID'];
 
-$result = $obj->viewItemsByOrder($orderID);
+$result = $obj->viewItemsByOrderInSchedule($orderID);
 ?>
 <html lang="en">
 
@@ -72,7 +72,7 @@ $result = $obj->viewItemsByOrder($orderID);
                                             <td>  <?php echo $row['orderItemID']; ?></td>
                                             <td>  <?php echo $row['itemName']; ?></td>
                                             <td>  <?php echo $row['Description']; ?></td>
-                                            <td>  <?php echo $row['Quantity']; ?></td><!-- comment -->
+                                            <td>  <?php echo $row['qty']; ?></td><!-- comment -->
                                             <td>   <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-<?php echo $row['orderItemID']; ?>">
                                                     Picked Up
                                                 </button>

@@ -153,7 +153,13 @@ $res = $obo->viewItemsByOrder($orderID);
 
                                             </td>
                                             <td>
-                                                <?php echo $row['form']; ?>
+                                                <?php
+                                                if ($row['form'] == 1) {
+                                                    echo "fold";
+                                                } else {
+                                                    echo "hang";
+                                                }
+                                                ?>
 
                                             </td>
                                             <td>

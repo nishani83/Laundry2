@@ -81,7 +81,7 @@ $result = $obj->viewAllOrdersByDates($date1, $date2); //To get orders info
                             </a>
                         </li>
                     </ul>
-                    <div class="date-select mt-3">
+                    <div class="date-select mt-4 mb-4">
                         <form action="" id="dateselect" name="date_range" method="POST" class="d-flex align-center">
                           <div class="form-group mb-0 mr-5">
                             <label for="">Date From :</label>
@@ -155,16 +155,6 @@ $result = $obj->viewAllOrdersByDates($date1, $date2); //To get orders info
 <script src="../plugins/DataTables-1.10.24/js/dataTables.bootstrap4.min.js"></script>
 <script src="../plugins/SearchBuilder-1.0.1/js/dataTables.searchBuilder.min.js"></script>
 <script src="../plugins/SearchBuilder-1.0.1/js/searchBuilder.bootstrap4.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $('#example').DataTable({
-            dom: 'QBfrtip',
-            buttons: [
-                'copy', 'csv', 'excel', 'pdf', 'print'
-            ]
-        });
-    });
-</script>
 
 
 <script src="../plugins/jquery/jquery.min.js"></script>
@@ -175,11 +165,30 @@ $result = $obj->viewAllOrdersByDates($date1, $date2); //To get orders info
 <script src="../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>  
+
 <!-- AdminLTE App -->
 <script src="../assets/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../assets/js/demo.js"></script>
 </body>
+
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable({
+            dom: 'QBfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+    });
+</script>
 
 <script>
 

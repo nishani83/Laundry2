@@ -67,14 +67,13 @@ $result = $obj->reportCustomerIncome($s_year) //To get all customers info
                             </a>
                         </li>
                     </ul>
-                   
-                    <div class="table-responsive position-relative mt-5">
-                        <div class="year-select d-flex align-center mb-2 position-absolute">
-                            <label class="mb-0 mr-2">Year</label>
-                            <form action="" id="yearSelect" method="POST">
-                              <input type="text" id="datepicker" name="selectedYear" value="<?php echo $s_year;?>" class="mr-5">
-                            </form>
-                        </div>
+                    <div class="year-select d-flex align-center mb-4 mt-4">
+                        <label class="mb-0 mr-2">Year</label>
+                        <form action="" id="yearSelect" method="POST">
+                          <input type="text" id="datepicker" name="selectedYear" value="<?php echo $s_year;?>" class="mr-5">
+                        </form>
+                    </div>
+                    <div class="table-responsive position-relative mt-2">
                         <table class="table table-bordered" id="example" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
@@ -141,6 +140,33 @@ $result = $obj->reportCustomerIncome($s_year) //To get all customers info
 <script src="../plugins/DataTables-1.10.24/js/dataTables.bootstrap4.min.js"></script>
 <script src="../plugins/SearchBuilder-1.0.1/js/dataTables.searchBuilder.min.js"></script>
 <script src="../plugins/SearchBuilder-1.0.1/js/searchBuilder.bootstrap4.min.js"></script>
+
+<script src="../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables -->
+<script src="../plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>  
+
+<!-- AdminLTE App -->
+<script src="../assets/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../../assets/js/demo.js"></script>
+
+<!-- datepicker  -->
+<script src="../plugins/datepicker/bootstrap-datepicker.js"></script>
+<link rel="stylesheet" href="../plugins/datepicker/bootstrap-datepicker.css"/>
+
+<!-- export btns  -->
 <script>
     $(document).ready(function() {
       $('#example').DataTable( {
@@ -155,24 +181,7 @@ $result = $obj->reportCustomerIncome($s_year) //To get all customers info
     } );
 </script>
 
-
-<script src="../plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- DataTables -->
-<script src="../plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../assets/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../../assets/js/demo.js"></script>
-
 <!-- datepicker  -->
-<script src="../plugins/datepicker/bootstrap-datepicker.js"></script>
-<link rel="stylesheet" href="../plugins/datepicker/bootstrap-datepicker.css"/>
-
 <script>
   $("#datepicker").datepicker({
     format: "yyyy",

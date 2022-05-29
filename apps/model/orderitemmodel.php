@@ -23,6 +23,13 @@ class orderitem {
         return $result;
     }
 
+    public function viewItemsByOrderInSchedule($orderID) {
+        $con = $GLOBALS['con'];
+        $sql = " select orderitem.orderItemID,orderitem.itemID, item.itemName, orderitem.description, orderitem.status,orderitem.qty ,orderitem.form,service.serviceType from orderitem left join item on orderitem.itemID=item.itemID left join service on orderitem.serviceID=service.serviceID where orderitem.orderID='$orderID' and orderitem.status='pending'";
+        $result = $con->query($sql);
+        return $result;
+    }
+
     public function viewItemsForLaunderer($orderID) {
         $con = $GLOBALS['con'];
         $sql = " select orderitem.orderItemID,orderitem.itemID, item.itemName, orderitem.description, orderitem.status,orderitem.qty ,orderitem.form,service.serviceType from orderitem left join item on orderitem.itemID=item.itemID left join service on orderitem.serviceID=service.serviceID where orderitem.orderID='$orderID' and orderitem.status='todo'";
