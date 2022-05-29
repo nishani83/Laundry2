@@ -150,10 +150,10 @@ class CommonBin {
 
 class itemCounts {
 
-    public function countCustomer() {
+    public function countpickup() {
         $con = $GLOBALS['con'];
         //sql query
-        $sql = "SELECT COUNT(cusID) as cusCount FROM customer";
+        $sql = "SELECT COUNT(orderID) as pickCount FROM orders left join weborder on orders.orderID=weborder.weborderID where orderStatus='pending' and pickupDate=CURDATE()";
         //Execute a query
         $result = $con->query($sql);
         return $result;

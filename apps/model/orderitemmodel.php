@@ -2,6 +2,20 @@
 
 class orderitem {
 
+    public function viewItemsCollected($orderID) {
+        $con = $GLOBALS['con'];
+        $sql = " select orderitem.orderItemID,orderitem.notes, item.itemName,orderitem.status,orderitem.qty  from orderitem left join item on orderitem.itemID=item.itemID where orderitem.orderID='$orderID' and orderitem.status='pickedup'";
+        $result = $con->query($sql);
+        return $result;
+    }
+
+    public function viewItemsLeft($orderID) {
+        $con = $GLOBALS['con'];
+        $sql = " select orderitem.orderItemID,orderitem.notes, item.itemName,orderitem.status,orderitem.qty  from orderitem left join item on orderitem.itemID=item.itemID where orderitem.orderID='$orderID' and orderitem.status='pending'";
+        $result = $con->query($sql);
+        return $result;
+    }
+
     public function viewItemsByOrder($orderID) {
         $con = $GLOBALS['con'];
         $sql = " select orderitem.orderItemID,orderitem.itemID, item.itemName, orderitem.description, orderitem.status,orderitem.qty ,orderitem.form,service.serviceType from orderitem left join item on orderitem.itemID=item.itemID left join service on orderitem.serviceID=service.serviceID where orderitem.orderID='$orderID'";

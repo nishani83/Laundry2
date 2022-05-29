@@ -17,6 +17,22 @@ class order {
         return $result;
     }
 
+    public function viewPendingOrdersBySchedule($scheduleID) {
+        $con = $GLOBALS['con'];
+        $sql = "select * from schedule_weborder s left join orders on s.orderID=orders.orderID left join customer on customer.customerID=orders.customerID WHERE s.scheduleID='$scheduleID' and orders.orderStatus='pending'";
+        //weborder.weborderID,customer.name,weborder.pickupDate,orders.amount,orders.orderStatus
+        $result = $con->query($sql);
+        return $result;
+    }
+
+    public function viewDeliveryOrdersBySchedule($scheduleID) {
+        $con = $GLOBALS['con'];
+        $sql = "select * from schedule_weborder s left join orders on s.orderID=orders.orderID left join customer on customer.customerID=orders.customerID WHERE s.scheduleID='$scheduleID' and orders.orderStatus='onDelivery'";
+        //weborder.weborderID,customer.name,weborder.pickupDate,orders.amount,orders.orderStatus
+        $result = $con->query($sql);
+        return $result;
+    }
+
     public function viewAllWebOrders() {
         $con = $GLOBALS['con'];
         $sql = "select * from orders left join weborder on orders.orderID=weborder.weborderID left join customer on customer.customerID=orders.customerID ORDER BY weborder.weborderID DESC";

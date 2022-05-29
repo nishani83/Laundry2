@@ -19,7 +19,8 @@ switch ($status) {
         $obj->addTask($arr);
         $type = "task";
         $msg = "new task assigned";
-        $obn->addNotification($type, $msg, $arr);
+        $receiver = $arr['empID'];
+        $obn->addNotification($type, $msg, $receiver);
         header("Location:../view/task.php?status=success");
 
         break;

@@ -15,6 +15,20 @@ class schedule {
         return $result;
     }
 
+    public function viewSchedule($scheduleID) {
+        $con = $GLOBALS['con'];
+        //sql query
+        $sql = "SELECT * FROM schedule s
+        Inner JOIN vehicle v ON s.vehicleID=v.vehicleID
+        Inner JOIN vehicletype vt ON v.vehicleType = vt.vehicleTypeID
+        Inner JOIN employee e ON s.driverID=e.empID
+        where s.scheduleID='$scheduleID'
+        ORDER BY s.scheduleDate DESC";
+        //Execute a query
+        $result = $con->query($sql);
+        return $result;
+    }
+
     public function viewDriverAssignedSchedules($driverID) {
         $con = $GLOBALS['con'];
         //sql query

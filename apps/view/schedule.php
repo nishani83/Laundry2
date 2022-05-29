@@ -19,12 +19,12 @@ $result = $obj->viewAllSchedule(); //To get all schedules info
         <!-- Main Sidebar Container -->
         <?php include '../common/include_sidebar.php'; ?>
         <script type="text/javascript">
-          var tab = document.getElementById('schedule');
-          tab.className+=" active ";
-          var tab = document.getElementById('scheduleMenu');
-          tab.className+=" menu-open";
-          var tab = document.getElementById('scheduleM');
-          tab.className+=" active";
+            var tab = document.getElementById('schedule');
+            tab.className += " active ";
+            var tab = document.getElementById('scheduleMenu');
+            tab.className += " menu-open";
+            var tab = document.getElementById('scheduleM');
+            tab.className += " active";
         </script>
 
         <!-- Content Wrapper. Contains page content -->
@@ -106,7 +106,7 @@ $result = $obj->viewAllSchedule(); //To get all schedules info
                                                     <a href="../view/updateschedule.php?scheduleID=<?php echo $row['scheduleID']; ?>&status=Update">
                                                         <button type="button" class="btn btn-primary"> </i> Update</button></a>
 
-                                                    <!--                                            <a href="../controller/schedulecontroller.php?scheduleID=--><?php //echo $row['scheduleID'];          ?><!--&status=Delete">-->
+                                                    <!--                                            <a href="../controller/schedulecontroller.php?scheduleID=--><?php //echo $row['scheduleID'];           ?><!--&status=Delete">-->
                                                     <!--                                                <button type="button" class="btn btn-danger" onclick="return confMessage()">Delete</button></a>-->
                                                 </td>
                                             </tr>

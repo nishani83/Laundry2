@@ -19,6 +19,17 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
                  with font-awesome or any other icon font library -->
+
+            <li class="nav-item">
+                <a href="../view/dashboard.php" class="nav-link " id="item">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+
+                    <p>
+                        DashBoard
+
+                    </p>
+                </a>
+            </li>
             <li class="nav-item has-treeview " id="ordersMenu">
                 <a href="../view/webOrder.php" class="nav-link" id="order">
                     <i class="nav-icon fas fa-shopping-cart"></i>
@@ -169,33 +180,33 @@
                 </a>
             </li>
 
-            <li class="nav-item has-treeview">
-                <a href="#" class="nav-link" id="driver">
-                    <i class="nav-icon fas fa-id-card"></i>
+            <!--            <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link" id="driver">
+                                <i class="nav-icon fas fa-id-card"></i>
 
 
-                    <p>
-                        Driver
-                    </p>
-                    <i class="fas fa-angle-right right"></i>
-                </a>
-                <ul class="nav nav-treeview">
+                                <p>
+                                    Driver
+                                </p>
+                                <i class="fas fa-angle-right right"></i>
+                            </a>
+                            <ul class="nav nav-treeview">
 
-                    <li class="nav-item">
-                        <a href="../view/Jobs.php" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Jobs</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="../view/LeaveDrivers.php" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Leave</p>
-                        </a>
-                    </li>
+                                <li class="nav-item">
+                                    <a href="../view/Jobs.php" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Jobs</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="../view/LeaveDrivers.php" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Leave</p>
+                                    </a>
+                                </li>
 
-                </ul>
-            </li>
+                            </ul>
+                        </li>-->
 
             <li class="nav-item has-treeview">
                 <a href="employee.php" class="nav-link" id="employee">
@@ -221,14 +232,14 @@
                 </a>
 
             </li>
-            <li class="nav-item">
-                <a href="customer.php" class="nav-link" id="loyalty">
-                    <i class="nav-icon fas fa-gift"></i>
-                    <p>
-                        Loyalty
-                    </p>
-                </a>
-            </li>
+            <!--            <li class="nav-item">
+                            <a href="customer.php" class="nav-link" id="loyalty">
+                                <i class="nav-icon fas fa-gift"></i>
+                                <p>
+                                    Loyalty
+                                </p>
+                            </a>
+                        </li>-->
             <li class="nav-item has-treeview " id="reportMenu">
                 <a href="#" class="nav-link " id="report">
                     <i class="nav-icon fas fa-calendar"></i>

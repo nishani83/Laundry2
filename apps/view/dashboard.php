@@ -3,9 +3,13 @@
 error_reporting(E_ERROR | E_WARNING | E_PARSE); //To hide errors
 include '../common/session.php';
 include '../common/dbconnection.php'; //To get connection string
-//include '../model/commonmodel.php';
+include '../model/commonmodel.php';
 $ob = new dbconnection();
 $con = $ob->connection();
+
+$obc = new itemCounts();
+$resultc = $obc->countpickup();
+$rowc = $resultc->fetch_array();
 ?>
 <html>
 
@@ -50,7 +54,7 @@ $con = $ob->connection();
                                 <div class="info-box-content">
                                     <span class="info-box-text">Pickup Requests</span>
                                     <span class="info-box-number">
-                                        10
+                                        <?php echo $rowc['pickCount']; ?>
 
                                     </span>
                                 </div>

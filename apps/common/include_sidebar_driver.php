@@ -20,111 +20,59 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
                  with font-awesome or any other icon font library -->
-            <li class="nav-item has-treeview " id="ordersMenu">
-                <a href="#" class="nav-link" id="order">
-                    <i class="nav-icon fas fa-shopping-cart"></i>
-                    <p>
-                        Order
-                        <i class="fas fa-angle-right right"></i>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview ">
-                    <li class="nav-item ">
-                        <a href="../view/storeOrder.php" class="nav-link active">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Shop Orders</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="../view/webOrder.php" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Web Orders</p>
-                        </a>
-                    </li>
-                </ul>
-            </li>
 
             <li class="nav-item has-treeview" id="scheduleMenu">
-                <a href="#" class="nav-link" id="schedule">
+                <a href="../view/dashboardDriver.php" class="nav-link" id="schedule">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <p>
+                        Dashboard
+
+                    </p>
+                </a>
+
+            </li>
+            <li class="nav-item has-treeview" id="scheduleMenu">
+                <a href="../view/DriverSchedule.php" class="nav-link" id="schedule">
                     <i class="nav-icon fas fa-calendar"></i>
                     <p>
                         Schedule
-                        <i class="fas fa-angle-right right"></i>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="../view/DriverSchedule.php" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>My Schedules</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="../view/viewAllPickUpDelivery.php" class="nav-link ">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Today's Pick up & Delivery</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Schedule Planner</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Collection Map</p>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="nav-item has-treeview">
-                <a href="" class="nav-link" id="task">
-                    <i class="nav-icon fas fa-tasks"></i>
-                    <p>
-                        Leave
 
                     </p>
                 </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="../view/Task.php" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Manage Task</p>
-                        </a>
-                    </li>
-                </ul>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="../view/taskSummery.php" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Task Summery</p>
-                        </a>
-                    </li>
-                </ul>
-                <!--
-                    <li class="nav-item">
-                        <a href="../pages/forms/advanced.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Advanced Elements</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="../pages/forms/editors.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Editors</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="pages/forms/validation.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Validation</p>
-                        </a>
-                    </li>
-                </ul> -->
+
             </li>
+
+            <!--            <li class="nav-item has-treeview">
+                            <a href="" class="nav-link" id="task">
+                                <i class="nav-icon fas fa-tasks"></i>
+                                <p>
+                                    Leave
+
+                                </p>
+                            </a>
+                        </li>-->
+
+            <!--
+                <li class="nav-item">
+                    <a href="../pages/forms/advanced.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Advanced Elements</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../pages/forms/editors.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Editors</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/forms/validation.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Validation</p>
+                    </a>
+                </li>
+            </ul> -->
+
 
             <!--
             <li class="nav-header">EXAMPLES</li>
