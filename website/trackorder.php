@@ -15,6 +15,13 @@ if(!isset($_GET['orderid']) || $_GET['orderid'] == ""){
     header("Location:index.html");
 }
 
+// set bucket count in header 
+if(isset($_SESSION['my_bucket']) && sizeof($_SESSION['my_bucket'])){
+    $bucketCount = sizeof($_SESSION['my_bucket']);
+}else{
+    $bucketCount = 0;
+}
+
 $obj = new order;
 $result = $obj->viewOrderDetailsByOrderID($_GET['orderid']);
 $row = $result->fetch_assoc();

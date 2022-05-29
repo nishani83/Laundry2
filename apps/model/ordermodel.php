@@ -172,6 +172,73 @@ class order {
 
     }
 
+
+    // get income of the month 
+    public function getIncomeOfMonth($year, $month){
+
+      $con = $GLOBALS['con'];
+      $sql = "SELECT amount FROM orders WHERE MONTH(orderDate) = '$month' AND YEAR(orderDate) = '$year' ";
+      $result = $con->query($sql);
+      return $result;
+
+    }
+
+    public function getAvailabilityIncomeOfMonth($year){
+
+      $con = $GLOBALS['con'];
+      $sql = "SELECT count(*) as count FROM orders WHERE YEAR(orderDate) = '$year' ";
+      $result = $con->query($sql);
+      return $result;
+
+    }
+
+    // order details related to date 
+    public function viewAllOrdersByDates($date1, $date2) {
+      $con = $GLOBALS['con'];
+
+      $where = "";
+      if($date1 != "" && $date2 != ""){
+        $where = " WHERE orders.orderDate BETWEEN '$date1' AND '$date2' ";
+      }
+
+      $sql = "SELECT orders.*, customer.name FROM orders
+      INNER JOIN customer ON customer.customerID = orders.customerID
+      $where
+      ORDER BY orders.orderDate DESC";
+
+      $result = $con->query($sql);
+      return $result;
+    }
+
+
+    // first order date 
+    public function firstOrderDate(){
+      $con = $GLOBALS['con'];
+
+      $sql = "SELECT orderDate FROM orders ORDER BY orderDate ASC LIMIT 1";
+      $result = $con->query($sql);
+      return $result;
+    }
+
+
+    // order status count 
+    public function orderStatusCount($month, $year, $orderstatus){
+      $con = $GLOBALS['con'];
+
+      $sql = "SELECT count(*) as statuscount FROM orders
+      WHERE orderStatus='$orderstatus' AND YEAR(orderDate)=$year AND MONTH(orderDate)=$month";
+      $result = $con->query($sql);
+      return $result;
+    }
+
+    // order status availability 
+    public function getAvailabilityofOrder($year, $month){
+      $con = $GLOBALS['con'];
+      $sql = "SELECT count(*) as count FROM orders WHERE YEAR(orderDate) = '$year' AND MONTH(orderDate) = '$month'";
+      $result = $con->query($sql);
+      return $result;
+    }
+
 }
 ?>
 

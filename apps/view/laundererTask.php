@@ -101,6 +101,9 @@ $obo = new orderitem();
                                                     if ($nor['count'] == 0) {
 
                                                         $re = $obj->changeStatus($taskID, $s);
+                                                        $resTS = $obj->viewLaundererAssignedTasksWithTaskID($laundererID,$taskID);
+                                                        $rowTS = $resTS->fetch_assoc();
+                                                        $row['taskstatus'] =  $rowTS['taskstatus'];
                                                     }
 
                                                     if (($row['taskstatus']) == "todo") {
