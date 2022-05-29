@@ -18,6 +18,10 @@ if (!isset($_SESSION['customer_id'])) {
 
 }else{
 
+    // clear bucket session & total session after come this page //
+    unset($_SESSION['my_bucket_total']);
+    unset($_SESSION['my_bucket']);
+
     $obj = new customer; //To create an object using customer class
     $result = $obj->viewCustomer($_SESSION['customer_id']);
     $row = $result->fetch_assoc();
@@ -53,11 +57,15 @@ if (!isset($_SESSION['customer_id'])) {
 	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- pdf  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
 </head>
 <body>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
-<div class="page-content container">
+<div class="page-content container" id="page-heading">
     <div class="page-header text-blue-d2">
         <h1 class="page-title text-secondary-d1">
             Invoice
@@ -67,13 +75,13 @@ if (!isset($_SESSION['customer_id'])) {
             </small>
         </h1>
 
-        <div class="page-tools">
+        <div class="page-tools" id="page-tools>
             <div class="action-buttons">
-                <a class="btn bg-white btn-light mx-1px text-95" href="#" data-title="Print">
+                <a class="btn bg-white btn-light mx-1px text-95" href="#" data-title="Print" id="print-btn">
                     <i class="mr-1 fa fa-print text-primary-m1 text-120 w-2"></i>
                     Print
                 </a>
-                <a class="btn bg-white btn-light mx-1px text-95" href="#" data-title="PDF">
+                <a class="btn bg-white btn-light mx-1px text-95" href="#" data-title="PDF" id="pdf-btn">
                     <i class="mr-1 fa fa-file-pdf-o text-danger-m1 text-120 w-2"></i>
                     Export
                 </a>
@@ -81,7 +89,7 @@ if (!isset($_SESSION['customer_id'])) {
         </div>
     </div>
 
-    <div class="container px-0">
+    <div class="container px-0" id="invoice">
         <div class="row mt-4">
             <div class="col-12 col-lg-12">
                 
@@ -160,37 +168,37 @@ if (!isset($_SESSION['customer_id'])) {
 
                         <div class="col-12 col-sm-5 text-grey text-90 order-first order-sm-last">
                             <div class="row my-2">
-                                <div class="col-7 text-right">
+                                <div class="col-6 text-right">
                                     Sub Total
                                 </div>
-                                <div class="col-5">
+                                <div class="col-6">
                                     <span class="text-120 text-secondary-d1">LKR <?php echo number_format((float)$row2['amount'], 2, '.', ''); ?></span>
                                 </div>
                             </div>
                             <div class="row my-2">
-                                <div class="col-7 text-right">
+                                <div class="col-6 text-right">
                                     Delivery
                                 </div>
-                                <div class="col-5">
+                                <div class="col-6">
                                     <span class="text-120 text-secondary-d1">LKR <?php echo number_format((float)$row2['deliveryCharge'], 2, '.', ''); ?></span>
                                 </div>
                             </div>
 
                             <div class="row my-2">
-                                <div class="col-7 text-right">
+                                <div class="col-6 text-right">
                                     Discount (0%)
                                 </div>
-                                <div class="col-5">
+                                <div class="col-6">
                                     <span class="text-110 text-secondary-d1">LKR 0.00</span>
                                 </div>
                             </div>
 
                             <div class="row my-2 align-items-center bgc-primary-l3 p-2">
-                                <div class="col-7 text-right">
+                                <div class="col-6 text-right">
                                     Total Amount
                                 </div>
-                                <div class="col-5">
-                                    <span class="text-150 text-success-d3 opacity-2">LKR <?php echo number_format((float)($row2['amount'] + $row2['deliveryCharge']), 2, '.', ''); ?></span>
+                                <div class="col-6">
+                                    <b><span class="text-120 text-success-d3 opacity-2">LKR <?php echo number_format((float)($row2['amount'] + $row2['deliveryCharge']), 2, '.', ''); ?></span></b>
                                 </div>
                             </div>
                         </div>
@@ -205,6 +213,35 @@ if (!isset($_SESSION['customer_id'])) {
     </div>
 </div>
 
+<!-- print and pdf button actions  -->
+<script>
+    $('#print-btn').click(function (e) { 
+        $('#page-heading').hide();
+        window.print();
+        $('#page-heading').show();
+    });
+
+    window.onload = function(){
+        document.getElementById("pdf-btn")
+        .addEventListener("click", ()=>{
+            const invoice = this.document.getElementById("invoice");
+            var opt = {
+                margin: 0.5,
+                filename: 'my_invoice.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+            html2pdf().from(invoice).set(opt).save();
+        })
+    }
+</script>
+
+<script>
+$(document).ready(function () {
+    localStorage.removeItem('orderPlaced');
+});
+</script>
 
 <style type="text/css">
 body{
@@ -314,6 +351,9 @@ hr {
 .text-150 {
     font-size: 150%!important;
 }
+.text-120 {
+    font-size: 120%!important;
+}
 .text-60 {
     font-size: 60%!important;
 }
@@ -324,7 +364,7 @@ hr {
     vertical-align: bottom!important;
 }
 
-
+</style>
 
 
 

@@ -16,3 +16,23 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     background-color: #ffc107 !important;
     color: #ffffff !important;
 }
+
+/* print btn  */
+.print-btn-style{
+    padding: 2px 12px;
+    border-radius: 3px;
+    background-color: #e2e2e2;
+    border: 1px solid #858585;
+    transition: ease-in 0.1s;
+    outline: none;
+}
+
+.print-btn-style:hover{
+  background-color: #007bff;
+  color: #fff;
+}
+
+.print-btn-style:focus-visible,
+.print-btn-style:focus{
+  outline: none;
+}

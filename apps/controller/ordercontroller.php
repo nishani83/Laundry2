@@ -12,7 +12,4 @@ $arr = $_POST;
 $response = $obj->addWebOrder($arr);
 echo $response;
 
-// unset the bucket session after order placed 
-unset($_SESSION['my_bucket']);
-
 ?>

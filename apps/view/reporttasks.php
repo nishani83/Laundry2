@@ -3,32 +3,23 @@
 error_reporting(E_ERROR | E_WARNING | E_PARSE); //To hide errors
 include '../common/session.php'; //To get session info
 include '../common/dbconnection.php'; //To get connection string
-include '../model/ordermodel.php'; //To call customer model
-//
+include '../model/taskmodel.php'; //To call customer model
+
 $ob = new dbconnection();
 $con = $ob->connection();
-$obj = new order; //To create an object using customer class
 
-$fd_result = $obj->firstOrderDate(); //first order date 
-$fod = $fd_result->fetch_assoc();
-
-if(isset($_POST['date_1']) && isset($_POST['date_2'])){
-  $date1 = $_POST['date_1'];
-  $date2 = $_POST['date_2'];
-
-  $selectedDate1 = $date1;
-  $selectedDate2 =  $date2;
-
+if(isset($_POST['selectedYear']) && isset($_POST['selectedMonth'])){
+  $s_year = $_POST['selectedYear'];
+  $s_month = $_POST['selectedMonth'];
+  $s_month_no = date("m", strtotime($_POST['selectedMonth']));
 }else{
-  $date1 = "";
-  $date2 = "";
-
-  $selectedDate1 = $fod['orderDate'];
-  $selectedDate2 = date('Y-m-d');
+  $s_year = date('Y');
+  $s_month = date('M');
+  $s_month_no = date('m');
 }
 
-$result = $obj->viewAllOrdersByDates($date1, $date2); //To get orders info
-
+$obj = new task; //To create an object using customer class
+$result = $obj->tasksofmonth($s_year, $s_month_no) //To get all customers info
 ?>
 <html lang="en">
 
@@ -44,7 +35,7 @@ $result = $obj->viewAllOrdersByDates($date1, $date2); //To get orders info
         <!-- Main Sidebar Container -->
         <?php include '../common/include_sidebar.php'; ?>
         <script type="text/javascript">
-          var tab = document.getElementById('reportOrder');
+          var tab = document.getElementById('reportcustomer');
           tab.className+=" active";
           var tab = document.getElementById('reportMenu');
           tab.className+=" menu-open";
@@ -60,7 +51,7 @@ $result = $obj->viewAllOrdersByDates($date1, $date2); //To get orders info
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Web Order Report</h1>
+                            <h1 class="m-0 text-dark">Tasks of the Month</h1>
                         </div><!-- /.col -->
 
                     </div><!-- /.row -->
@@ -72,35 +63,35 @@ $result = $obj->viewAllOrdersByDates($date1, $date2); //To get orders info
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="javascrpit:void(0);">
-                                <i class="fa fa-table"></i> &nbsp; Order Details
+                                <i class="fa fa-table"></i> &nbsp; Tasks of the Month
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="reportorderstatus.php">
-                                <i class="fa fa-chart-pie"></i> &nbsp; Order Status
+                            <a class="nav-link" href="reporttaskscount.php">
+                                <i class="fa fa-chart-pie"></i> &nbsp; Tasks Count of Month
                             </a>
                         </li>
                     </ul>
-                    <div class="date-select mt-3">
-                        <form action="" id="dateselect" name="date_range" method="POST" class="d-flex align-center">
-                          <div class="form-group mb-0 mr-5">
-                            <label for="">Date From :</label>
-                            <input type="date" name="date_1" value="<?php echo $selectedDate1; ?>" class="">
-                          </div>
-                          <div class="form-group mb-0">
-                            <label for="">Date To :</label>
-                            <input type="date" id="date2" name="date_2" value="<?php echo $selectedDate2;?>" class="">
-                          </div>
-                        </form>
-                    </div>
-                    <div class="table-responsive">
+                   
+                    <div class="table-responsive position-relative mt-5">
+                        <div class="year-select mb-2 position-absolute">
+                            <form action="" id="monthfilter" method="POST" class="d-flex align-center ">
+                              <div class="form-group">
+                                <label class="mb-0 mr-2">Year</label>
+                                <input type="text" id="datepicker1" name="selectedYear" value="<?php echo $s_year;?>" class="mr-5">
+                              </div>
+                              <div class="form-group">
+                                <label class="mb-0 mr-2">Month</label>
+                                <input type="text" id="datepicker2" name="selectedMonth" value="<?php echo $s_month;?>" class="mr-5">
+                              </div>
+                            </form>
+                        </div>
                         <table class="table table-bordered" id="example" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Customer</th>
-                                    <th>Order Date</th>
-                                    <th>Order Amount</th>
+                                    <th>Task ID</th>
+                                    <th>Assigned Launderer</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
@@ -110,23 +101,12 @@ $result = $obj->viewAllOrdersByDates($date1, $date2); //To get orders info
                                   while ($row = $result->fetch_array()) {
                                   ?>
                                     <tr>
-                                        <td>
-                                            <?php echo $c; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo ucwords($row['name']); ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $row['orderDate']; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $row['amount']; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $row['orderStatus']; ?>
-                                        </td>
+                                        <td><?php echo $c; ?></td>
+                                        <td><?php echo $row['taskID']; ?></td>
+                                        <td><?php echo ucwords($row['empName']); ?></td>
+                                        <td><?php echo $row['taskstatus']; ?></td>
                                     </tr>
-                                <?php $c++; } ?>
+                                  <?php $c++; } ?>
                             </tbody>
                         </table>
                     </div>
@@ -156,14 +136,17 @@ $result = $obj->viewAllOrdersByDates($date1, $date2); //To get orders info
 <script src="../plugins/SearchBuilder-1.0.1/js/dataTables.searchBuilder.min.js"></script>
 <script src="../plugins/SearchBuilder-1.0.1/js/searchBuilder.bootstrap4.min.js"></script>
 <script>
-    $(document).ready(function () {
-        $('#example').DataTable({
-            dom: 'QBfrtip',
-            buttons: [
-                'copy', 'csv', 'excel', 'pdf', 'print'
-            ]
-        });
-    });
+    $(document).ready(function() {
+      $('#example').DataTable( {
+          dom: 'Bfrtip',
+          buttons: [
+              'copyHtml5',
+              'excelHtml5',
+              'csvHtml5',
+              'pdfHtml5'
+          ]
+      } );
+    } );
 </script>
 
 
@@ -179,15 +162,31 @@ $result = $obj->viewAllOrdersByDates($date1, $date2); //To get orders info
 <script src="../assets/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../assets/js/demo.js"></script>
-</body>
+
+<!-- datepicker  -->
+<script src="../plugins/datepicker/bootstrap-datepicker.js"></script>
+<link rel="stylesheet" href="../plugins/datepicker/bootstrap-datepicker.css"/>
 
 <script>
+  // date pickers 
+  $("#datepicker1").datepicker({
+    format: "yyyy",
+    viewMode: "years", 
+    minViewMode: "years"
+  });
 
-// date range form submit 
-$("#date2").on("change",function(){
-    $('form#dateselect').submit();
-});
+  $("#datepicker2").datepicker({
+    format: "M",
+    viewMode: "months", 
+    minViewMode: "months"
+  });
+
+  $("#datepicker2").on("change",function(){
+    $('form#monthfilter').submit();
+  });
 
 </script>
+
+</body>
 
 </html>
