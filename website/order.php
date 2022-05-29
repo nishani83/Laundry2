@@ -249,36 +249,61 @@ if(!isset($_SESSION['my_bucket']) || $_SESSION['my_bucket'] == ""){
                                                     <!-- Set up a container element for the button -->
                                                     <div id="paypal-button-container" class="d-none"></div>
 
-                                                <!-- Vendor JS Files -->
-                                                <script src="assets/vendor/aos/aos.js"></script>
-                                                <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-                                                <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-                                                <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-                                                <script src="assets/vendor/php-email-form/validate.js"></script>
-                                                <script src="assets/vendor/purecounter/purecounter.js"></script>
-                                                <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+                                                    <!-- Include the PayPal JavaScript SDK -->
+                                                    <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
 
-                                                <!-- Template Main JS File -->
-                                                <script src="assets/js/jquery-2.1.1.js"></script>
-                                                <script src="assets/js/main.js"></script>
-                                                <script src="https://app.payhere.co/embed/embed.js"></script>
+                                                    <script>
+                                                        // Render the PayPal button into #paypal-button-container
+
+                                                        var payamount = "<?php echo number_format((float)(($_SESSION['my_bucket_total']+300)*0.0028), 2, '.', ''); ?>";
+
+                                                        paypal.Buttons({
+
+                                                            // Set up the transaction
+                                                            createOrder: function(data, actions) {
+                                                                return actions.order.create({
+                                                                    purchase_units: [{
+                                                                        amount: {
+                                                                            value: payamount
+                                                                        }
+                                                                    }]
+                                                                });
+                                                            },
+
+                                                            // Finalize the transaction
+                                                            onApprove: function(data, actions) {
+                                                                return actions.order.capture().then(function(orderData) {
+                                                                    // Successful capture! For demo purposes:
+                                                                    // console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                                                                    // var transaction = orderData.purchase_units[0].payments.captures[0];
+
+                                                                    // alert('Transaction ' + transaction.status + ': ' + transaction.id + '\n\nSee console for all available details');
+
+                                                                    // Replace the above to show a success message within this page, e.g.
+                                                                    // const element = document.getElementById('paypal-button-container');
+                                                                    // element.innerHTML = '';
+                                                                    // element.innerHTML = '<h3>Thank you for your payment!</h3>';
+                                                                    // Or go to another URL: 
+                                                                    actions.redirect('http://localhost/laundrymgt/website/invoice.php');
+                                                                });
+                                                            }
 
 
-                                                <script>
+                                                        }).render('#paypal-button-container');
+                                                    </script>
+                                            </div>
+                                            </div>
+                                        </div>
 
-                                                                                                        // datepicker delivery date set
-                                                                                                        function setdate() {
-                                                                                                            var x = document.getElementById("pickupdate").value;
-                                                                                                            var pickDate = new Date(x);
-                                                                                                            pickDate.setDate(pickDate.getDate() + 4);
-                                                                                                            var newDate = pickDate.toISOString().slice(0, 10);
-                                                                                                            document.getElementById("deliverydate").min = newDate;
-                                                                                                        }
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </form>
+            </section>
 
 
-                                                                                                        // ORDER FORM SUBMIT AJAX
-                                                                                                        $('#order-form').on('submit', function (e) {
-                                                                                                            e.preventDefault();
+            <!-- ======= About Section ======= -->
 
         </main><!-- End #main -->
 

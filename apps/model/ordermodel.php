@@ -210,25 +210,93 @@ class order {
       RIGHT JOIN service_item ON (service_item.serviceID = service.serviceID) AND (service_item.itemID = item.itemID)
       WHERE orderitem.orderID = '$orderID' ORDER BY orderitem.orderItemID ASC";
 
-        $result = $con->query($sql);
-        return $result;
+      $result = $con->query($sql);
+      return $result;
+
     }
 
-    // update payment status
-    public function updatePayStatus($userid) {
 
-        $con = $GLOBALS['con'];
+    // get order details by orderid 
+    public function viewOrderDetailsByOrderID($orderid){
 
-        $sql = "SELECT * FROM orders
-      INNER JOIN weborder ON orders.orderID = weborder.weborderID
-      WHERE orders.customerID='$userid' ORDER BY orders.orderID DESC LIMIT 1";
-        $result = $con->query($sql);
-        $row = $result->fetch_assoc();
-        $orderid = $row['orderID'];
+      $con = $GLOBALS['con'];
+      //sql query
+      $sql = "SELECT weborder.*, orders.*, customer.*
+      FROM weborder 
+      INNER JOIN orders ON orders.orderID = weborder.weborderID
+      INNER JOIN customer ON customer.customerID = orders.customerID
+      WHERE weborder.weborderID='$orderid' LIMIT 1";
 
-        $sql = "UPDATE weborder SET payment_status = 'paid' WHERE weborderID = '$orderid'";
-        $paychange = $con->query($sql) or die($con->error);
-        return $paychange;
+      $result = $con->query($sql);
+      return $result;
+
+    }
+
+
+    // get income of the month 
+    public function getIncomeOfMonth($year, $month){
+
+      $con = $GLOBALS['con'];
+      $sql = "SELECT amount FROM orders WHERE MONTH(orderDate) = '$month' AND YEAR(orderDate) = '$year' ";
+      $result = $con->query($sql);
+      return $result;
+
+    }
+
+    public function getAvailabilityIncomeOfMonth($year){
+
+      $con = $GLOBALS['con'];
+      $sql = "SELECT count(*) as count FROM orders WHERE YEAR(orderDate) = '$year' ";
+      $result = $con->query($sql);
+      return $result;
+
+    }
+
+    // order details related to date 
+    public function viewAllOrdersByDates($date1, $date2) {
+      $con = $GLOBALS['con'];
+
+      $where = "";
+      if($date1 != "" && $date2 != ""){
+        $where = " WHERE orders.orderDate BETWEEN '$date1' AND '$date2' ";
+      }
+
+      $sql = "SELECT orders.*, customer.name FROM orders
+      INNER JOIN customer ON customer.customerID = orders.customerID
+      $where
+      ORDER BY orders.orderDate DESC";
+
+      $result = $con->query($sql);
+      return $result;
+    }
+
+
+    // first order date 
+    public function firstOrderDate(){
+      $con = $GLOBALS['con'];
+
+      $sql = "SELECT orderDate FROM orders ORDER BY orderDate ASC LIMIT 1";
+      $result = $con->query($sql);
+      return $result;
+    }
+
+
+    // order status count 
+    public function orderStatusCount($month, $year, $orderstatus){
+      $con = $GLOBALS['con'];
+
+      $sql = "SELECT count(*) as statuscount FROM orders
+      WHERE orderStatus='$orderstatus' AND YEAR(orderDate)=$year AND MONTH(orderDate)=$month";
+      $result = $con->query($sql);
+      return $result;
+    }
+
+    // order status availability 
+    public function getAvailabilityofOrder($year, $month){
+      $con = $GLOBALS['con'];
+      $sql = "SELECT count(*) as count FROM orders WHERE YEAR(orderDate) = '$year' AND MONTH(orderDate) = '$month'";
+      $result = $con->query($sql);
+      return $result;
     }
 
     // all orders of user
