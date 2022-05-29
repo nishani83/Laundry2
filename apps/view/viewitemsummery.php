@@ -55,8 +55,10 @@ $resl = $obi->viewItemsLeft($orderID);
 
             <div class="card shadow mb-4">
                 <div class="card-body">
-                    <h5>Items Collected</h5>
+                    <h5>Order ID : <?php echo $orderID; ?></h5><br>
+                    <h6>Items Collected</h6>
                     <br>
+
 
 
                     <table id="example1" class="table table-bordered table-striped">
@@ -90,7 +92,7 @@ $resl = $obi->viewItemsLeft($orderID);
                     </table>
                     <br><!-- comment -->
                     <hr>
-                    <h5>Items NOT Collected</h5>
+                    <h6>Items NOT Collected</h6>
                     <br>
 
 

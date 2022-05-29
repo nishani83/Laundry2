@@ -109,12 +109,12 @@ $result = $obj->viewAllWebOrders();
                                                 <td>
                                                     <a href = "../view/viewWebOrder.php?weborderID=<?php echo $row['weborderID']; ?>&status=view"><button type = "button" class = "btn btn-success"> View</button></a>
 
-                                                    <a href = "../view/updateWebOrder.php?weborderID=<?php echo $row['weborderID']; ?>&status=update">
-                                                        <button type = "button" class = "btn btn-primary"> </i> Update</button></a>
+        <!--                                                    <a href = "../view/updateWebOrder.php?weborderID=<?php //echo $row['weborderID'];   ?>&status=update">
+                                                                <button type = "button" class = "btn btn-primary"> </i> Update</button></a>-->
 
-                                                    <a href = "../controller/ordercontroller.php?weborderID=<?php echo $row['weborderID']; ?>&status=<?php echo $label; ?>">
-                                                        <button type = "button" class = "btn btn-danger" onclick = "return confMessage('Do you want to cancel this')">
-                                                            Cancel</button></a>
+    <!--                                                    <a href = "../controller/ordercontroller.php?weborderID=<?php //echo $row['weborderID'];  ?>&status=<?php //echo $label;  ?>">
+                                                            <button type = "button" class = "btn btn-danger" onclick = "return confMessage('Do you want to cancel this')">
+                                                                Cancel</button></a>-->
                                                 </td>
                                             <?php } ?>
                                         </tr>

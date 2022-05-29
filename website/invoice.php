@@ -211,14 +211,20 @@ if (!isset($_SESSION['customer_id'])) {
             </div>
         </div>
     </div>
+
+    <div id="backtohome" class="container back-btn text-right">
+        <span><a href="../index.php">Back to Home</a></span>
+    </div>
 </div>
 
 <!-- print and pdf button actions  -->
 <script>
     $('#print-btn').click(function (e) { 
         $('#page-heading').hide();
+        $('#backtohome').hide();
         window.print();
         $('#page-heading').show();
+        $('#backtohome').show();
     });
 
     window.onload = function(){
@@ -362,6 +368,23 @@ hr {
 }
 .align-bottom {
     vertical-align: bottom!important;
+}
+
+.back-btn{
+    border-top: 1px solid #b8b8b8;
+    padding-top: 10px;
+    margin-top: 10px;
+}
+.back-btn span{
+    background-color: #15a1d5;
+    padding: 8px 10px;
+    border-radius: 3px;
+    display: inline-block;
+}
+
+.back-btn span a{
+    text-decoration: none;
+    color: #fff;
 }
 
 </style>

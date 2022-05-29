@@ -4,10 +4,12 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE); //To hide errors
 include '../common/session.php';
 include '../common/dbconnection.php'; //To get connection string
 include '../model/taskmodel.php';
+include '../model/ordermodel.php';
 include '../model/orderitemmodel.php';
 $ob = new dbconnection();
 $con = $ob->connection();
-$obj = new task; //To create an object using employee class
+$obj = new task; 
+$objo=new order;
 $laundererID = $user_info['empID'];
 $result = $obj->viewLaundererAssignedTasks($laundererID);
 $obo = new orderitem();
@@ -101,6 +103,7 @@ $obo = new orderitem();
                                                     if ($nor['count'] == 0) {
 
                                                         $re = $obj->changeStatus($taskID, $s);
+														
                                                         $resTS = $obj->viewLaundererAssignedTasksWithTaskID($laundererID,$taskID);
                                                         $rowTS = $resTS->fetch_assoc();
                                                         $row['taskstatus'] =  $rowTS['taskstatus'];

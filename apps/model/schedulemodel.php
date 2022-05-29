@@ -6,9 +6,9 @@ class schedule {
         $con = $GLOBALS['con'];
         //sql query
         $sql = "SELECT * FROM schedule s
-        Inner JOIN vehicle v ON s.vehicleID=v.vehicleID
-        Inner JOIN vehicletype vt ON v.vehicleType = vt.vehicleTypeID
-        Inner JOIN employee e ON s.driverID=e.empID
+        left JOIN vehicle v ON s.vehicleID=v.vehicleID
+        left JOIN vehicletype vt ON v.vehicleType = vt.vehicleTypeID
+        left JOIN employee e ON s.driverID=e.empID
         ORDER BY s.scheduleDate DESC";
         //Execute a query
         $result = $con->query($sql);
@@ -43,12 +43,22 @@ WHERE s.driverID='$driverID'
         return $result;
     }
 
+    public function viewScheduledDrivers() {
+        $con = $GLOBALS['con'];
+        //sql query
+        $sql = "SELECT * FROM schedule s right JOIN employee e ON s.driverID=e.empID where e.designation='driver'";
+
+        //Execute a query
+        $result = $con->query($sql);
+        return $result;
+    }
+
     public function viewSchedulePendingOrders($scheduleID) {
         $con = $GLOBALS['con'];
         //sql query
         $sql = "SELECT s.orderID FROM schedule_weborder s
             LEFT JOIN orders o ON o.orderID=s.orderID
-WHERE s.scheduleID='$scheduleID' and o.orderStatus='pending'";
+WHERE s.scheduleID='$scheduleID' and o.orderStatus='assigned'";
         //Execute a query
         $result = $con->query($sql);
         return $result;
@@ -59,7 +69,7 @@ WHERE s.scheduleID='$scheduleID' and o.orderStatus='pending'";
         //sql query
         $sql = "SELECT s.orderID FROM schedule_weborder s
             LEFT JOIN orders o ON o.orderID=s.orderID
-WHERE s.scheduleID='$scheduleID' and o.orderStatus='onDelivery'";
+WHERE s.scheduleID='$scheduleID' and o.orderStatus='ondelivery'";
         //Execute a query
         $result = $con->query($sql);
         return $result;
@@ -115,7 +125,7 @@ WHERE s.scheduleID='$scheduleID' and o.orderStatus='onDelivery'";
         $driverID = $arr['driverID'];
 
         $pickup = $arr['pick'];
-        //  $delivery = $arr['del'];
+        $delivery = $arr['del'];
 
         $con = $GLOBALS['con'];
         $sql = "INSERT INTO schedule (createdDate,scheduleDate,startTime, vehicleID, driverID, isConfirmed) VALUES(NOW(),'$scheduleDate','$startTime','$vehicleID','$driverID','pending')";
@@ -131,10 +141,21 @@ WHERE s.scheduleID='$scheduleID' and o.orderStatus='onDelivery'";
         $query = array();
 
         foreach ($pickup as $orderID) {
-            $sql = "INSERT INTO schedule_weborder(scheduleID, orderID,type) VALUES ('$scheduleID','$orderID','$type')";
-            $result = $con->query($sql)or die($con->error);
+            $sql3 = "INSERT INTO schedule_weborder(scheduleID, orderID,type) VALUES ('$scheduleID','$orderID','$type')";
 
-            echo $orderID;
+            $result3 = $con->query($sql3)or die($con->error);
+
+            $sql5 = "UPDATE orders SET orderStatus='assigned' WHERE orderID='$orderID'";
+            $result5 = $con->query($sql5) or die($con->error);
+
+            // $query[] = "('$scheduleID', '$orderID','$type')";
+        }
+        $type2 = "deliver";
+        foreach ($delivery as $DorderID) {
+            $sql4 = "INSERT INTO schedule_weborder(scheduleID, orderID,type) VALUES ('$scheduleID','$DorderID','$type2')";
+            $result4 = $con->query($sql4)or die($con->error);
+            $sql6 = "UPDATE orders SET orderStatus='ondelivery' WHERE orderID='$DorderID'";
+            $result6 = $con->query($sql6) or die($con->error);
             // $query[] = "('$scheduleID', '$orderID','$type')";
         }
 

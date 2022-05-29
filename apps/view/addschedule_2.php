@@ -133,7 +133,7 @@ $deliveryJson = json_encode($deliveryRows);
                                                 <?php
                                                 //  while ($rowe = $ree->fetch_assoc()) {
                                                 ?>
-   <!--                                                    <option value="<?php //echo $rowe['empID'];                                           ?>">-->
+   <!--                                                    <option value="<?php //echo $rowe['empID'];                                        ?>">-->
                                                 <?php //echo $rowe['empName']; ?>
                                                 </option>
 
@@ -189,7 +189,7 @@ $deliveryJson = json_encode($deliveryRows);
                                                 <?php
                                                 //  while ($rowb = $reso->fetch_assoc()) {
                                                 ?>
-                                                    <!--<option value="<?php //echo $rowb['weborderID'];                                                                                                                                          ?>">-->
+                                                    <!--<option value="<?php //echo $rowb['weborderID'];                                                                                                                                       ?>">-->
                                                 <?php //echo $rowb['items'] . " pieces" . $rowb['customerID'];   ?>
                                                 </option>
                                                 <?php //}
@@ -209,7 +209,7 @@ $deliveryJson = json_encode($deliveryRows);
                                                 <?php
                                                 // while ($rowd = $resc->fetch_assoc()) {
                                                 ?>
-<!--                                                <option value="<?php //echo $rowd['weborderID'];                                                                                              ?>">
+<!--                                                <option value="<?php //echo $rowd['weborderID'];                                                                                           ?>">
                                                 <?php //echo $rowd['items'] . " pieces";   ?>
                                                 </option>-->
                                                 <?php //}
@@ -274,7 +274,7 @@ $deliveryJson = json_encode($deliveryRows);
                                                             if (dateSelected === item.pickupDate) {
                                                                 var $option = $('<option></option>')
                                                                         .attr('value', item.weborderID)
-                                                                        .text(item.items + " pieces | " + item.weborderID + " | " + item.city)
+                                                                        .text(item.items + " pieces  " + item.weborderID + " " + item.city)
                                                                         .prop('selected', true);
                                                                 $('#pick').append($option).change();
                                                                 //$("#pick").append($("<option></option>").val(item.weborderID).html(item.items + "pieces  " + item.weborderID + " " + item.city));
@@ -286,7 +286,7 @@ $deliveryJson = json_encode($deliveryRows);
                                                             if (dateSelected === item.deliveryDate) {
                                                                 var $option = $('<option></option>')
                                                                         .attr('value', item.weborderID)
-                                                                        .text(item.items + " pieces  |" + item.weborderID + " | " + item.city)
+                                                                        .text(item.items + " pieces  " + item.weborderID + " " + item.city)
                                                                         .prop('selected', true);
                                                                 $('#del').append($option).change();
                                                                 //$("#del").append($("<option></option>").val(item.weborderID).html(item.items + "pieces  " + item.weborderID + " " + item.city));
@@ -321,7 +321,7 @@ $deliveryJson = json_encode($deliveryRows);
                                                             driverSelect.append($("<option></option>").val("").html("Select a Driver"));
                                                             $.each(newArray, function (index, item) {
                                                                 if (dateSelected !== item.scheduleDate) {
-                                                                    driverSelect.append($("<option></option>").val(item.empID).html(item.empName));
+                                                                    driverSelect.append($("<option></option>").val(item.driverID).html(item.empName));
 
 
                                                                 }
@@ -371,8 +371,6 @@ $deliveryJson = json_encode($deliveryRows);
                                                                 }
                                                             });
                                                 }
-
-
 //
                                                 );
 

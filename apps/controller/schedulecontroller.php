@@ -14,10 +14,10 @@ $arr = $_POST;
 switch ($status) {
     case "add":
         $arr = $_POST;
-        $empID = $obj->addSchedule($arr);
+        $scheduleID = $obj->addSchedule($arr);
 
         header("Location:../view/schedule.php?status=success");
-        echo $empID;
+        echo $scheduleID;
         break;
     case "view":
         $scheduleID = $_GET['scheduleID'];

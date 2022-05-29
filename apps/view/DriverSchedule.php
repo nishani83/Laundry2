@@ -75,7 +75,13 @@ $result = $obj->viewDriverAssignedSchedules($driverID);
                                                     ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $row['startTime']; ?>
+                                                    <?php
+                                                    if ($row['startTime'] == 1) {
+                                                        echo "9.00";
+                                                    } else {
+                                                        echo "2.00";
+                                                    }
+                                                    ?>
 
 
                                                 </td>
@@ -106,7 +112,7 @@ $result = $obj->viewDriverAssignedSchedules($driverID);
                                                         ?>
                                                 </td>
                                                 <td>
-                                                    <?php //echo $row['status'];   ?>
+                                                    <?php //echo $row['status'];    ?>
                                                 </td>
                                                 <td>
                                                 </td>
