@@ -78,15 +78,50 @@ WHERE empID='$laundererID'
         return $result;
     }
 
+
     public function viewLaundererAssignedTasksWithTaskID($laundererID, $taskID) {
-        $con = $GLOBALS['con'];
-        //sql query
-        $sql = "SELECT * FROM task
+      $con = $GLOBALS['con'];
+      //sql query
+      $sql = "SELECT * FROM task
       WHERE empID='$laundererID' AND taskID = '$taskID'
       ORDER BY dueDate";
-        //Execute a query
-        $result = $con->query($sql);
-        return $result;
+      //Execute a query
+      $result = $con->query($sql);
+      return $result;
     }
 
+    // tasks of month and year 
+    public function tasksofmonth($year, $month){
+      $con = $GLOBALS['con'];
+
+      $sql = "SELECT task.*, employee.empName
+      FROM task
+      INNER JOIN employee ON employee.empID = task.empID
+      WHERE YEAR(createdDate)='$year' AND MONTH(createdDate) = '$month'";
+
+      $result = $con->query($sql);
+      return $result;
+    }
+
+    // task availability for selected month 
+    public function tasksAvailabilityMonth($year, $month){
+      $con = $GLOBALS['con'];
+
+      $sql = "SELECT count(*) as count FROM task WHERE YEAR(createdDate) = '$year' AND MONTH(createdDate) = '$month'";
+      $result = $con->query($sql);
+      return $result;
+
+    }
+
+    // task count for month
+    public function tasksCountMonth($month, $year, $taskstatus){
+      $con = $GLOBALS['con'];
+
+      $sql = "SELECT count(*) as statuscount FROM task
+      WHERE taskstatus='$taskstatus' AND YEAR(createdDate)='$year' AND MONTH(createdDate)='$month' ";
+      $result = $con->query($sql);
+      return $result;
+    }
+
+  
 }
