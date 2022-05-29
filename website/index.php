@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+
+<?php
+session_start();
+?>
+
 <html lang="en">
 
     <head>
@@ -24,11 +29,10 @@
         <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
         <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
         <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="../apps/plugins/fontawesome-free/css/fontawesome.css">
 
         <!-- Template Main CSS File -->
         <link href="assets/css/style.css" rel="stylesheet">
-
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- =======================================================
         * Template Name: Bethany - v4.6.0
         * Template URL: https://bootstrapmade.com/bethany-free-onepage-bootstrap-theme/
@@ -59,10 +63,24 @@
                             <li class="link-left"><a class="nav-link scrollto " href="#rewards">Referrals and Rewards</a></li>
 
                             <li class="link-left"><a class="nav-link scrollto" href="#contact">Contact</a></li>
+                            <?php
+                            if(isset($_SESSION['user_info']['name'])){
+                            $namearr = explode(' ', trim($_SESSION['user_info']['name'])); 
+                            $firstname = $namearr[0]; ?>
 
-                            <li class="link-right"><a class="nav-link scrollto" href="../website/Register/register_1.php">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Register </a></li>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <li class="link-right dropdown">
+                                <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-circle" aria-hidden="true"></i>&nbsp; <?php echo $firstname; ?></a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="orderhistory.php">Orders History</a>
+                                    <a class="dropdown-item" href="../apps/controller/logincontroller.php?logout=logout">Logout</a>
+                                </div>
+                            </li>
+
+                            <?php }else{ ?>
+                              <li class="link-right"><a class="nav-link scrollto header-login-link" onclick="loginPopUpShow();">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Login </a></li>
+                            <?php } ?>
                             <li class="link-right"><a class="getstarted scrollto" href="products.php">Schedule a pickup</a></li>
-                            <li class="link-right"><a class="nav-link scrollto" href="../apps/view/login.php"><img src="assets/img/login.png"></a></li>
                         </ul>
                         <i class="bi bi-list mobile-nav-toggle"></i>
                     </nav><!-- .navbar -->
@@ -725,6 +743,67 @@
 
             </main><!-- End #main -->
 
+            <!-- login pop up -->
+            <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Login</h5>
+                            <button type="button" id="close-login-modal" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="login-logo text-center mb-2">
+                                <img src="../apps/assets/img/logo.png" width="200"></br>
+                                <br> <b>Laundry </b>Management
+                            </div>
+                            <!-- If there is an error -->
+                            <?php
+                            if (isset($_REQUEST['msg'])) { ?>
+                                <span class="error-msg text-danger"><?php echo base64_decode($_REQUEST['msg']); ?></span>
+                            <?php } ?>
+                            <form class="user" action="../apps/controller/logincontroller.php" method="post">
+                                <div class="input-group mb-3">
+                                    <input type="hidden" name="web_customer_login" value="webCusLogin">
+                                    <input type="email" class="form-control" placeholder="Email"  name="wc_email" required>
+                                    <div class="input-group-append">
+                                        <div class="input-group-text input-icon">
+                                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <input type="password" class="form-control" placeholder="Password"  name="wc_pass" required>
+                                    <div class="input-group-append">
+                                        <div class="input-group-text input-icon">
+                                            <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="icheck-primary">
+                                            <input type="checkbox" id="remember">
+                                            <label for="remember">
+                                                Remember Me
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <button type="submit" class="btn btn-primary btn-block w-100">Sign In</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                        <div class="modal-footer">
+                            <p>If not sign up <a href="Register/register_1.php"> Sign Up</a> here.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- ======= Footer ======= -->
             <footer id="footer">
 
@@ -801,6 +880,7 @@
 
             <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
+            <script src="assets/js/jquery-2.1.1.js"></script>
             <!-- Vendor JS Files -->
             <script src="assets/vendor/aos/aos.js"></script>
             <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -814,5 +894,23 @@
             <script src="assets/js/main.js"></script>
 
     </body>
+
+<!-- login pop up show  -->
+<script>
+    <?php if(isset($_REQUEST['login']) && $_REQUEST['login']=="login"){ ?>
+    $(window).on('load', function(){ 
+        $('#loginModal').modal('show');
+    });
+    <?php } ?>
+
+    function loginPopUpShow(){
+        $('#loginModal').modal('show');
+    }
+
+    // close login modal
+    $('#close-login-modal').click(function (e) { 
+        $('#loginModal').modal('hide');
+    });
+</script>
 
 </html>

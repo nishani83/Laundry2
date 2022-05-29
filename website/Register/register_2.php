@@ -69,7 +69,7 @@ session_start();
                                         </div>
                                         <form method="post" action="verifyOTP.php" enctype="multipart/form-data" id="addCustomer" name="addCustomer">
                                             <div class="form-group">
-                                                <input type="text"  name="email" id="email"  class="form-control" />
+                                                <input type="text"  name="email" id="email"  class="form-control" onfocusout="checkEmail();" />
                                             </div>
 
                                             <button type="submit" class="btn btn-primary btn-block" formaction="sendOTPEmail.php">
@@ -114,6 +114,36 @@ session_start();
 
     </body>
     <script type="text/javascript">
+        function checkEmail()
+        {
+
+            if (document.getElementById("email").value.length > 0)
+            {
+
+                $.ajax({
+                    type: "POST",
+                    data: {
+                        email: $('#email').val(),
+                    },
+                    url: "getemail.php",
+                    success: function (data)
+                    {
+
+                        if (data == 1)
+                        {
+                            alert("hi");
+                            email_state = true;
+                            $('#error').show();
+                            $('#error').text("Email already exists");
+                        }
+
+                    }
+                });
+            }
+        }
+    </script>
+    <script type="text/javascript">
+
 //        $(document).ready(function () {
 //            $('form').submit(function () {
 //                var email = $('#email').val();

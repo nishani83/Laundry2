@@ -17,6 +17,13 @@ class report {
         return $result;
     }
 
+    public function customersByYearAndMonth($year, $month) {
+        $con = $GLOBALS['con'];
+        $sql = "select count(*) as cus from customer where YEAR(RegisteredDate)='2022' AND MONTH(RegisteredDate) = '$month'";
+        $result = $con->query($sql);
+        return $result;
+    }
+
 }
 
 //member

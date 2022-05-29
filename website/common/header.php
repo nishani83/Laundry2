@@ -4,18 +4,18 @@
     <div class="container">
         <div class="header-container d-flex align-items-center justify-content-between">
             <div class="logo">
-                <h1 class="text-light"><a href="index.html"><span>Canren</span></a></h1>
+                <h1 class="text-light"><a href="index.php"><span>Canren</span></a></h1>
                 <!-- Uncomment below if you prefer to use an image logo -->
                 <!-- <a href="index.html"><img src="logo.png" alt="" class="img-fluid"></a>-->
             </div>
 
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li class="link-left"><a class="nav-link scrollto active" href="index.html">Home</a></li>
-                    <li class="link-left"><a class="nav-link scrollto" href="index.html#about">About</a></li>
-                    <li class="link-left"><a class="nav-link scrollto" href="index.html#services">Services</a></li>
-                    <li class="link-left"><a class="nav-link scrollto " href="index.html#rewards">Referrals and Rewards</a></li>
-                    <li class="link-left"><a class="nav-link scrollto" href="index.html#contact">Contact</a></li>
+                    <li class="link-left"><a class="nav-link scrollto active" href="index.php">Home</a></li>
+                    <li class="link-left"><a class="nav-link scrollto" href="index.php#about">About</a></li>
+                    <li class="link-left"><a class="nav-link scrollto" href="index.php#services">Services</a></li>
+                    <li class="link-left"><a class="nav-link scrollto " href="index.php#rewards">Referrals and Rewards</a></li>
+                    <li class="link-left"><a class="nav-link scrollto" href="index.php#contact">Contact</a></li>
 
                     <?php
                     if (isset($_SESSION['user_info']['name'])) {

@@ -395,7 +395,7 @@
                                     <button class="button-count">+</button>
                                 </div>
                                 <br>
-                                <h2>Price : <span id="methodvalue"></span></h2>
+                                <h2>Unit Price : <span id="methodvalue"></span></h2>
                                 <input type="hidden" id="itemid" name="itemid" value="">
                                 <ul class="cd-item-action mt-2">
                                     <li><button class="add-to-cart" name="addtobucket">Add to cart</button></li>

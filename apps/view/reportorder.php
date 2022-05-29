@@ -85,11 +85,11 @@ $result = $obj->viewAllOrdersByDates($date1, $date2); //To get orders info
                         <form action="" id="dateselect" name="date_range" method="POST" class="d-flex align-center">
                           <div class="form-group mb-0 mr-5">
                             <label for="">Date From :</label>
-                            <input type="date" name="date_1" value="<?php echo $selectedDate1; ?>" class="">
+                            <input type="date" id="date1" name="date_1" value="<?php echo $selectedDate1; ?>" class="">
                           </div>
                           <div class="form-group mb-0">
                             <label for="">Date To :</label>
-                            <input type="date" id="date2" name="date_2" value="<?php echo $selectedDate2;?>" class="">
+                            <input type="date" id="date2" name="date_2" min="" value="<?php echo $selectedDate2;?>" class="">
                           </div>
                         </form>
                     </div>
@@ -192,7 +192,20 @@ $result = $obj->viewAllOrdersByDates($date1, $date2); //To get orders info
 
 <script>
 
+// second datepicker min date set 
+$(document).ready(function () {
+    var x = document.getElementById("date1").value;
+    var firstDate = new Date(x);
+    firstDate.setDate(firstDate.getDate() + 1);
+    var newDate = firstDate.toISOString().slice(0, 10);
+    document.getElementById("date2").min = newDate;
+});
+
 // date range form submit 
+$("#date1").on("change",function(){
+    $('form#dateselect').submit();
+});
+
 $("#date2").on("change",function(){
     $('form#dateselect').submit();
 });

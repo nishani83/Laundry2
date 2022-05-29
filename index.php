@@ -7,6 +7,6 @@ if (!empty($_SERVER['HTTPS']) && ('on' == $_SERVER['HTTPS'])) {
 }
 
 echo $uri .= $_SERVER['HTTP_HOST'];
-header('Location: ' . $uri . '/laundrymgt/website/index.html');
+header('Location: ' . $uri . '/laundrymgt/website/index.php');
 //header('Location: ' . $uri . '/wastemgt/internal/view/website/index.html');
 exit;

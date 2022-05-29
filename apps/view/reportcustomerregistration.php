@@ -8,16 +8,28 @@ include '../model/commonmodel.php';
 $ob = new dbconnection();
 $con = $ob->connection();
 $obj = new report;
-$result = $obj->customersByYear('2022');
-$months = array("january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december");
-$monthvalues = array();
-foreach ($months as $month) {
-    $monthvalues[$month] = 0;
+
+$chartValues = "";
+
+for($i=1; $i<=12; $i++){
+
+  $month = $i;
+  
+  $result = $obj->customersByYearAndMonth('2022', $month);
+
+  while ($row = $result->fetch_array()) {
+
+    if($i==1){
+      $chartValues = "'".$row['cus']."'";
+    }else{
+      $chartValues .= ",'".$row['cus']."'";
+    }
+
+  }
+  
 }
-while ($row = $result->fetch_array()) {
-    $monthvalues[$row[0]] = (int) $row[1];
-}
-print (json_encode(array_values($months)));
+
+
 ?>
 <html lang="en">
 
@@ -45,7 +57,7 @@ print (json_encode(array_values($months)));
 
             <div class="card shadow mb-4">
                 <div class="card-body">
-                    <ul class="nav nav-tabs">
+                    <ul class="nav nav-tabs mb-4">
                         <li class="nav-item">
                             <a class="nav-link" href="reportcustomer.php" >
                                 <i class="fa fa-table"></i> &nbsp; Table view
@@ -60,9 +72,9 @@ print (json_encode(array_values($months)));
                     <div>
 
                         <div class="row justify-content-center">
-                            <div class="col-md-6">
+                            <div class="col-md-9">
                                 <div class="card">
-                                    <h3>Customer Registration - Year 2022</h3>
+                                    <h3 class="mt-2 ml-3">Customer Registration - Year 2022</h3>
                                     <div class="card-body">
                                         <canvas id="myChart" width="400" height="400"></canvas>
                                     </div>
@@ -93,11 +105,11 @@ print (json_encode(array_values($months)));
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: [<?= json_encode(array_values($months)); ?>],
+            labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
             datasets: [{
-                    label: 'Month',
+                    label: 'Count',
                     //  data: [10, 12, 3, 5, 2, 3],
-                    data: [<?= json_encode(array_values($monthvalues)); ?>],
+                    data: [<?php echo $chartValues; ?>],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',

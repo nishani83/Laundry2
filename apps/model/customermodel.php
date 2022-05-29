@@ -2,6 +2,14 @@
 
 class customer {
 
+    function checkEmail($email) {
+        $con = $GLOBALS['con'];
+        $sql = "SELECT count(email)as count FROM webcustomer WHERE email='$email'";
+        $result = $con->query($sql);
+
+        return $result;
+    }
+
     public function viewAllCustomer() {
         $con = $GLOBALS['con'];
         //sql query
@@ -24,26 +32,24 @@ class customer {
         return $result;
     }
 
-    public function reportCustomerIncome($year){
-      $con = $GLOBALS['con'];
-     
-      $sql = "SELECT orders.customerID, SUM(orders.amount) as customerTot, customer.name FROM orders
+    public function reportCustomerIncome($year) {
+        $con = $GLOBALS['con'];
+
+        $sql = "SELECT orders.customerID, SUM(orders.amount) as customerTot, customer.name FROM orders
       INNER JOIN customer on customer.customerID=orders.customerID
       WHERE YEAR(orders.orderDate) = '$year'
       GROUP BY orders.customerID ORDER BY SUM(orders.amount) DESC";
-      $result = $con->query($sql);
-      return $result;
-
+        $result = $con->query($sql);
+        return $result;
     }
 
-    public function customerOrdersTotalofMonth($customerID, $year, $month){
-      $con = $GLOBALS['con'];
-     
-      $sql = "SELECT SUM(amount) as amount FROM orders
-      WHERE YEAR(orderDate) = '$year' AND  MONTH(orderDate) = '$month' AND customerID = '$customerID' ";
-      $result = $con->query($sql);
-      return $result;
+    public function customerOrdersTotalofMonth($customerID, $year, $month) {
+        $con = $GLOBALS['con'];
 
+        $sql = "SELECT SUM(amount) as amount FROM orders
+      WHERE YEAR(orderDate) = '$year' AND  MONTH(orderDate) = '$month' AND customerID = '$customerID' ";
+        $result = $con->query($sql);
+        return $result;
     }
 
     public function viewCustomer($customerID) {

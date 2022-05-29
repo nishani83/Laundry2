@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 
 <style media="screen">
-  .linktop{
-    color:white !important;
-    font-size:16px !important;
-  }
+    .linktop{
+        color:white !important;
+        font-size:16px !important;
+    }
 
-  .linktopbtn{
-    background-color: #e7f4fd !important;
-    color: #0b5a8e !important;
-  }
+    .linktopbtn{
+        background-color: #e7f4fd !important;
+        color: #0b5a8e !important;
+    }
 
-  .linktopbtn:hover{
-    background-color: #0b5a8e !important;
-    color: #e7f4fd !important;
-  }
+    .linktopbtn:hover{
+        background-color: #0b5a8e !important;
+        color: #e7f4fd !important;
+    }
 </style>
 
 
@@ -25,21 +25,21 @@
     <div style="width:100%;z-index:999;background-color:#15A1D5">
         <div class="header-container d-flex align-items-center justify-content-between" style="background-color:transparent;" >
             <div class="logo">
-                <h1 class="text-light"><a href="index.html"><span>Canren</span></a></h1>
+                <h1 class="text-light"><a href="index.php"><span>Canren</span></a></h1>
                 <!-- Uncomment below if you prefer to use an image logo -->
                 <!-- <a href="index.html"><img src="logo.png" alt="" class="img-fluid"></a>-->
             </div>
 
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li class="link-left"><a class="nav-link scrollto active  linktop" href="../index.html#hero">Home</a></li>
-                    <li class="link-left"><a class="nav-link scrollto linktop" href="../index.html#about">About</a></li>
-                    <li class="link-left"><a class="nav-link scrollto linktop" href="../index.html#services">Services</a></li>
-                    <li class="link-left"><a class="nav-link scrollto  linktop" href="../index.html#rewards">Referrals and Rewards</a></li>
+                    <li class="link-left"><a class="nav-link scrollto active  linktop" href="../index.php#hero">Home</a></li>
+                    <li class="link-left"><a class="nav-link scrollto linktop" href="../index.php#about">About</a></li>
+                    <li class="link-left"><a class="nav-link scrollto linktop" href="../index.php#services">Services</a></li>
+                    <li class="link-left"><a class="nav-link scrollto  linktop" href="../index.php#rewards">Referrals and Rewards</a></li>
 
-                    <li class="link-left"><a class="nav-link scrollto linktop" href="../index.html#contact">Contact</a></li>
-                    <li class="link-right"><a class="nav-link scrollto linktop" href="../website/Register/register_1.php">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Register </a></li>
-                    <li class="link-right"><a class="getstarted scrollto linktopbtn" href="category/items.php">Schedule a pickup</a></li>
+                    <li class="link-left"><a class="nav-link scrollto linktop" href="../index.php#contact">Contact</a></li>
+                    <li class="link-right"><a class="nav-link scrollto linktop" href="../Register/register_1.php">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Register </a></li>
+                    <li class="link-right"><a class="getstarted scrollto linktopbtn" href="../products.php">Schedule a pickup</a></li>
                 </ul>
             </nav><!-- .navbar -->
 

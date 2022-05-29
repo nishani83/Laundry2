@@ -61,7 +61,7 @@ $result = $obj->reportCustomer() //To get all customers info
                             </a>
                         </li>
                     </ul>
-                    <div class="table-responsive">
+                    <div class="table-responsive mt-4">
                         <table class="table table-bordered" id="example" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
@@ -71,7 +71,7 @@ $result = $obj->reportCustomer() //To get all customers info
                                     <th>Telephone</th>
                                     <th>Email</th>
                                     <th>Status</th>
-                                    <th>Loyalty Points</th>
+                                    <!-- <th>Loyalty Points</th> -->
                                 </tr>
                             </thead>
                             <tbody>
@@ -97,10 +97,9 @@ $result = $obj->reportCustomer() //To get all customers info
                                         <td>
                                             <?php echo $row['status']; ?>
                                         </td>
-
-                                        <td>
+                                        <!-- <td>
                                             <?php echo $row['loyaltyPoints']; ?>
-                                        </td>
+                                        </td> -->
                                     </tr>
                                 <?php } ?>
                             </tbody>
@@ -131,6 +130,29 @@ $result = $obj->reportCustomer() //To get all customers info
 <script src="../plugins/DataTables-1.10.24/js/dataTables.bootstrap4.min.js"></script>
 <script src="../plugins/SearchBuilder-1.0.1/js/dataTables.searchBuilder.min.js"></script>
 <script src="../plugins/SearchBuilder-1.0.1/js/searchBuilder.bootstrap4.min.js"></script>
+
+
+<script src="../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables -->
+<script src="../plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>  
+
+<!-- AdminLTE App -->
+<script src="../assets/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../../assets/js/demo.js"></script>
+
 <script>
     $(document).ready(function () {
         $('#example').DataTable({
@@ -142,19 +164,6 @@ $result = $obj->reportCustomer() //To get all customers info
     });
 </script>
 
-
-<script src="../plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- DataTables -->
-<script src="../plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../assets/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../../assets/js/demo.js"></script>
 </body>
 
 </html>
