@@ -106,10 +106,41 @@ $result = $obj->viewDriverAssignedSchedules($driverID);
                                                     $result3 = $obj->viewScheduleDeliveryOrders($scheduleID);
                                                     while ($row3 = $result3->fetch_array()) {
                                                         ?>
-                                                        <a href="ItemsInSchedule.php?orderID=<?php echo $row3['orderID']; ?>" <?php echo $row3['orderID']; ?></a>
-                                                            </br>
-                                                        <?php }
-                                                        ?>
+
+
+
+
+                                                        <button type="button" class="btn btn-primary-outline" data-toggle="modal" data-target="#modal-<?php echo $row3['orderID']; ?>">
+                                                            <?php echo $row3['orderID']; ?>
+                                                        </button>
+                                                        <?php $status = "delivered" ?>
+                                                        <form method="post" enctype="multipart/form-data"  action="../controller/orderitemcontroller.php?orderID=<?php echo $row3['orderID']; ?>& status=<?php echo $status; ?> ">
+                                                            <div class="modal fade" id="modal-<?php echo $row['orderID']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="exampleModalLongTitle">Add Note</h5>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+
+                                                                            <input type="text" name="notes" id="notes" placeholder="Add any sepcial notes" class="form-control"/>
+
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                            <button type="submit" class="btn btn-primary">Save</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+
+                                                        </br>
+                                                    <?php }
+                                                    ?>
                                                 </td>
                                                 <td>
                                                     <?php //echo $row['status'];    ?>
@@ -156,7 +187,7 @@ $result = $obj->viewDriverAssignedSchedules($driverID);
         </script>
 
 
-        <script src="../plugins/jquery/jquery.min.js"></script>
+<!--        <script src="../plugins/jquery/jquery.min.js"></script>-->
 
         <!-- DataTables -->
         <script src="../plugins/datatables/jquery.dataTables.min.js"></script>
@@ -164,9 +195,12 @@ $result = $obj->viewDriverAssignedSchedules($driverID);
         <script src="../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
         <script src="../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
         <!-- AdminLTE App -->
-        <script src="../assets/js/adminlte.min.js"></script>
+<!--        <script src="../assets/js/adminlte.min.js"></script>-->
         <!-- AdminLTE for demo purposes -->
         <script src="../../assets/js/demo.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<!--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
+        <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
         <!-- page script -->
         <script>
             $(function () {

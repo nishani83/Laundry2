@@ -9,10 +9,12 @@
 
 include '../common/dbconnection.php';
 include '../model/orderitemmodel.php';
+include '../model/ordermodel.php';
 
 $ob = new dbconnection();
 $con = $ob->connection();
 $obj = new orderitem;
+$obj2 = new order;
 
 //$result = $obj->viewAschedule($name);
 $orderItemID = $_REQUEST['orderItemID'];
@@ -31,6 +33,12 @@ if ($status == "completed") {
     //$scheduleID = $_GET['scheduleID'];
 
     $obj->processOrderItems($orderItemID, $notes, $status);
+    header("Location:../view/viewtaskLaunderer.php?taskID=$taskID");
+}
+if ($status == "delivered") {
+    //$scheduleID = $_GET['scheduleID'];
+
+    $obj2->changeOrderStatus($orderID, $status);
     header("Location:../view/viewtaskLaunderer.php?taskID=$taskID");
 }
 
