@@ -115,7 +115,7 @@ $result = $obj->viewDriverAssignedSchedules($driverID);
                                                         </button>
                                                         <?php $status = "delivered" ?>
                                                         <form method="post" enctype="multipart/form-data"  action="../controller/orderitemcontroller.php?orderID=<?php echo $row3['orderID']; ?>& status=<?php echo $status; ?> ">
-                                                            <div class="modal fade" id="modal-<?php echo $row['orderID']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                            <div class="modal fade" id="modal-<?php echo $row3['orderID']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">

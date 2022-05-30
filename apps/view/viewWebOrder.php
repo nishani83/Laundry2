@@ -135,7 +135,7 @@ $reso = $obo->viewItemsByOrder($weborderID);
                             <div class="col-md-4 col-sm-6 col-xs-12">
                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-<?php echo $row['orderID']; ?>">Refund Receipt</button>
                                 <?php $status = "pending" ?>
-                                <form method="post" enctype="multipart/form-data"  action="../controller/refundcontroller.php?orderID=<?php echo $row['orderID'] ?>& status = <?php echo $status; ?>& person = <?php echo $person; ?> ">
+                                <form method="post" enctype="multipart/form-data"  action="../controller/refundcontroller.php?orderID=<?php echo $row['orderID'] ?>& status=<?php echo $status; ?>& person=<?php echo $person; ?> ">
                                     <div class="modal fade" id="modal-<?php echo $row['orderID']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
@@ -187,12 +187,12 @@ $reso = $obo->viewItemsByOrder($weborderID);
                             <div class="col-md-3 col-sm-6 col-xs-12">
                                 <?php echo $row['amount']; ?>
                             </div>
-                            <!--                            <div class="col-md-2 col-sm-6 col-xs-12">
-                                                            <label>Discount :</label>
-                                                        </div>
-                                                        <div class="col-md-4 col-sm-6 col-xs-12">
-                                                            Rs.60
-                                                        </div>-->
+                            <div class="col-md-2 col-sm-6 col-xs-12">
+                                <label>Refund Amount :</label>
+                            </div>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                <?php echo $row['refundAmount']; ?>
+                            </div>
                         </div>
 
 

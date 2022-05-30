@@ -19,7 +19,7 @@ class order {
 
     public function viewWebOrder($weborderID) {
         $con = $GLOBALS['con'];
-        $sql = "select * from orders left join weborder on orders.orderID=weborder.weborderID left join customer on customer.customerID=orders.customerID left join task on task.orderID=weborder.weborderID left join employee on employee.empID=task.empID where weborderId='$weborderID'";
+        $sql = "select * from orders left join weborder on orders.orderID=weborder.weborderID left join customer on customer.customerID=orders.customerID left join task on task.orderID=weborder.weborderID left join employee on employee.empID=task.empID left join refund on orders.orderID=refund.orderID where weborderId='$weborderID'";
         //weborder.weborderID,customer.name,weborder.pickupDate,orders.amount,orders.orderStatus
         $result = $con->query($sql);
         return $result;

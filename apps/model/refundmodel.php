@@ -6,10 +6,10 @@ class refund {
 
 
         $con = $GLOBALS['con'];
-        $sql = "INSERT INTO refund (refundDate,orderID,amount,reason,personResponsible,status) VALUES('','$vehicleType','Active')";
+        $sql = "INSERT INTO refund (refundDate,orderID,amount,reason,personResponsible,status) VALUES(CURDATE(),'$orderID','$amount','$reason','$person','$status')";
         $result = $con->query($sql) or die($con->error);
-        $vehicleID = $con->insert_id; //Last ID
-        return $vehicleID;
+        $refundID = $con->insert_id; //Last ID
+        return $refundID;
     }
 
 }

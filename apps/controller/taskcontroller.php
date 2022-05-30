@@ -17,11 +17,10 @@ switch ($status) {
     case "add":
         $arr = $_POST;
         $taskID = $obj->addTask($arr);
-        $type = "task";
 
         $msg = "Task assigned : Task ID - " . $taskID;
         $receiver = $arr['empID'];
-        $obn->addNotification($type, $msg, $receiver);
+        $obn->addNotification($msg, $receiver);
         header("Location:../view/task.php?status=success");
 
         break;

@@ -19,13 +19,13 @@ $orderID = $_REQUEST['orderID'];
 $amount = $_POST['amount'];
 $reason = $_POST['reason'];
 $status = strtolower($_REQUEST['status']);
-$person = $_POST['person'];
+$person = $_REQUEST['person'];
 
 if ($status == "pending") {
     //$scheduleID = $_GET['scheduleID'];
 
     $obj->addRefund($orderID, $amount, $reason, $status, $person);
-    header("Location:../view/ItemsInSchedule.php?orderID=$orderID");
+    header("Location:../view/viewWebOrder.php?weborderID=$orderID");
 }
 if ($status == "completed") {
     //$scheduleID = $_GET['scheduleID'];

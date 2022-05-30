@@ -9,7 +9,7 @@ $con = $ob->connection();
 $userName = $user_info['empName'];
 $userID = $user_info['empID'];
 $obj1 = new notification();
-$result = $obj1->viewLaundererNotification($userID);
+$result = $obj1->viewNotification($userID);
 ?>
 <html>
 

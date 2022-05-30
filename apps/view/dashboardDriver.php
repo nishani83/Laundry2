@@ -3,10 +3,14 @@
 error_reporting(E_ERROR | E_WARNING | E_PARSE); //To hide errors
 include '../common/session.php';
 include '../common/dbconnection.php'; //To get connection string
+include '../model/notificationmodel.php';
 //include '../model/commonmodel.php';
 $ob = new dbconnection();
 $con = $ob->connection();
 $userName = $user_info['empName'];
+$userID = $user_info['empID'];
+$obj1 = new notification();
+$result = $obj1->viewNotification($userID);
 ?>
 <html>
 
@@ -120,9 +124,15 @@ $userName = $user_info['empName'];
 
                                 </div>
                                 <div class="card-body">
-                                    <div  class="callout callout-danger"> Pickup request from customer</div>
-                                    <div  class="callout callout-warning"> New user account created</div>
-                                    <div  class="callout callout-danger"> Order# OW000010 completed by Sarath Premasiri</div>
+                                    <?php $status = "read";
+                                    ?>
+
+                                    <?php
+                                    while ($row = $result->fetch_array()) {
+                                        ?>
+
+                                        <a href="../controller/notificationcontroller.php?notificationID=<?php echo $row['notificationID']; ?> &status=<?php echo $status; ?>">      <div  class="callout callout-danger"> <?php echo $row['message']; ?></div></a>
+                                    <?php } ?>
                                 </div>
                             </div>
                         </div><!-- /.card-header -->
