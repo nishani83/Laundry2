@@ -45,7 +45,7 @@
                     <li class="link-left"><button class="nav-link scrollto linktop" onclick="window.location.href = '../index.php#services';" >Services</button></li>
                     <li class="link-left"><button class="nav-link scrollto  linktop" onclick="window.location.href = '../index.php#rewards';" >Referrals & Rewards</button></li>
 
-                    <li class="link-left"><button class="nav-link scrollto linktop" onclick="window.location.href = '../index.html#contact';" >Contact</button></li>
+                    <li class="link-left"><button class="nav-link scrollto linktop" onclick="window.location.href = '../index.php#contact';" >Contact</button></li>
                     <li class="link-right"><button class="nav-link scrollto linktop" onclick="window.location.href = '../Register/register_1.php';">Register </button></li>
                 </ul>
             </nav><!-- .navbar -->

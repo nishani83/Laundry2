@@ -10,7 +10,7 @@
     <div class="container">
         <div class="header-container d-flex align-items-center justify-content-between">
             <div class="logo">
-                <h1 class="text-light"><a href="index.html"><span>Canren</span></a></h1>
+                <h1 class="text-light"><a href="index.php"><span>Canren</span></a></h1>
                 <!-- Uncomment below if you prefer to use an image logo -->
                 <!-- <a href="index.html"><img src="logo.png" alt="" class="img-fluid"></a>-->
             </div>
